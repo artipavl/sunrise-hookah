@@ -1,9 +1,10 @@
 {
-  "name": "initial-template-react-ts",
+  "name": "sunrise-hookah",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://artipavl.github.io/initial-template-react-ts/",
+  "homepage": "https://artipavl.github.io/sunrise-hookah/",
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -11,11 +12,20 @@
     "@types/node": "^16.18.25",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.1",
+    "@types/react-icons": "^3.0.0",
+    "@types/react-redux": "^7.1.25",
+    "formik": "^2.4.1",
+    "modern-normalize": "^1.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.8.0",
+    "react-redux": "^8.1.0",
+    "react-router-dom": "^6.11.1",
     "react-scripts": "5.0.1",
+    "styled-components": "^5.3.10",
     "typescript": "^4.9.5",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yup": "^1.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -41,5 +51,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-router-dom": "^5.3.3",
+    "@types/styled-components": "^5.1.26"
   }
 }
