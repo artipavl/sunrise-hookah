@@ -2,13 +2,23 @@ import { NavLink } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const HeaderBox = styled.header`
-  position: relative;
+export const HeaderSection = styled.header`
+  position: static;
+  width: 100%;
+  background-color: #000000;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  @media screen and (min-width: 1440px) {
+    padding: 0;
+  }
+`;
+export const HeaderBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #000000;
-  width: 100%;
+
+  max-width: 1440px;
+  margin: auto;
   padding-left: 15px;
   padding-right: 15px;
 `;
@@ -16,6 +26,10 @@ export const HeaderBox = styled.header`
 export const MenuBatton = styled.button`
   width: 40px;
   height: 40px;
+
+  @media screen and (min-width: 1440px) {
+    display: none;
+  }
 `;
 
 export const ShoppingCart = styled(Link)`
@@ -24,6 +38,32 @@ export const ShoppingCart = styled(Link)`
   align-items: center;
   width: 40px;
   height: 40px;
+
+  @media screen and (min-width: 1440px) {
+    width: 80px;
+    height: 80px;
+  }
+`;
+
+export const CartSvgBox = styled.div`
+  position: relative;
+`;
+
+export const Quantity = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: red;
+
+  font-size: 10px;
+  right: 5px;
+  top: 5px;
+  transform: translate(+50%, -50%);
 `;
 
 type NavProps = {
@@ -31,22 +71,28 @@ type NavProps = {
 };
 
 export const Nav = styled.nav<NavProps>`
-  position: absolute;
-  top: 0;
-  left: ${props => (props.open ? 0 : '-100%')};
-  min-height: 100vh;
-  width: 100%;
+  @media screen and (max-width: 1439px) {
+    position: absolute;
+    top: 0;
+    left: ${props => (props.open ? 0 : '-100%')};
+    min-height: 100vh;
+    width: 100%;
+  }
 `;
 
 export const NavList = styled.ul`
   display: flex;
   gap: 10px;
-  flex-direction: column;
-  margin-left: 30%;
-  background-color: #000000;
-  min-height: 100vh;
-  padding-top: 80px;
-  padding-left: 30px;
+
+  @media screen and (max-width: 1439px) {
+    flex-direction: column;
+    width: 200px;
+    margin-left: auto;
+    background-color: #000000;
+    min-height: 100vh;
+    padding-top: 80px;
+    padding-left: 30px;
+  }
 `;
 
 export const NavListItem = styled.li`
@@ -61,9 +107,28 @@ export const NavLinkItem = styled(NavLink)`
   :focus {
     color: red;
   }
+
+  @media screen and (min-width: 1440px) {
+    padding: 30px;
+  }
 `;
 
-export const DropMenu = styled.div``;
+export const DropMenu = styled.div`
+  position: relative;
+
+  @media screen and (min-width: 1440px) {
+    :hover,
+    :focus {
+      & > ul {
+        opacity: 1;
+        bottom: -250px;
+      }
+      & svg {
+        transform: rotate(180deg);
+      }
+    }
+  }
+`;
 
 export const DropMenuButton = styled.div<NavProps>`
   display: flex;
@@ -73,11 +138,22 @@ export const DropMenuButton = styled.div<NavProps>`
   padding-top: 10px;
   padding-bottom: 10px;
 
-  ${props =>
-    props.open &&
-    `& > svg {
+  :hover,
+  :focus {
+    color: red;
+  }
+
+  @media screen and (max-width: 1439px) {
+    ${props =>
+      props.open &&
+      `& > svg {
     transform: rotate(180deg);
   }`}
+  }
+
+  @media screen and (min-width: 1440px) {
+    padding: 30px;
+  }
 `;
 
 export const DropMenuList = styled.ul<NavProps>`
@@ -87,4 +163,15 @@ export const DropMenuList = styled.ul<NavProps>`
   padding-top: 10px;
 
   ${props => props.open && ' display: flex;'}
+
+  @media screen and (min-width: 1440px) {
+    display: flex;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: #000;
+    width: 100%;
+    opacity: 0;
+    gap: 0;
+  }
 `;
