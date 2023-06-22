@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/sunrise-hookah/static/css/main.17654e45.css",
+    "main.js": "/sunrise-hookah/static/js/main.2294c184.js",
+    "static/media/sunrise-hookah.jpg": "/sunrise-hookah/static/media/sunrise-hookah.a6331056fbb22540b636.jpg",
+    "index.html": "/sunrise-hookah/index.html",
+    "main.17654e45.css.map": "/sunrise-hookah/static/css/main.17654e45.css.map",
+    "main.2294c184.js.map": "/sunrise-hookah/static/js/main.2294c184.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.17654e45.css",
+    "static/js/main.2294c184.js"
+  ]
+}
