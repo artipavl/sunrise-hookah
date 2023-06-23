@@ -77,6 +77,7 @@ export const Nav = styled.nav<NavProps>`
     left: ${props => (props.open ? 0 : '-100%')};
     min-height: 100vh;
     width: 100%;
+    z-index: 1;
   }
 `;
 
@@ -161,6 +162,7 @@ export const DropMenuList = styled.ul<NavProps>`
   gap: 10px;
   flex-direction: column;
   padding-top: 10px;
+  z-index: 1;
 
   ${props => props.open && ' display: flex;'}
 

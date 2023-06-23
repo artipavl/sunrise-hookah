@@ -77,7 +77,7 @@ const Heder: FC<HederProps> = props => {
               </DropMenu>
             </NavListItem>
             <NavListItem>
-              <NavLinkItem to="/">ПРО НАС</NavLinkItem>
+              <NavLinkItem to="#about">ПРО НАС</NavLinkItem>
             </NavListItem>
             <NavListItem>
               <NavLinkItem to="/">КОНТАКТИ</NavLinkItem>
