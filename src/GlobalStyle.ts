@@ -2,6 +2,9 @@ import { createGlobalStyle } from 'styled-components';
 import 'modern-normalize';
 
 export const GlobalStyle = createGlobalStyle`
+/* html {
+  scroll-behavior: smooth;
+} */
     body {
         font-family: 'Montserrat';
         margin: 0;
