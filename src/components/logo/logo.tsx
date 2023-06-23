@@ -2,13 +2,14 @@ import React, { FC } from 'react';
 
 import Logoimg from '../../images/sunrise-hookah.jpg';
 import { LogoImg } from './logo.style';
+import { Link } from 'react-router-dom';
 type LogoProps = {};
 
 const Logo: FC<LogoProps> = props => {
   return (
-    <div>
+    <Link to="/">
       <LogoImg src={Logoimg} alt="Logo" width="40px" />
-    </div>
+    </Link>
   );
 };
 
