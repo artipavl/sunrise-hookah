@@ -6,7 +6,6 @@ type SectionProps = {
 
 export const Section = styled.section<SectionProps>`
   width: 100%;
-  min-height: 100vh;
 
   background-color: ${props => props.bgc};
 
