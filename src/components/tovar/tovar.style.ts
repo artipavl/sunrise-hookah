@@ -46,6 +46,7 @@ export const TovarInformation = styled.div`
   height: 25%;
   justify-content: space-between;
   padding-block: 3%;
+  color: #fff;
 `;
 export const TovarInformationAvailability = styled.div`
   display: flex;
