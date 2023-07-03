@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 
 export const Footerbox = styled.footer`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
   display: flex;
   justify-content: center;
   align-items: center;

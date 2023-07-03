@@ -3,7 +3,12 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const HeaderSection = styled.header`
-  position: static;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+
+  /* position: static; */
   width: 100%;
   background-color: #000000;
   padding-top: 10px;

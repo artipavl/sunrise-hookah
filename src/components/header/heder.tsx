@@ -22,12 +22,16 @@ import {
   ShoppingCart,
 } from './heder.style';
 import Logo from '../logo/logo';
+import useScrolltoId from '../../helpers/useScrolltoId';
+// import { useNavigate } from 'react-router-dom';
 
 type HederProps = {};
 
 const Heder: FC<HederProps> = props => {
   const [menu, setMenu] = useState(false);
   const [subMenu, setSubMenu] = useState(false);
+  const ScrolltoId = useScrolltoId();
+
   return (
     <HeaderSection>
       <HeaderBox>
@@ -68,7 +72,7 @@ const Heder: FC<HederProps> = props => {
                     <NavLinkItem to="/">КАЛЬЯНИ</NavLinkItem>
                   </li>
                   <li>
-                    <NavLinkItem to="/">КОЛБИ</NavLinkItem>
+                    <NavLinkItem to="/flasks">КОЛБИ</NavLinkItem>
                   </li>
                   <li>
                     <NavLinkItem to="/">ЧАШІ</NavLinkItem>
@@ -77,10 +81,20 @@ const Heder: FC<HederProps> = props => {
               </DropMenu>
             </NavListItem>
             <NavListItem>
-              <NavLinkItem to="#about">ПРО НАС</NavLinkItem>
+              <NavLinkItem
+                to="/#about"
+                onClick={() => ScrolltoId('about', '/')}
+              >
+                ПРО НАС
+              </NavLinkItem>
             </NavListItem>
             <NavListItem>
-              <NavLinkItem to="/">КОНТАКТИ</NavLinkItem>
+              <NavLinkItem
+                to="/#contacts"
+                onClick={() => ScrolltoId('contacts', '/')}
+              >
+                КОНТАКТИ
+              </NavLinkItem>
             </NavListItem>
           </NavList>
         </Nav>
