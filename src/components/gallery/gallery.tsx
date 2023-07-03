@@ -2,7 +2,7 @@ import React, { FC, useState, useEffect, useRef } from 'react';
 import { TfiAngleLeft, TfiAngleRight } from 'react-icons/tfi';
 
 import { Section } from '../../reuseСomponents/section.style';
-import { Container } from '../../reuseСomponents/containerstyle';
+import { Container } from '../../reuseСomponents/container.style';
 import {
   Box,
   Promotion,
@@ -74,7 +74,7 @@ const Gallery: FC<GalleryProps> = props => {
   }
 
   return (
-    <Section id="about" bgc="#000">
+    <Section id="gallery" bgc="#000">
       <Container>
         <Box>
           <Promotion>
