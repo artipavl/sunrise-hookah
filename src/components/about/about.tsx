@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Section } from '../../reuseСomponents/section.style';
-import { Container } from '../../reuseСomponents/containerstyle';
+import { Container } from '../../reuseСomponents/container.style';
 import { ReactComponent as QUALITY } from '../../images/about/QUALITY.svg';
 import { ReactComponent as Stars } from '../../images/about/stars.svg';
 import { ReactComponent as Gear } from '../../images/about/gear.svg';
@@ -20,7 +20,7 @@ type AboutProps = {};
 const About: FC<AboutProps> = props => {
   return (
     <Section id="about" bgc="#000">
-      <Container>
+      <Container flex={'center'}>
         <AboutTitle>SUNRISE HOOKAH - це</AboutTitle>
         <Aboutlist>
           <AboutItem>
