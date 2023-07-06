@@ -16,8 +16,9 @@ export const Box = styled.div`
 
 export const Slider = styled.div`
   position: relative;
-  width: 100%;
-  /* width: 280px; */
+
+  /* width: 100%; */
+  width: calc(100vw - 40px);
 
   overflow: hidden;
 
