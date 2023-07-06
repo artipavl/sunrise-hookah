@@ -19,12 +19,12 @@ type AboutProps = {};
 
 const About: FC<AboutProps> = props => {
   return (
-    <Section id="about" bgc="#000">
+    <Section id="about" bgc="#000" h={true}>
       <Container flex={'center'}>
         <AboutTitle>SUNRISE HOOKAH - це</AboutTitle>
         <Aboutlist>
           <AboutItem>
-            <QUALITY color="#fff" width={'50%'} />
+            <QUALITY color="#fff" width={'30%'} />
             <AboutItemTitle>ЯКІСНІ МАТЕРІАЛИ</AboutItemTitle>
             <AboutItemText>
               Виготовлений з нержавіючої сталі марки AISI 304 і якісної
@@ -32,14 +32,14 @@ const About: FC<AboutProps> = props => {
             </AboutItemText>
           </AboutItem>
           <AboutItem>
-            <Stars color="#fff" width={'50%'} />
+            <Stars color="#fff" width={'30%'} />
             <AboutItemTitle>КОМФОРТ ПАЛІННЯ</AboutItemTitle>
             <AboutItemText>
               Легка, приємна тяга. Унікальна продувка за 1-2 рази.
             </AboutItemText>
           </AboutItem>
           <AboutItem>
-            <Gear color="#fff" width={'50%'} />
+            <Gear color="#fff" width={'30%'} />
             <AboutItemTitle>ЗРУЧНІСТЬ ЗБІРКИ</AboutItemTitle>
             <AboutItemText>
               Відсутня різьба в полаіцеталі. Порт на щільній притирці. Шахта
@@ -47,7 +47,7 @@ const About: FC<AboutProps> = props => {
             </AboutItemText>
           </AboutItem>
           <AboutItem>
-            <Moon color="#fff" width={'50%'} />
+            <Moon color="#fff" width={'30%'} />
             <AboutItemTitle>ДИЗАЙН</AboutItemTitle>
             <AboutItemText>
               Великий вибір моделей, декоративних накладок та колб. Блюдце
@@ -55,7 +55,7 @@ const About: FC<AboutProps> = props => {
             </AboutItemText>
           </AboutItem>
           <AboutItem>
-            <Biceps color="#fff" width={'50%'} />
+            <Biceps color="#fff" width={'30%'} />
             <AboutItemTitle>НАДІЙНІСТЬ</AboutItemTitle>
             <AboutItemText>
               TIAGA HOOKAH - український виробник кальянів, на ринку з 2018
@@ -63,7 +63,7 @@ const About: FC<AboutProps> = props => {
             </AboutItemText>
           </AboutItem>
           <AboutItem>
-            <Coins color="#fff" width={'50%'} />
+            <Coins color="#fff" width={'30%'} />
             <AboutItemTitle>ДОСТУНА ЦІНА</AboutItemTitle>
             <AboutItemText>Топова якість за вигідну ціну.</AboutItemText>
           </AboutItem>
