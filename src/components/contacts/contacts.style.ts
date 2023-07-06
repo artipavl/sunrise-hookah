@@ -7,7 +7,7 @@ export const Box = styled.div`
   justify-content: center;
   /* align-items: center; */
   flex-direction: column;
-  gap: 10px;
+  gap: 30px;
 
   @media screen and (min-width: 1440px) {
     flex-direction: row-reverse;
@@ -79,7 +79,6 @@ export const RegForm = styled(Form)`
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-top: 14px;
   gap: 30px;
 
   @media screen and (min-width: 570px) {
