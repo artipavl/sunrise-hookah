@@ -3,12 +3,11 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const HeaderSection = styled.header`
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
-  z-index: 2;
+  z-index: 1;
 
-  /* position: static; */
   width: 100%;
   background-color: #000000;
   padding-top: 10px;
@@ -79,7 +78,7 @@ export const Nav = styled.nav<NavProps>`
   @media screen and (max-width: 1439px) {
     position: absolute;
     top: 0;
-    left: ${props => (props.open ? 0 : '-100%')};
+    left: ${props => (props.open ? '0' : '-120%')};
     min-height: 100vh;
     width: 100%;
     z-index: 1;
