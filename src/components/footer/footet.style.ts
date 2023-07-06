@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
 export const Footerbox = styled.footer`
-  position: fixed;
+  /* position: fixed;
   bottom: 0;
-  left: 0;
+  left: 0; */
+  scroll-snap-align: start;
   width: 100%;
-  z-index: 2;
+  /* z-index: 2; */
   display: flex;
   justify-content: center;
   align-items: center;
