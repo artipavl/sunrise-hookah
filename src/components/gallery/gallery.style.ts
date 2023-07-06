@@ -4,23 +4,33 @@ import styled from 'styled-components';
 export const Box = styled.div`
   display: flex;
   width: 100%;
-  min-height: calc(100vh - 20px);
-  max-height: calc(100vh - 20px);
+  height: 100%;
+  align-items: center;
+  /* min-height: calc(100vh - 20px);
+  max-height: calc(100vh - 20px); */
 
   @media screen and (min-width: 1440px) {
     padding: 0;
     margin: auto;
-    min-height: calc(100vh - 40px);
-    max-height: calc(100vh - 40px);
+    /* min-height: calc(100vh - 40px);
+    max-height: calc(100vh - 40px); */
   }
 `;
 
 export const Slider = styled.div`
   position: relative;
-  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 50%;
+  min-height: 30%;
+  /* min-height: 100%; */
   overflow: hidden;
   @media screen and (max-width: 719px) {
-    width: 100%;
+    max-width: 100%;
+    min-height: 100%;
+
+    margin: auto;
   }
 `;
 
@@ -66,9 +76,8 @@ export const SliderItem = styled.li`
 `;
 
 export const SliderItemImg = styled.img`
-  min-width: 100%;
-  max-width: 100%;
-  height: auto;
+  width: 100%;
+  height: 100%;
 `;
 
 export const Promotion = styled.div`
