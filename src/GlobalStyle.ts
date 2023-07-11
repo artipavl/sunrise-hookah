@@ -5,6 +5,26 @@ export const GlobalStyle = createGlobalStyle`
 /* html {
   scroll-behavior: smooth;
 } */
+
+
+/* ::-webkit-scrollbar {
+  border-radius: 5px;
+  height: 10px;
+  width: .65em;
+  background-color: rgba(170, 170, 170, 0);
+}
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
+  background-color: rgba(170, 170, 170, 0);
+}
+
+::-webkit-scrollbar-thumb,
+::-webkit-resizer {
+  background: rgba(170, 170, 170, 0.6);
+  border-radius: 5px;
+  box-shadow: inset 0.05em 0.05em 0 rgba(0, 0, 0, 0.1), inset 0 -0.05em 0 rgba(0, 0, 0, 0.07);
+} */
+
     body {
         font-family: 'Montserrat';
         margin: 0;
