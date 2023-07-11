@@ -4,6 +4,7 @@ import Home from './pages/home/home';
 import Product from './pages/product/product';
 import styled from 'styled-components';
 import Admin from './pages/admin/admin';
+import AdminPanel from './pages/adminPanel/adminPanel';
 
 export const Wrapper = styled.div`
   /* display: flex;
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/flasks" element={<Product title="Колби" />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/adminpanel" element={<AdminPanel />} />
       </Routes>
     </Wrapper>
   );
