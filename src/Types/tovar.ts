@@ -4,6 +4,7 @@ interface TwoLeng {
 }
 
 type Tovar = {
+  id: string;
   name: TwoLeng;
   cost: number;
   description: TwoLeng;

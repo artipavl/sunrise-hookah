@@ -108,6 +108,7 @@ export const NavLinkItem = styled(NavLink)`
   padding-top: 10px;
   padding-bottom: 10px;
   color: #fff;
+  text-transform: uppercase;
   :hover,
   :focus {
     color: red;

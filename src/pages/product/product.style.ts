@@ -7,6 +7,7 @@ export const Title = styled.h1`
   text-align: center;
   font-size: 45px;
   margin-bottom: 30px;
+  text-transform: uppercase;
 `;
 
 export const TovarList = styled.ul`

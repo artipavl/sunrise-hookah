@@ -23,7 +23,8 @@ import {
 } from './heder.style';
 import Logo from '../logo/logo';
 import useScrolltoId from '../../helpers/useScrolltoId';
-// import { useNavigate } from 'react-router-dom';
+import { useAppSelector } from '../../hooks';
+import { selectTypes } from '../../redux/types/slice';
 
 type HederProps = {};
 
@@ -31,6 +32,7 @@ const Heder: FC<HederProps> = props => {
   const [menu, setMenu] = useState(false);
   const [subMenu, setSubMenu] = useState(false);
   const ScrolltoId = useScrolltoId();
+  const types = useAppSelector(selectTypes);
 
   return (
     <HeaderSection>
@@ -68,15 +70,13 @@ const Heder: FC<HederProps> = props => {
                 </DropMenuButton>
 
                 <DropMenuList open={subMenu}>
-                  <li>
-                    <NavLinkItem to="/">КАЛЬЯНИ</NavLinkItem>
-                  </li>
-                  <li>
-                    <NavLinkItem to="/flasks">КОЛБИ</NavLinkItem>
-                  </li>
-                  <li>
-                    <NavLinkItem to="/">ЧАШІ</NavLinkItem>
-                  </li>
+                  {types.map(type => (
+                    <li key={type.id}>
+                      <NavLinkItem to={`/tovar/${type.eu}`}>
+                        {type.ua}
+                      </NavLinkItem>
+                    </li>
+                  ))}
                 </DropMenuList>
               </DropMenu>
             </NavListItem>

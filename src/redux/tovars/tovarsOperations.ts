@@ -1,19 +1,30 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import Tovar from '../../Types/tovar';
 
 axios.defaults.baseURL = 'https://sunrise-hookah-api.onrender.com/';
 
-interface MyData {
-  // ...
+interface count {
+  count: number;
 }
 
-export const fetchTovarsTypes = createAsyncThunk(
-  'users/fetchTovarsTypes',
-  // Declare the type your function argument here:
-  async (userId: number) => {
-    const date = await axios.get(`users/type`);
+interface MyData {
+  tovars: Tovar[];
+  count: count;
+}
 
-    // Inferred return type: Promise<MyData>
-    return date as MyData;
+export const fetchTovarsByTypes = createAsyncThunk(
+  'users/fetchTovarsByTypes',
+  async (type: string, thunkAPI) => {
+    try {
+      const date = await axios.get(`tovar/type/${type}`);
+      if (date.status !== 200) {
+        return thunkAPI.rejectWithValue(date.data);
+      }
+
+      return date.data as MyData;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
   }
 );
