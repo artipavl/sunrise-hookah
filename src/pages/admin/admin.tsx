@@ -6,6 +6,8 @@ import { Section } from '../../reuseСomponents/section.style';
 import { Container } from '../../reuseСomponents/container.style';
 
 import { Button, Errors, Input, Label, RegForm } from './admin.style';
+import { useAppDispatch } from '../../hooks';
+import { signIn } from '../../redux/auth/authOperations';
 
 const SignupSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),
@@ -20,7 +22,7 @@ interface FormValues {
   password: string;
 }
 
-interface OtherProps {}
+interface OtherProps { }
 
 const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
   const { touched, errors, isSubmitting } = props;
@@ -53,7 +55,9 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
   );
 };
 
-interface MyFormProps {}
+interface MyFormProps {
+  onSubmit: Function,
+}
 
 const MyForm = withFormik<MyFormProps, FormValues>({
   mapPropsToValues: props => {
@@ -64,9 +68,10 @@ const MyForm = withFormik<MyFormProps, FormValues>({
   },
 
   validationSchema: SignupSchema,
-
+  
   handleSubmit: (values, formikBag) => {
     console.log(values);
+    formikBag.props.onSubmit(values);
     formikBag.resetForm();
   },
 })(InnerForm);
@@ -74,10 +79,16 @@ const MyForm = withFormik<MyFormProps, FormValues>({
 type AdminProps = {};
 
 const Admin: FC<AdminProps> = props => {
+  const dispatch = useAppDispatch()
+  function isLoggedin(params: FormValues) {
+    dispatch(signIn(params))
+  }
   return (
     <Section>
       <Container flex="center">
-        <MyForm />
+        <MyForm
+
+          onSubmit={isLoggedin} />
       </Container>
     </Section>
   );

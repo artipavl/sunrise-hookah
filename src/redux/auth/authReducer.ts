@@ -32,9 +32,9 @@ export const authSlice = createSlice({
         state.isLoggedIn = false;
       })
       .addCase(signUp.fulfilled, (state, { payload }) => {
-        state.user.name = payload.dataUser.name;
-        state.user.email = payload.dataUser.email;
-        state.token = payload.dataUser.token;
+        state.user.name = payload.user.name;
+        state.user.email = payload.user.email;
+        state.token = payload.token;
         state.isLoggedIn = true;
       })
 
@@ -45,9 +45,9 @@ export const authSlice = createSlice({
         state.isLoggedIn = false;
       })
       .addCase(signIn.fulfilled, (state, { payload }) => {
-        state.user.name = payload.dataUser.name;
-        state.user.email = payload.dataUser.email;
-        state.token = payload.dataUser.token;
+        state.user.name = payload.user.name;
+        state.user.email = payload.user.email;
+        state.token = payload.token;
         state.isLoggedIn = true;
       })
 
