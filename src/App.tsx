@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router';
+import { Navigate } from 'react-router-dom';
 import Home from './pages/home/home';
 import Product from './pages/product/product';
 import styled from 'styled-components';
@@ -50,9 +51,19 @@ function App() {
             </PrivatRoute>
           }
         >
-          <Route index element={<div style={{ color: '#fff' }}>1</div>} />
-          <Route path="2" element={<div style={{ color: '#fff' }}>2</div>} />
-          <Route path="3" element={<div style={{ color: '#fff' }}>3</div>} />
+          <Route index element={<Navigate to="tovars"></Navigate>} />
+          <Route
+            path="tovars"
+            element={<div style={{ color: '#fff' }}>1</div>}
+          />
+          <Route
+            path="admins"
+            element={<div style={{ color: '#fff' }}>2</div>}
+          />
+          <Route
+            path="feedback"
+            element={<div style={{ color: '#fff' }}>3</div>}
+          />
         </Route>
       </Routes>
     </Wrapper>
