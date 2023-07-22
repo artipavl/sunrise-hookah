@@ -8,6 +8,8 @@ import AdminPanel from './pages/adminPanel/adminPanel';
 import { useAppDispatch, useAppSelector } from './hooks';
 import { fetchTovarsTypes } from './redux/types/typesOperations';
 import { selectTypesIsLoading } from './redux/types/slice';
+import PrivatRoute from './components/privatRoute';
+import PublicRoute from './components/publicRoute';
 
 export const Wrapper = styled.div`
   /* display: flex;
@@ -32,8 +34,26 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/tovar/:id" element={<Product />} />
-        <Route path="/admin" element={<Admin />} />
-        <Route path="/adminpanel" element={<AdminPanel />} />
+        <Route
+          path="/admin"
+          element={
+            <PublicRoute redirectTo="/adminpanel">
+              <Admin />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/adminpanel"
+          element={
+            <PrivatRoute redirectTo="/">
+              <AdminPanel />
+            </PrivatRoute>
+          }
+        >
+          <Route index element={<div style={{ color: '#fff' }}>1</div>} />
+          <Route path="2" element={<div style={{ color: '#fff' }}>2</div>} />
+          <Route path="3" element={<div style={{ color: '#fff' }}>3</div>} />
+        </Route>
       </Routes>
     </Wrapper>
   );
