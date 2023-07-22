@@ -1,19 +1,26 @@
 import React, { FC } from 'react';
-import AdminHeader from '../../components/adminHeader/adminHeader';
+import styled from 'styled-components';
 import { Outlet } from 'react-router-dom';
-import AdminPanelRouter from '../../components/adminPanelRouter/adminPanelRouter';
+
+import AdminHeader from '../../components/adminHeader/adminHeader';
+import AdminPanelOutlet from '../../components/adminPanelOutlet/adminPanelOutlet';
+
+export const AdminPanelBox = styled.div`
+  display: flex;
+`;
 
 type AdminPanelProps = {};
 
 const AdminPanel: FC<AdminPanelProps> = props => {
   return (
-    <>
+    <AdminPanelBox>
       <AdminHeader />
-      <main>main</main>
-      <AdminPanelRouter>
-        <Outlet></Outlet>
-      </AdminPanelRouter>
-    </>
+      <main>
+        <AdminPanelOutlet>
+          <Outlet />
+        </AdminPanelOutlet>
+      </main>
+    </AdminPanelBox>
   );
 };
 

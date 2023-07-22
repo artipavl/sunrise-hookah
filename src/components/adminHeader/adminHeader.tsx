@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { selectUser } from '../../redux/auth/authSelectors';
-import { Header } from './adminHeader.style';
+import { Header, NavList, Link, Nav } from './adminHeader.style';
 import { logOut } from '../../redux/auth/authOperations';
+// import Logo from '../logo/logo';
 
 type AdminHeaderProps = {};
 
@@ -12,15 +13,32 @@ const AdminHeader: FC<AdminHeaderProps> = props => {
 
   return (
     <Header>
-      <span>{Admin.name}</span>
-      <button
-        onClick={() => {
-          console.log('asdd');
-          dispatch(logOut());
-        }}
-      >
-        вихід
-      </button>
+      {/* <Logo /> */}
+      <div>
+        <span style={{ marginRight: '20px' }}>{Admin.name}</span>
+        <button
+          onClick={() => {
+            console.log('asdd');
+            dispatch(logOut());
+          }}
+        >
+          вихід
+        </button>
+      </div>
+
+      <Nav>
+        <NavList>
+          <li>
+            <Link to={'tovars'}>Товари за категоріями</Link>
+          </li>
+          <li>
+            <Link to={'admins'}>Адміністратори</Link>
+          </li>
+          <li>
+            <Link to={'feedback'}>Зворотній зв'язок</Link>
+          </li>
+        </NavList>
+      </Nav>
     </Header>
   );
 };
