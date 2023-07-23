@@ -7,6 +7,7 @@ import AdminPanelOutlet from '../../components/adminPanelOutlet/adminPanelOutlet
 
 export const AdminPanelBox = styled.div`
   display: flex;
+  background-color: #e9ecef;
 `;
 
 type AdminPanelProps = {};
@@ -15,7 +16,7 @@ const AdminPanel: FC<AdminPanelProps> = props => {
   return (
     <AdminPanelBox>
       <AdminHeader />
-      <main>
+      <main style={{width: '100%', padding: '30px 60px'}}>
         <AdminPanelOutlet>
           <Outlet />
         </AdminPanelOutlet>

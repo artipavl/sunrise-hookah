@@ -8,9 +8,11 @@ import Admin from './pages/admin/admin';
 import AdminPanel from './pages/adminPanel/adminPanel';
 import { useAppDispatch, useAppSelector } from './hooks';
 import { fetchTovarsTypes } from './redux/types/typesOperations';
-import { selectTypesIsLoading } from './redux/types/slice';
+import { selectTypes, selectTypesIsLoading } from './redux/types/slice';
 import PrivatRoute from './components/privatRoute';
 import PublicRoute from './components/publicRoute';
+import Tovars from './components/tovars/tovars';
+import TovarsByType from './components/tovarsByType/tovarsByType';
 
 export const Wrapper = styled.div`
   /* display: flex;
@@ -25,6 +27,7 @@ function App() {
   }, [AppDispatch]);
 
   const Loading = useAppSelector(selectTypesIsLoading);
+  const Types = useAppSelector(selectTypes);
 
   if (!Loading) {
     return <p>loading...</p>;
@@ -54,8 +57,15 @@ function App() {
           <Route index element={<Navigate to="tovars"></Navigate>} />
           <Route
             path="tovars"
-            element={<div style={{ color: '#fff' }}>1</div>}
-          />
+            element={<Tovars />}
+          >
+            <Route index element={<Navigate to={`${Types[0].eu}`}></Navigate>} />
+
+            <Route
+              path=":id"
+              element={<TovarsByType />}
+            />
+          </Route>
           <Route
             path="admins"
             element={<div style={{ color: '#fff' }}>2</div>}
