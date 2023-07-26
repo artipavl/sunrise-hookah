@@ -1,20 +1,17 @@
-import React, { FC, useEffect} from 'react';
+import React, { FC, useEffect } from 'react';
 import { Section } from '../../reuseСomponents/section.style';
 import { Container } from '../../reuseСomponents/container.style';
-import { Title, TovarItem, TovarList } from './product.style';
-import Tovar from '../../components/tovar/tovar';
+import { Title, TovarList } from './product.style';
+// import Tovar from '../../components/tovar/tovar';
 import { Navigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import {
-  selectTovarsLoading,
-} from '../../redux/tovars/slice';
+import { selectTovarsLoading } from '../../redux/tovars/slice';
 import { fetchTovarsByTypes } from '../../redux/tovars/tovarsOperations';
 import { selectTypes } from '../../redux/types/slice';
 
 type ProductProps = {};
 
 const Product: FC<ProductProps> = () => {
-  // const [start, setStart] = useState<boolean>(false);
   const params = useParams();
 
   const types = useAppSelector(selectTypes);
@@ -40,36 +37,9 @@ const Product: FC<ProductProps> = () => {
           <p>loading...</p>
         ) : (
           <TovarList>
-            <TovarItem>
+            {/* <TovarItem>
               <Tovar />
-            </TovarItem>
-            <TovarItem>
-              <Tovar />
-            </TovarItem>
-            <TovarItem>
-              <Tovar />
-            </TovarItem>
-            <TovarItem>
-              <Tovar />
-            </TovarItem>
-            <TovarItem>
-              <Tovar />
-            </TovarItem>
-            <TovarItem>
-              <Tovar />
-            </TovarItem>
-            <TovarItem>
-              <Tovar />
-            </TovarItem>
-            <TovarItem>
-              <Tovar />
-            </TovarItem>
-            <TovarItem>
-              <Tovar />
-            </TovarItem>
-            <TovarItem>
-              <Tovar />
-            </TovarItem>
+            </TovarItem> */}
           </TovarList>
         )}
       </Container>

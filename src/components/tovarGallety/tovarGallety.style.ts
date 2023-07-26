@@ -17,8 +17,8 @@ export const Box = styled.div`
 export const Slider = styled.div`
   position: relative;
 
-  /* width: 100%; */
-  width: calc(100vw - 40px);
+  width: calc(80vw);
+  margin: auto;
 
   overflow: hidden;
 
@@ -71,14 +71,14 @@ export const SliderList = styled.ul<SliderListProps>`
   display: flex;
   width: 100%;
   height: 100%;
-  align-items: center;
+  align-items: stretch;
   gap: 20px;
   transition: ${props => props.transition && 'all 1s linear 0s'};
 `;
 
 export const SliderItem = styled.li`
-  min-width: 100%;
-  max-width: 100%;
+  min-width: calc(80vw);
+  max-width: calc(80vw);
   display: flex;
   align-items: center;
   justify-content: center;
