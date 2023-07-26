@@ -25,14 +25,23 @@ import Logo from '../logo/logo';
 import useScrolltoId from '../../helpers/useScrolltoId';
 import { useAppSelector } from '../../hooks';
 import { selectTypes } from '../../redux/types/slice';
+import Basket from '../basket/basket';
+import { selectBasket } from '../../redux/basket/basketSelectors';
 
 type HederProps = {};
 
 const Heder: FC<HederProps> = props => {
   const [menu, setMenu] = useState(false);
+  const [OpenBasket, setOpenBasket] = useState<boolean>(false);
   const [subMenu, setSubMenu] = useState(false);
   const ScrolltoId = useScrolltoId();
   const types = useAppSelector(selectTypes);
+
+  const tovars = useAppSelector(selectBasket);
+
+  const OpenBasketset = () => {
+    setOpenBasket(open => !open);
+  };
 
   return (
     <HeaderSection>
@@ -98,15 +107,19 @@ const Heder: FC<HederProps> = props => {
             </NavListItem>
           </NavList>
         </Nav>
-        <ShoppingCart to="/">
+        <ShoppingCart onClick={OpenBasketset}>
           <CartSvgBox>
             <AiOutlineShoppingCart color="#fff" size="30px" />
-            <Quantity>
-              <span>0</span>
-            </Quantity>
+            {tovars.length > 0 && (
+              <Quantity>
+                <span>{tovars.length}</span>
+              </Quantity>
+            )}
           </CartSvgBox>
         </ShoppingCart>
       </HeaderBox>
+
+      {OpenBasket && <Basket openBasket={OpenBasketset} />}
     </HeaderSection>
   );
 };

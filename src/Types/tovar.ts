@@ -16,4 +16,8 @@ type Tovar = {
   fotos: string[];
 };
 
+export type TovarBasket = Tovar & {
+  baskeQuantity: number;
+};
+
 export default Tovar;
