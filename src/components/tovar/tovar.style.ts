@@ -14,7 +14,7 @@ export const TovarBox = styled.div`
 
 export const TovarImageBox = styled.div`
   width: 100%;
-  height: 75%;
+  height: 70%;
   position: relative;
   overflow: hidden;
 
@@ -43,9 +43,9 @@ export const TovarInformation = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 25%;
+  height: calc(30% - 10px);
   justify-content: space-between;
-  padding-block: 3%;
+  margin-top: 10px;
   color: #fff;
 `;
 export const TovarInformationAvailability = styled.div`

@@ -13,7 +13,7 @@ type Tovar = {
   quantity: number;
   popularity: number;
   type: string;
-  fotos?: string[];
+  fotos: string[];
 };
 
 export default Tovar;
