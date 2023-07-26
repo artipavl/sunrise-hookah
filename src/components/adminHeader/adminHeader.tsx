@@ -32,6 +32,9 @@ const AdminHeader: FC<AdminHeaderProps> = props => {
             <Link to={'tovars'}>Товари за категоріями</Link>
           </li>
           <li>
+            <Link to={'newtovar'}>Додати товар</Link>
+          </li>
+          <li>
             <Link to={'admins'}>Адміністратори</Link>
           </li>
           <li>
