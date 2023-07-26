@@ -11,37 +11,9 @@ import {
   SliderItem,
   SliderList,
 } from './tovarGallety.style';
-import Tovar from '../tovar/tovar';
-const galleryImages = [
-  {
-    id: 1,
-    url: 'https://www.hookahbunny.com/wp-content/uploads/2022/03/sunrise_windskull_luminescent_shisha-430x430.jpeg',
-  },
-  {
-    id: 2,
-    url: 'https://www.hookahbunny.com/wp-content/uploads/2022/03/sunrise_windskull_black_purge-430x430.jpeg',
-  },
-  {
-    id: 4,
-    url: 'https://www.hookahbunny.com/wp-content/uploads/2022/03/sunrise_windskull_luminescent_hookah-430x430.jpeg',
-  },
-  {
-    id: 5,
-    url: 'https://www.hookahbunny.com/wp-content/uploads/2022/03/sunrise_windskull_luminescent_hookah-430x430.jpeg',
-  },
-  {
-    id: 6,
-    url: 'https://www.hookahbunny.com/wp-content/uploads/2022/03/sunrise_windskull_luminescent_hookah-430x430.jpeg',
-  },
-  {
-    id: 7,
-    url: 'https://www.hookahbunny.com/wp-content/uploads/2022/03/sunrise_windskull_luminescent_hookah-430x430.jpeg',
-  },
-  {
-    id: 8,
-    url: 'https://www.hookahbunny.com/wp-content/uploads/2022/03/sunrise_windskull_luminescent_hookah-430x430.jpeg',
-  },
-];
+import axios from 'axios';
+import Tovar from '../../Types/tovar';
+import TovarItem from '../tovar/tovar';
 
 type GalleryProps = {};
 
@@ -51,6 +23,8 @@ const TovarGallery: FC<GalleryProps> = props => {
   const [width, setWidth] = useState<number>(0);
   const [sliderListWidth, setSliderListWidth] = useState<number>(0);
   const [transition, setTransition] = useState<boolean>(true);
+
+  const [galleryItams, setGalleryItams] = useState<Tovar[]>([]);
 
   const swapEl = useRef<HTMLHeadingElement>(null);
   const sliderList = useRef<HTMLUListElement>(null);
@@ -88,7 +62,11 @@ const TovarGallery: FC<GalleryProps> = props => {
       if (sliderList.current)
         setSliderListWidth(sliderList.current?.scrollWidth);
     }
-
+    async function getPopul() {
+      const { data } = await axios.get('tovar/populate');
+      setGalleryItams(data.tovars);
+    }
+    getPopul();
     window.addEventListener('resize', resize);
     resize();
     return () => {
@@ -144,9 +122,9 @@ const TovarGallery: FC<GalleryProps> = props => {
               left={swpPoint}
               transition={transition}
             >
-              {galleryImages.map(img => (
-                <SliderItem key={img.id}>
-                  <Tovar />
+              {galleryItams.map(tovar => (
+                <SliderItem key={tovar.id}>
+                  <TovarItem tovar={tovar} />
                 </SliderItem>
               ))}
             </SliderList>
