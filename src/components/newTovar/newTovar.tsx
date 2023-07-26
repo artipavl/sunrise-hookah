@@ -1,17 +1,23 @@
 import React, { FC } from 'react';
 // import * as Yup from 'yup';
 import { withFormik, FormikProps, FormikErrors, Form, Field } from 'formik';
+import { FormLabel, Signature } from './newTovar.style';
 
 // Shape of form values
 interface FormValues {
+    nameUA: string;
+    descriptionUA: string;
+    parametersUA: string;
+    completeSetUA: string;
     name: string;
-    cost: number;
     description: string;
     parameters: string;
     completeSet: string;
+
+    type: string;
+    cost: number;
     quantity: number;
     popularity: number;
-    type: string;
     fotos: string[];
 }
 
@@ -25,35 +31,44 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
         <Form>
             <h1>{message}</h1>
             <div>
-                <label htmlFor="">
-                    <Field type='text' name="name" />
-                    <Field type='text' name="name" />
-                </label>
-                <label htmlFor="">
-                    <Field type='text' name="description" />
-                    <Field type='text' name="description" />
-                </label>
-                <label htmlFor="">
-                    <Field type='text' name="parameters" />
-                    <Field type='text' name="parameters" />
-                </label>
-                <label htmlFor="">
-                    <Field type='text' name="completeSet" />
-                    <Field type='text' name="completeSet" />
-                </label>
-                <label htmlFor="">
-                    <Field type='text' name="type" />
-                    <Field type='text' name="type" />
-                </label>
+                <FormLabel>
+                    < Signature >Name</Signature >
+                    <Field type='text' name="nameUA" />
+                    {touched.nameUA && errors.nameUA && <div>{errors.nameUA}</div>}
 
-                <label htmlFor="">
-                    <Field type='number' name="cost" /></label>
-                <label htmlFor="">
+                    <Field type='text' name="name" />
+                    {touched.name && errors.name && <div>{errors.name}</div>}
+
+                </FormLabel>
+                <FormLabel>
+                    < Signature >Name</Signature >
+                    <Field type='text' name="descriptionUA" />
+                    {touched.descriptionUA && errors.descriptionUA && <div>{errors.descriptionUA}</div>}
+                    <Field type='text' name="description" />
+                    {touched.description && errors.description && <div>{errors.description}</div>}
+
+                </FormLabel>
+                <FormLabel >
+                    < Signature >parameters</Signature >
+                    <Field type='text' name="parametersUA" />
+                    <Field type='text' name="parameters" />
+                </FormLabel>
+                <FormLabel >
+                    < Signature >completeSet</Signature >
+                    <Field type='text' name="completeSetUA" />
+                    <Field type='text' name="completeSet" />
+                </FormLabel>
+
+
+                 
+                <div>
+                    <Field type='text' name="type" />
+
+                    <Field type='number' name="cost" /> 
                     <Field type='number' name="quantity" />
-                </label>
-                <label htmlFor="">
                     <Field type='number' name="popularity" />
-                </label>
+                </div>
+                
 
             </div>
 
@@ -61,8 +76,6 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 
 
             {/* {touched.email && errors.email && <div>{errors.email}</div>} */}
-
-            <Field type="password" name="password" />
             {/* {touched.password && errors.password && <div>{errors.password}</div>} */}
 
             <button type="submit" disabled={isSubmitting}>
@@ -83,14 +96,19 @@ const MyForm = withFormik<MyFormProps, FormValues>({
     // Transform outer props into form values
     mapPropsToValues: props => {
         return {
+            nameUA: '',
+            descriptionUA: '',
+            parametersUA: '',
+            completeSetUA: '',
             name: '',
-            cost: 0,
             description: '',
             parameters: '',
             completeSet: '',
+
+            type: '',
+            cost: 0,
             quantity: 0,
             popularity: 0,
-            type: '',
             fotos: [],
         };
     },
