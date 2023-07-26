@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { RootState } from '../store';
-import Tovar from '../../Types/tovar';
+import Tovar, { TovarBasket } from '../../Types/tovar';
 
 // Define a type for the slice state
 
@@ -9,17 +8,65 @@ type updateQuantityPayload = {
   id: string;
   baskeQuantity: number;
 };
-type tovar = Tovar & {
-  baskeQuantity: number;
-};
 
 interface BasketState {
-  tovars: tovar[];
+  tovars: TovarBasket[];
 }
 
 // Define the initial state using that type
 const initialState: BasketState = {
-  tovars: [],
+  tovars: [
+    {
+      cost: 8,
+      quantity: 15,
+      completeSet: {
+        eu: 'test',
+        ua: 'test',
+      },
+      parameters: {
+        eu: 'test',
+        ua: 'test',
+      },
+      fotos: [],
+      name: {
+        eu: 'test',
+        ua: 'test',
+      },
+      description: {
+        eu: 'test',
+        ua: 'test',
+      },
+      type: 'hookahs',
+      popularity: 4,
+      id: 'HYTPai3gH3HLr1yctMt12341',
+      baskeQuantity: 2,
+    },
+    {
+      cost: 8,
+      quantity: 15,
+      completeSet: {
+        eu: 'testqweq',
+        ua: 'testqwewqew',
+      },
+      parameters: {
+        eu: 'testasda',
+        ua: 'testasd',
+      },
+      fotos: [],
+      name: {
+        eu: 'test123213213',
+        ua: 'test17896',
+      },
+      description: {
+        eu: 'test',
+        ua: 'test',
+      },
+      type: 'hookahs',
+      popularity: 4,
+      id: 'HYTPai3gH3HLr1yctMt11231',
+      baskeQuantity: 3,
+    },
+  ],
 };
 
 export const basketSlice = createSlice({
@@ -54,7 +101,5 @@ export const basketSlice = createSlice({
 
 export const { addToBasket, updateQuantity, deleteFromBasket } =
   basketSlice.actions;
-
-export const selectBasket = (state: RootState) => state.basket.tovars;
 
 export default basketSlice.reducer;

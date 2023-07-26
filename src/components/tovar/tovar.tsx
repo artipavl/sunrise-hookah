@@ -22,7 +22,7 @@ const Tovar: FC<TovarProps> = ({ tovar }) => {
               ? tovar.fotos[0]
               : 'https://kor.ill.in.ua/m/610x385/2722809.jpg'
           }
-          alt="adsa"
+          alt={tovar.name.eu}
         />
         <TovarImageBoxUpper id="Upper">Перегляд</TovarImageBoxUpper>
       </TovarImageBox>

@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const HeaderSection = styled.header`
@@ -36,7 +36,7 @@ export const MenuBatton = styled.button`
   }
 `;
 
-export const ShoppingCart = styled(Link)`
+export const ShoppingCart = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;

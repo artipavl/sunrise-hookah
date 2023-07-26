@@ -30,7 +30,7 @@ function App() {
   const Types = useAppSelector(selectTypes);
 
   if (!Loading) {
-    return <p>loading...</p>;
+    // return <p>loading...</p>;
   }
 
   return (
@@ -55,16 +55,15 @@ function App() {
           }
         >
           <Route index element={<Navigate to="tovars"></Navigate>} />
-          <Route
-            path="tovars"
-            element={<Tovars />}
-          >
-            <Route index element={<Navigate to={`${Types[0].eu}`}></Navigate>} />
+          <Route path="tovars" element={<Tovars />}>
+            {Loading && (
+              <Route
+                index
+                element={<Navigate to={`${Types[0].eu}`}></Navigate>}
+              />
+            )}
 
-            <Route
-              path=":id"
-              element={<TovarsByType />}
-            />
+            <Route path=":id" element={<TovarsByType />} />
           </Route>
           <Route
             path="admins"
