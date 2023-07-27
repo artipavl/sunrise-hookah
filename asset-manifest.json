@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/sunrise-hookah/static/css/main.17654e45.css",
-    "main.js": "/sunrise-hookah/static/js/main.1f71cc8f.js",
+    "main.js": "/sunrise-hookah/static/js/main.bf5d3201.js",
     "static/media/sunrise-hookah-hero.jpg": "/sunrise-hookah/static/media/sunrise-hookah-hero.17a02529d4c3b49c7219.jpg",
     "static/media/coins.svg": "/sunrise-hookah/static/media/coins.b4fae64d4acf814c91fdf3fda85eab76.svg",
     "static/media/sunrise-hookah.jpg": "/sunrise-hookah/static/media/sunrise-hookah.a6331056fbb22540b636.jpg",
@@ -12,10 +12,10 @@
     "static/media/stars.svg": "/sunrise-hookah/static/media/stars.c4102c51c78c96e71a8e014a1df0efda.svg",
     "index.html": "/sunrise-hookah/index.html",
     "main.17654e45.css.map": "/sunrise-hookah/static/css/main.17654e45.css.map",
-    "main.1f71cc8f.js.map": "/sunrise-hookah/static/js/main.1f71cc8f.js.map"
+    "main.bf5d3201.js.map": "/sunrise-hookah/static/js/main.bf5d3201.js.map"
   },
   "entrypoints": [
     "static/css/main.17654e45.css",
-    "static/js/main.1f71cc8f.js"
+    "static/js/main.bf5d3201.js"
   ]
 }
