@@ -18,6 +18,7 @@ import {
   Textarea,
   Title,
 } from './contacts.style';
+import axios from 'axios';
 
 const SignupSchema = Yup.object().shape({
   firstName: Yup.string()
@@ -140,8 +141,15 @@ const MyForm = withFormik<MyFormProps, FormValues>({
   validationSchema: SignupSchema,
 
   handleSubmit: (values, formikBag) => {
-    console.log(values);
-    formikBag.resetForm();
+    // console.log(values);
+    axios
+      .post('/feedback', { ...values })
+      .then(() => {
+        formikBag.resetForm();
+      })
+      .catch(e => {
+        console.log(e);
+      });
   },
 })(InnerForm);
 
