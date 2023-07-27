@@ -13,6 +13,7 @@ import PrivatRoute from './components/privatRoute';
 import PublicRoute from './components/publicRoute';
 import Tovars from './components/tovars/tovars';
 import TovarsByType from './components/tovarsByType/tovarsByType';
+import Feedback from './components/feedback/feedback';
 
 export const Wrapper = styled.div`
   /* display: flex;
@@ -69,10 +70,7 @@ function App() {
             path="admins"
             element={<div style={{ color: '#fff' }}>2</div>}
           />
-          <Route
-            path="feedback"
-            element={<div style={{ color: '#fff' }}>3</div>}
-          />
+          <Route path="feedback" element={<Feedback />} />
         </Route>
       </Routes>
     </Wrapper>
