@@ -13,7 +13,7 @@ export const getFeedbacks = createAsyncThunk(
         return thunkAPI.rejectWithValue(date.data);
       }
 
-      return date.data as Feedback[];
+      return date.data.feedbacks as Feedback[];
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -37,7 +37,7 @@ export const getFeedbackByid = createAsyncThunk(
 );
 
 export const delFeedback = createAsyncThunk(
-  'users/getFeedbacks',
+  'users/delFeedback',
   async (id: string, thunkAPI) => {
     try {
       const date = await axios.delete(`/feedback/${id}`);
