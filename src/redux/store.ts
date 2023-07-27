@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import selectTovars from './tovars/slice';
 import typesSlice from './types/slice';
 import basketSlice from './basket/basketSlice';
+import feedbackSlice from './feedback/slice';
 import { authSlice } from './auth/authReducer';
 
 const store = configureStore({
@@ -10,6 +11,7 @@ const store = configureStore({
     tovars: selectTovars,
     types: typesSlice,
     basket: basketSlice,
+    feedbacks: feedbackSlice,
     auth: authSlice.reducer,
   },
 });
