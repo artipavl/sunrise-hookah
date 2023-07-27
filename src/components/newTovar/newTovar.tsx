@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 // import * as Yup from 'yup';
 import { withFormik, FormikProps, FormikErrors, Form, Field } from 'formik';
-import { FormLabel, Signature } from './newTovar.style';
+import { BoxInputNum, ButtonSubmit, DescrMark, DescrMarkItem, FormLabel, FormLabelNum, InputText, Signature } from './newTovar.style';
 
 // Shape of form values
 interface FormValues {
@@ -31,9 +31,13 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
         <Form>
             <h1>{message}</h1>
             <div>
+                <DescrMark >
+                    <DescrMarkItem>UKR</DescrMarkItem>
+                    <DescrMarkItem>EN</DescrMarkItem>
+                </DescrMark>
                 <FormLabel>
                     < Signature >Name</Signature >
-                    <Field type='text' name="nameUA" />
+                    <InputText type='text' name="nameUA" />
                     {touched.nameUA && errors.nameUA && <div>{errors.nameUA}</div>}
 
                     <Field type='text' name="name" />
@@ -41,7 +45,7 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 
                 </FormLabel>
                 <FormLabel>
-                    < Signature >Name</Signature >
+                    < Signature >description</Signature >
                     <Field type='text' name="descriptionUA" />
                     {touched.descriptionUA && errors.descriptionUA && <div>{errors.descriptionUA}</div>}
                     <Field type='text' name="description" />
@@ -60,27 +64,40 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
                 </FormLabel>
 
 
-                 
-                <div>
-                    <Field type='text' name="type" />
 
-                    <Field type='number' name="cost" /> 
-                    <Field type='number' name="quantity" />
-                    <Field type='number' name="popularity" />
-                </div>
-                
+                <BoxInputNum>
+                    <FormLabelNum>
+                        <Signature>type</Signature>
+                        <Field type='text' name="type" />
+                    </FormLabelNum>
 
+                    <FormLabelNum>
+                        <Signature>cost</Signature>
+                        <Field type='number' name="cost" />
+                    </FormLabelNum>
+
+                    <FormLabelNum>
+                        <Signature>quantity</Signature>
+                        <Field type='number' name="quantity" />
+                    </FormLabelNum>
+
+                    <FormLabelNum>
+                        <Signature>popularity</Signature>
+                        <Field type='number' name="popularity" />
+                    </FormLabelNum>
+                </BoxInputNum>
+
+                <FormLabelNum>
+                    <Field type="file" name='fotos' accept='image/*,.pdf,.png' />
+                </FormLabelNum>
             </div>
-
-
-
 
             {/* {touched.email && errors.email && <div>{errors.email}</div>} */}
             {/* {touched.password && errors.password && <div>{errors.password}</div>} */}
 
-            <button type="submit" disabled={isSubmitting}>
+            <ButtonSubmit type="submit" disabled={isSubmitting}>
                 Submit
-            </button>
+            </ButtonSubmit>
         </Form>
     );
 };
