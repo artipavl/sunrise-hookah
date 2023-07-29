@@ -5,11 +5,11 @@ import {
   selectFeedbacksLoading,
 } from '../../redux/feedback/slice';
 import {
-  delFeedback,
+  // delFeedback,
   getFeedbacks,
 } from '../../redux/feedback/feedbackOperations';
-import { Box, Item, List } from './feedback.style';
-import { AiFillDelete } from 'react-icons/ai';
+import { Box } from './feedback.style';
+import DataTables from '../dataTables/dataTables';
 
 type FeedbackProps = {};
 
@@ -33,23 +33,11 @@ const Feedback: FC<FeedbackProps> = props => {
   return (
     <Box>
       <h1>I am Feedback</h1>
-      <List>
-        {Feedbacks.map(feedback => (
-          <Item>
-            <p>{feedback.email}</p>
-            <p>{feedback.firstName}</p>
-            <p>{feedback.lastName}</p>
-            <p>{feedback.phone}</p>
-            <p>{feedback.message}</p>
-            <button
-              type="button"
-              onClick={() => dispatch(delFeedback(feedback.id))}
-            >
-              <AiFillDelete />
-            </button>
-          </Item>
-        ))}
-      </List>
+
+      <DataTables
+        rows={['email', 'firstName', 'lastName', 'phone', 'message']}
+        columns={Feedbacks}
+      />
     </Box>
   );
 };
