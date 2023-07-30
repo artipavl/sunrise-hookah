@@ -70,7 +70,6 @@ const MyForm = withFormik<MyFormProps, FormValues>({
   validationSchema: SignupSchema,
   
   handleSubmit: (values, formikBag) => {
-    console.log(values);
     formikBag.props.onSubmit(values);
     formikBag.resetForm();
   },
