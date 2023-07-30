@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 // import * as Yup from 'yup';
-import { withFormik, FormikProps, FormikErrors, Form, Field } from 'formik';
-import { BoxInputNum, ButtonSubmit, DescrMark, DescrMarkItem, FormLabel, FormLabelNum, InputText, Signature } from './newTovar.style';
+import { withFormik, FormikProps, FormikErrors, Form } from 'formik';
+import { BoxBtn, BoxFields, BoxInputNum, ButtonSubmit, FormLabel, FormLabelFile, FormLabelNum, H1, InputFileStyled, InputStyled, Signature, SignatureEn } from './newTovar.style';
 
 // Shape of form values
 interface FormValues {
@@ -29,75 +29,79 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
     const { touched, errors, isSubmitting, message } = props;
     return (
         <Form>
-            <h1>{message}</h1>
-            <div>
-                <DescrMark >
-                    <DescrMarkItem>UKR</DescrMarkItem>
-                    <DescrMarkItem>EN</DescrMarkItem>
-                </DescrMark>
+            <H1>{message.toUpperCase()}</H1>
+            <BoxFields>
                 <FormLabel>
-                    < Signature >Name</Signature >
-                    <InputText type='text' name="nameUA" />
+                    < Signature >Ім'я</Signature >
+                    <InputStyled type='text' name="nameUA" />
                     {touched.nameUA && errors.nameUA && <div>{errors.nameUA}</div>}
 
-                    <Field type='text' name="name" />
+                    < SignatureEn >Name</SignatureEn >
+                    <InputStyled type='text' name="name" />
                     {touched.name && errors.name && <div>{errors.name}</div>}
-
                 </FormLabel>
+
                 <FormLabel>
-                    < Signature >description</Signature >
-                    <Field type='text' name="descriptionUA" />
+                    < Signature >Опис</Signature >
+                    <InputStyled type='text' name="descriptionUA" />
                     {touched.descriptionUA && errors.descriptionUA && <div>{errors.descriptionUA}</div>}
-                    <Field type='text' name="description" />
-                    {touched.description && errors.description && <div>{errors.description}</div>}
 
+                    < SignatureEn >Description</SignatureEn >
+                    <InputStyled type='text' name="description" />
+                    {touched.description && errors.description && <div>{errors.description}</div>}
+                </FormLabel>
+
+                <FormLabel >
+                    < Signature >Параметри</Signature >
+                    <InputStyled type='text' name="parametersUA" />
+                    < SignatureEn >Parameters</SignatureEn >
+                    <InputStyled type='text' name="parameters" />
                 </FormLabel>
                 <FormLabel >
-                    < Signature >parameters</Signature >
-                    <Field type='text' name="parametersUA" />
-                    <Field type='text' name="parameters" />
-                </FormLabel>
-                <FormLabel >
-                    < Signature >completeSet</Signature >
-                    <Field type='text' name="completeSetUA" />
-                    <Field type='text' name="completeSet" />
+                    < Signature >Комплект</Signature >
+                    <InputStyled type='text' name="completeSetUA" />
+                    < SignatureEn >Complete set</SignatureEn >
+                    <InputStyled type='text' name="completeSet" />
                 </FormLabel>
 
 
 
                 <BoxInputNum>
                     <FormLabelNum>
-                        <Signature>type</Signature>
-                        <Field type='text' name="type" />
+                        <Signature>Type </Signature>
+                        <InputStyled type='text' name="type" />
                     </FormLabelNum>
 
                     <FormLabelNum>
-                        <Signature>cost</Signature>
-                        <Field type='number' name="cost" />
+                        <Signature>Cost</Signature>
+                        <InputStyled type='number' name="cost" />
                     </FormLabelNum>
 
                     <FormLabelNum>
-                        <Signature>quantity</Signature>
-                        <Field type='number' name="quantity" />
+                        <Signature>Quantity</Signature>
+                        <InputStyled type='number' name="quantity" />
                     </FormLabelNum>
 
                     <FormLabelNum>
-                        <Signature>popularity</Signature>
-                        <Field type='number' name="popularity" />
+                        <Signature>Popularity</Signature>
+                        <InputStyled type='number' name="popularity" />
                     </FormLabelNum>
                 </BoxInputNum>
 
-                <FormLabelNum>
-                    <Field type="file" name='fotos' accept='image/*,.pdf,.png' />
-                </FormLabelNum>
-            </div>
+                <FormLabelFile  >
+                    <Signature>Завантажити файл</Signature>
+                    <InputFileStyled type="file" name='fotos' accept='image/*,.pdf,.png' />
+                </FormLabelFile>
+            </BoxFields>
 
             {/* {touched.email && errors.email && <div>{errors.email}</div>} */}
             {/* {touched.password && errors.password && <div>{errors.password}</div>} */}
 
-            <ButtonSubmit type="submit" disabled={isSubmitting}>
-                Submit
-            </ButtonSubmit>
+            <BoxBtn>
+                <ButtonSubmit type="submit" disabled={isSubmitting}>
+                    Submit
+                </ButtonSubmit>
+            </BoxBtn>
         </Form>
     );
 };
