@@ -4,12 +4,9 @@ import {
   selectFeedbacks,
   selectFeedbacksLoading,
 } from '../../redux/feedback/slice';
-import {
-  delFeedback,
-  getFeedbacks,
-} from '../../redux/feedback/feedbackOperations';
-import { Box, Item, List } from './feedback.style';
-import { AiFillDelete } from 'react-icons/ai';
+import { getFeedbacks } from '../../redux/feedback/feedbackOperations';
+import { Box, Title } from './feedback.style';
+import FeedbackDataTable from '../feedbackDataTable/feedbackDataTable';
 
 type FeedbackProps = {};
 
@@ -25,31 +22,16 @@ const Feedback: FC<FeedbackProps> = props => {
   if (!loading) {
     return (
       <div>
-        <h1>I am Feedback</h1>
+        <Title>I am Feedback</Title>
         <p>Loading...</p>
       </div>
     );
   }
   return (
     <Box>
-      <h1>I am Feedback</h1>
-      <List>
-        {Feedbacks.map(feedback => (
-          <Item>
-            <p>{feedback.email}</p>
-            <p>{feedback.firstName}</p>
-            <p>{feedback.lastName}</p>
-            <p>{feedback.phone}</p>
-            <p>{feedback.message}</p>
-            <button
-              type="button"
-              onClick={() => dispatch(delFeedback(feedback.id))}
-            >
-              <AiFillDelete />
-            </button>
-          </Item>
-        ))}
-      </List>
+      <Title>I am Feedback</Title>
+
+      <FeedbackDataTable data={Feedbacks} />
     </Box>
   );
 };
