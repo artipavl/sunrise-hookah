@@ -13,7 +13,9 @@ import PrivatRoute from './components/privatRoute';
 import PublicRoute from './components/publicRoute';
 import Tovars from './components/tovars/tovars';
 import TovarsByType from './components/tovarsByType/tovarsByType';
+import NewTovar from './components/newTovar/newTovar';
 import Feedback from './components/feedback/feedback';
+
 
 export const Wrapper = styled.div`
   /* display: flex;
@@ -47,6 +49,7 @@ function App() {
             </PublicRoute>
           }
         />
+
         <Route
           path="/adminpanel"
           element={
@@ -64,8 +67,10 @@ function App() {
               />
             )}
 
+
             <Route path=":id" element={<TovarsByType />} />
           </Route>
+          <Route path="newtovar" element={<NewTovar />} />
           <Route
             path="admins"
             element={<div style={{ color: '#fff' }}>2</div>}

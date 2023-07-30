@@ -7,7 +7,7 @@ import AdminPanelOutlet from '../../components/adminPanelOutlet/adminPanelOutlet
 
 export const AdminPanelBox = styled.div`
   display: flex;
-  background-color: #e9ecef;
+  background-color: #FFFFFF;
 `;
 
 type AdminPanelProps = {};
