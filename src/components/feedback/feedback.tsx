@@ -4,12 +4,9 @@ import {
   selectFeedbacks,
   selectFeedbacksLoading,
 } from '../../redux/feedback/slice';
-import {
-  // delFeedback,
-  getFeedbacks,
-} from '../../redux/feedback/feedbackOperations';
-import { Box } from './feedback.style';
-import DataTables from '../dataTables/dataTables';
+import { getFeedbacks } from '../../redux/feedback/feedbackOperations';
+import { Box, Title } from './feedback.style';
+import FeedbackDataTable from '../feedbackDataTable/feedbackDataTable';
 
 type FeedbackProps = {};
 
@@ -25,19 +22,16 @@ const Feedback: FC<FeedbackProps> = props => {
   if (!loading) {
     return (
       <div>
-        <h1>I am Feedback</h1>
+        <Title>I am Feedback</Title>
         <p>Loading...</p>
       </div>
     );
   }
   return (
     <Box>
-      <h1>I am Feedback</h1>
+      <Title>I am Feedback</Title>
 
-      <DataTables
-        rows={['email', 'firstName', 'lastName', 'phone', 'message']}
-        columns={Feedbacks}
-      />
+      <FeedbackDataTable data={Feedbacks} />
     </Box>
   );
 };

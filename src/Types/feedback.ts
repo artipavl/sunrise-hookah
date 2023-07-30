@@ -5,6 +5,7 @@ type Feedback = {
   phone: string;
   email: string;
   message: string;
+  date: number;
 };
 
 export default Feedback;
