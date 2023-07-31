@@ -22,14 +22,14 @@ const Feedback: FC<FeedbackProps> = props => {
   if (!loading) {
     return (
       <div>
-        <Title>I am Feedback</Title>
+        <Title>Зворотній зв'язок</Title>
         <p>Loading...</p>
       </div>
     );
   }
   return (
     <Box>
-      <Title>I am Feedback</Title>
+      <Title>Зворотній зв'язок</Title>
 
       <FeedbackDataTable data={Feedbacks} />
     </Box>
