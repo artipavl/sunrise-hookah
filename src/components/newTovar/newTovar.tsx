@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 // import * as Yup from 'yup';
 import { withFormik, FormikProps, FormikErrors, Form } from 'formik';
 import { BoxBtn, BoxFields, BoxInputNum, ButtonSubmit, FormLabel, FormLabelFile, FormLabelNum, H1, InputFileStyled, InputStyled, Signature, SignatureEn } from './newTovar.style';
+import { TextEditor } from '../utils/textEditor';
 
 // Shape of form values
 interface FormValues {
@@ -47,8 +48,15 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
                     {touched.descriptionUA && errors.descriptionUA && <div>{errors.descriptionUA}</div>}
 
                     < SignatureEn >Description</SignatureEn >
-                    <InputStyled type='text' name="description" />
+                    {/* <InputStyled type='text' name="description" /> */}
                     {touched.description && errors.description && <div>{errors.description}</div>}
+
+                    <TextEditor
+                        setFieldValue={(val) => props.setFieldValue('description', val)}
+                        // setFieldValue={(val) => formik.setFieldValue("message", val)}
+                        value={props.values.description}
+                    // name='description'
+                    />
                 </FormLabel>
 
                 <FormLabel >
@@ -102,7 +110,10 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
                     Submit
                 </ButtonSubmit>
             </BoxBtn>
+
         </Form>
+
+
     );
 };
 
@@ -155,6 +166,7 @@ const NewTovar: FC<NewTovarProps> = (props) => {
     return (
         <div>
             <MyForm message='add tovarchik' />
+
         </div>
     )
 }
