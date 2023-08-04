@@ -3,8 +3,9 @@ import * as Yup from 'yup';
 import { withFormik, FormikProps, Form } from 'formik';
 import { BoxBtn, BoxFields, ButtonSubmit, ErrorBox, FormLabel, FormLabelFile, H1, InputFileStyled, InputStyled, Signature } from './newTovar.style';
 import { TextEditor } from '../utils/textEditor';
-// import axios from 'axios';
+import axios from 'axios';
 import { AddTovar } from '../../Types/tovar';
+
 
 const TovarSchema = Yup.object().shape({
     nameUA: Yup.string()
@@ -232,7 +233,13 @@ const MyForm = withFormik<MyFormProps, FormValues>({
     validationSchema: TovarSchema,
 
     handleSubmit: (values, formikBag) => {
+        const form = new FormData();
+        if (values.fotos) {
 
+            for (let index = 0; index < values.fotos.length; index++) {
+                form.append(`files`, values.fotos[index])
+            }
+        }
         const tovar: AddTovar = {
             name: {
                 ua: values.nameUA,
@@ -257,16 +264,12 @@ const MyForm = withFormik<MyFormProps, FormValues>({
             popularity: values.popularity,
             fotos: [],
         }
-        console.log(values.fotos);
-        console.log(tovar);
-        // axios
-        //     .post('/', { ...values })
-        //     .then(() => {
-        //         formikBag.resetForm();
-        //     })
-        //     .catch(e => {
-        //         console.log(e);
-        //     });
+        form.append('tovar', JSON.stringify(tovar))
+        axios
+            .post('/tovar', form)   
+            .catch(e => {
+                console.log(e);
+            });
     },
 })(InnerForm);
 type NewTovarProps = {};
