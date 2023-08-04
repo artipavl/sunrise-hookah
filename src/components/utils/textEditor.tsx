@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { Editor } from "react-draft-wysiwyg";
 import { convertToRaw, ContentState, EditorState } from "draft-js";
 import draftToHtml from "draftjs-to-html";
@@ -13,17 +13,17 @@ interface ITextEditorProps {
 }
 
 export const TextEditor = ({ value, setFieldValue }: ITextEditorProps) => {
-    const [editorState, setEditorState] = useState(() =>
-        value ? prepareDraft(value) : EditorState.createEmpty()
-    );
-    
-    
     const prepareDraft = (value: string) => {
         const draft = htmlToDraft(value);
         const contentState = ContentState.createFromBlockArray(draft.contentBlocks);
         const editorState = EditorState.createWithContent(contentState);
         return editorState;
     };
+    const [editorState, setEditorState] = useState(() =>
+        value ? prepareDraft(value) : EditorState.createEmpty()
+    );
+    
+    
     
     const onEditorStateChange = (editorState: EditorState) => {
         const forFormik = draftToHtml(
@@ -33,8 +33,6 @@ export const TextEditor = ({ value, setFieldValue }: ITextEditorProps) => {
         setEditorState(editorState);
     };
 
-
-    console.dir(value)
     return (
         
         <div>

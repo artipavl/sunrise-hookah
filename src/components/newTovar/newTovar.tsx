@@ -1,8 +1,54 @@
 import React, { FC } from 'react';
-// import * as Yup from 'yup';
-import { withFormik, FormikProps, FormikErrors, Form } from 'formik';
-import { BoxBtn, BoxFields, BoxInputNum, ButtonSubmit, FormLabel, FormLabelFile, FormLabelNum, H1, InputFileStyled, InputStyled, Signature, SignatureEn } from './newTovar.style';
+import * as Yup from 'yup';
+import { withFormik, FormikProps, Form } from 'formik';
+import { BoxBtn, BoxFields, ButtonSubmit, ErrorBox, FormLabel, FormLabelFile, H1, InputFileStyled, InputStyled, Signature } from './newTovar.style';
 import { TextEditor } from '../utils/textEditor';
+// import axios from 'axios';
+import { AddTovar } from '../../Types/tovar';
+
+const TovarSchema = Yup.object().shape({
+    nameUA: Yup.string()
+        .min(2, 'пісюн закороткий')
+        .max(50, 'Too Long!')
+        .required('Обовязкове поле'),
+    name: Yup.string()
+        .min(2, 'пісюн закороткий')
+        .max(50, 'Too Long!')
+        .required('Required'),
+
+    descriptionUA: Yup.string()
+        .min(10, 'пісюн закороткий')
+        .required('Required'),
+    parametersUA: Yup.string()
+        .min(2, 'пісюн закороткий')
+        .required('Required'),
+    completeSetUA: Yup.string()
+        .min(2, 'пісюн закороткий')
+        .required('Required'),
+
+    description: Yup.string()
+        .min(10, 'пісюн закороткий')
+        .required('Required'),
+    parameters: Yup.string()
+        .min(2, 'пісюн закороткий')
+        .required('Required'),
+    completeSet: Yup.string()
+        .min(2, 'пісюн закороткий')
+        .required('Required'),
+
+    type: Yup.string()
+        .required('Required'),
+    cost: Yup.number()
+        .min(1, 'Зроби нормально')
+        .required('Required'),
+    quantity: Yup.number()
+        .min(1, 'МИ В ГОВНЄ!')
+        .required('Required'),
+    popularity: Yup.number()
+        .min(1, 'Зроби нормально')
+        .required('Required'),
+
+});
 
 // Shape of form values
 interface FormValues {
@@ -10,6 +56,7 @@ interface FormValues {
     descriptionUA: string;
     parametersUA: string;
     completeSetUA: string;
+
     name: string;
     description: string;
     parameters: string;
@@ -19,7 +66,7 @@ interface FormValues {
     cost: number;
     quantity: number;
     popularity: number;
-    fotos: string[];
+    fotos: FileList | null;
 }
 
 interface OtherProps {
@@ -32,78 +79,104 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
         <Form>
             <H1>{message.toUpperCase()}</H1>
             <BoxFields>
-                <FormLabel>
+                <FormLabel error={Boolean(touched.nameUA && errors.nameUA)} >
                     < Signature >Ім'я</Signature >
                     <InputStyled type='text' name="nameUA" />
-                    {touched.nameUA && errors.nameUA && <div>{errors.nameUA}</div>}
-
-                    < SignatureEn >Name</SignatureEn >
-                    <InputStyled type='text' name="name" />
-                    {touched.name && errors.name && <div>{errors.name}</div>}
+                    {touched.nameUA && errors.nameUA && <ErrorBox>{errors.nameUA}</ErrorBox>}
                 </FormLabel>
 
-                <FormLabel>
-                    < Signature >Опис</Signature >
-                    <InputStyled type='text' name="descriptionUA" />
-                    {touched.descriptionUA && errors.descriptionUA && <div>{errors.descriptionUA}</div>}
+                <FormLabel error={Boolean(touched.name && errors.name)}>
+                    < Signature >Name</Signature >
+                    <InputStyled type='text' name="name" />
+                    {touched.name && errors.name && <ErrorBox>{errors.name}</ErrorBox>}
+                </FormLabel>
 
-                    < SignatureEn >Description</SignatureEn >
-                    {/* <InputStyled type='text' name="description" /> */}
-                    {touched.description && errors.description && <div>{errors.description}</div>}
+                <FormLabel error={Boolean(touched.descriptionUA && errors.descriptionUA)}>
+                    <Signature>Опис</Signature>
+                    <TextEditor
+                        setFieldValue={(val) => props.setFieldValue('descriptionUA', val)}
+                        value={props.values.descriptionUA}
 
+                    />
+                    {touched.descriptionUA && errors.descriptionUA && <ErrorBox>{errors.descriptionUA}</ErrorBox>}
+
+                </FormLabel>
+
+                <FormLabel error={Boolean(touched.description && errors.description)}>
+                    <Signature>Description</Signature>
                     <TextEditor
                         setFieldValue={(val) => props.setFieldValue('description', val)}
-                        // setFieldValue={(val) => formik.setFieldValue("message", val)}
                         value={props.values.description}
-                    // name='description'
                     />
+
+                    {touched.description && errors.description && <ErrorBox>{errors.description}</ErrorBox>}
                 </FormLabel>
 
-                <FormLabel >
+                <FormLabel error={Boolean(touched.parametersUA && errors.parametersUA)} >
                     < Signature >Параметри</Signature >
-                    <InputStyled type='text' name="parametersUA" />
-                    < SignatureEn >Parameters</SignatureEn >
-                    <InputStyled type='text' name="parameters" />
+                    <TextEditor
+                        setFieldValue={(val) => props.setFieldValue('parametersUA', val)}
+                        value={props.values.parametersUA}
+                    />
+                    {touched.parametersUA && errors.parametersUA && <ErrorBox>{errors.parametersUA}</ErrorBox>}
+
                 </FormLabel>
-                <FormLabel >
-                    < Signature >Комплект</Signature >
+
+                <FormLabel error={Boolean(touched.parameters && errors.parameters)}>
+                    <Signature>Parameters</Signature>
+                    <TextEditor
+                        setFieldValue={(val) => props.setFieldValue('parameters', val)}
+                        value={props.values.parameters}
+                    />
+                    {touched.parameters && errors.parameters && <ErrorBox>{errors.parameters}</ErrorBox>}
+
+                </FormLabel>
+                <FormLabel error={Boolean(touched.completeSetUA && errors.completeSetUA)} >
+                    <Signature>Комплект</Signature>
                     <InputStyled type='text' name="completeSetUA" />
-                    < SignatureEn >Complete set</SignatureEn >
-                    <InputStyled type='text' name="completeSet" />
+                    {touched.completeSetUA && errors.completeSetUA && <ErrorBox>{errors.completeSetUA}</ErrorBox>}
                 </FormLabel>
 
+                <FormLabel error={Boolean(touched.completeSet && errors.completeSet)}>
+                    < Signature >Complete set</Signature >
+                    <InputStyled type='text' name="completeSet" />
+                    {touched.completeSet && errors.completeSet && <ErrorBox>{errors.completeSet}</ErrorBox>}
+                </FormLabel>
 
+                <FormLabel error={Boolean(touched.type && errors.type)}>
+                    <Signature>Type </Signature>
+                    <InputStyled type='text' name="type" />
+                    {touched.type && errors.type && <ErrorBox>{errors.type}</ErrorBox>}
+                </FormLabel>
 
-                <BoxInputNum>
-                    <FormLabelNum>
-                        <Signature>Type </Signature>
-                        <InputStyled type='text' name="type" />
-                    </FormLabelNum>
+                <FormLabel error={Boolean(touched.cost && errors.cost)}>
+                    <Signature>Cost</Signature>
+                    <InputStyled type='number' name="cost" />
+                    {touched.cost && errors.cost && <ErrorBox>{errors.cost}</ErrorBox>}
 
-                    <FormLabelNum>
-                        <Signature>Cost</Signature>
-                        <InputStyled type='number' name="cost" />
-                    </FormLabelNum>
+                </FormLabel>
 
-                    <FormLabelNum>
-                        <Signature>Quantity</Signature>
-                        <InputStyled type='number' name="quantity" />
-                    </FormLabelNum>
+                <FormLabel error={Boolean(touched.quantity && errors.quantity)}>
+                    <Signature>Quantity</Signature>
+                    <InputStyled type='number' name="quantity" />
+                    {touched.quantity && errors.quantity && <ErrorBox>{errors.quantity}</ErrorBox>}
 
-                    <FormLabelNum>
-                        <Signature>Popularity</Signature>
-                        <InputStyled type='number' name="popularity" />
-                    </FormLabelNum>
-                </BoxInputNum>
+                </FormLabel>
+
+                <FormLabel error={Boolean(touched.popularity && errors.popularity)}>
+                    <Signature>Popularity</Signature>
+                    <InputStyled type='number' name="popularity" />
+                    {touched.popularity && errors.popularity && <ErrorBox>{errors.popularity}</ErrorBox>}
+
+                </FormLabel>
 
                 <FormLabelFile  >
                     <Signature>Завантажити файл</Signature>
-                    <InputFileStyled type="file" name='fotos' accept='image/*,.pdf,.png' />
+                    <InputFileStyled type="file" multiple accept='image/*,.pdf,.png' onChange={(event) => props.setFieldValue('fotos', event.currentTarget.files)} />
+                    {touched.fotos && errors.fotos && <ErrorBox>{errors.fotos}</ErrorBox>}
+
                 </FormLabelFile>
             </BoxFields>
-
-            {/* {touched.email && errors.email && <div>{errors.email}</div>} */}
-            {/* {touched.password && errors.password && <div>{errors.password}</div>} */}
 
             <BoxBtn>
                 <ButtonSubmit type="submit" disabled={isSubmitting}>
@@ -128,36 +201,72 @@ const MyForm = withFormik<MyFormProps, FormValues>({
     // Transform outer props into form values
     mapPropsToValues: props => {
         return {
-            nameUA: '',
-            descriptionUA: '',
-            parametersUA: '',
-            completeSetUA: '',
-            name: '',
-            description: '',
-            parameters: '',
-            completeSet: '',
+            nameUA: 'Oleksiy',
+            descriptionUA: 'vervefdfsrvev',
+            parametersUA: 'dfvfv',
+            completeSetUA: 'erfvvfr',
 
-            type: '',
-            cost: 0,
-            quantity: 0,
-            popularity: 0,
-            fotos: [],
+            name: 'Олексій',
+            description: 'jifnsdfdsffvfnvie',
+            parameters: 'wfwef',
+            completeSet: 'fwefefw',
+
+            type: 'wef',
+            cost: 1,
+            quantity: 1,
+            popularity: 1,
+            fotos: null,
         };
     },
 
-    validate: (values: FormValues) => {
-        let errors: FormikErrors<FormValues> = {};
-        // if (!values.email) {
-        //     errors.email = 'Required';
-        // } else if (!isValidEmail(values.email)) {
-        //     errors.email = 'Invalid email address';
-        // }
-        return errors;
-    },
+    // validate: (values: FormValues) => {
+    //     let errors: FormikErrors<FormValues> = {};
+    //     // if (!values.email) {
+    //     //     errors.email = 'Required';
+    //     // } else if (!isValidEmail(values.email)) {
+    //     //     errors.email = 'Invalid email address';
+    //     // }
+    //     return errors;
+    // },
 
-    handleSubmit: values => {
-        // do submitting things
-        console.log(values)
+    validationSchema: TovarSchema,
+
+    handleSubmit: (values, formikBag) => {
+
+        const tovar: AddTovar = {
+            name: {
+                ua: values.nameUA,
+                eu: values.name,
+            },
+            description: {
+                ua: values.descriptionUA,
+                eu: values.description,
+            },
+            parameters: {
+                ua: values.parametersUA,
+                eu: values.parameters,
+            },
+            completeSet: {
+                ua: values.completeSetUA,
+                eu: values.completeSet,
+            },
+            type: values.type,
+
+            cost: values.cost,
+            quantity: values.quantity,
+            popularity: values.popularity,
+            fotos: [],
+        }
+        console.log(values.fotos);
+        console.log(tovar);
+        // axios
+        //     .post('/', { ...values })
+        //     .then(() => {
+        //         formikBag.resetForm();
+        //     })
+        //     .catch(e => {
+        //         console.log(e);
+        //     });
     },
 })(InnerForm);
 type NewTovarProps = {};

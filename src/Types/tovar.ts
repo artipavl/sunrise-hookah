@@ -15,6 +15,17 @@ type Tovar = {
   type: string;
   fotos: string[];
 };
+export type AddTovar = { 
+  name: TwoLeng;
+  cost: number;
+  description: TwoLeng;
+  parameters: TwoLeng;
+  completeSet: TwoLeng;
+  quantity: number;
+  popularity: number;
+  type: string;
+  fotos: string[];
+};
 
 export type TovarBasket = Tovar & {
   baskeQuantity: number;

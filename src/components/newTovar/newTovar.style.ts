@@ -1,16 +1,22 @@
 import { Field } from "formik";
 import styled from "styled-components";
+interface FormLabelProps {
+  error?: boolean
+}
 
-export const FormLabel = styled.label`
+export const FormLabel = styled.label<FormLabelProps>`
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 0.5fr 1fr;
+  grid-template-columns: .4fr 2fr;
 
   row-gap: 8px;
   column-gap: 24px;
   padding: 5px 10px 10px; 
 
   margin-bottom: 10px;
+  position: relative;
+  
+  ${props => props.error && `border: 1px solid red;
+  border-radius: 7px;`}
 `;
 
 export const BoxFields = styled.div`
@@ -32,21 +38,6 @@ font-weight: 400;
 line-height: normal;
 letter-spacing: 0.2px;
 
-`;
-
-export const SignatureEn = styled.p`
-  grid-column-start: 2;
-  grid-row-start: 1;
-  grid-row-end: 2;
-
-
-  color: #515050;
-  font-family: Product Sans;
-  font-size: 17px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  letter-spacing: 0.2px;
 `;
 
 export const InputStyled = styled(Field)`
@@ -112,7 +103,7 @@ export const BoxBtn = styled.div`
   margin-inline: -60px;
 `;
 
-export const InputFileStyled = styled(Field)`
+export const InputFileStyled = styled.input`
   width: 0px;
   height: 0px;
   opacity: 0;
@@ -125,6 +116,8 @@ export const FormLabelFile = styled.label`
   align-items: center;
   gap: 20px;
 
+  position: relative;
+
   padding: 15px 20px;
   cursor: pointer;
 
@@ -136,4 +129,13 @@ export const FormLabelFile = styled.label`
   padding: 10px 11px;
 
   margin-bottom: 46px;
+`;
+
+export const ErrorBox = styled.div`
+  position: absolute;
+  left: 10px;
+  top: 30px;
+
+  /* transform: translateY(-30%); */
+  color: red;
 `;
