@@ -88,7 +88,7 @@ export const Basket: FC<BasketProps> = ({ openBasket }) => {
             {tovars.reduce((a, b) => a + b.cost * b.baskeQuantity, 0)} грн
           </samp>
         </BasketSum>
-        <Buy to="/">Купити</Buy>
+        <Buy to="/checkout">Оформити</Buy>
       </BasketBox>
     </BasketSection>,
     portal
