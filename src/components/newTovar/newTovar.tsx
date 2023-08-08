@@ -1,10 +1,12 @@
-import React, { FC } from 'react';
+import React, { FC  } from 'react';
 import * as Yup from 'yup';
 import { withFormik, FormikProps, Form } from 'formik';
-import { BoxBtn, BoxFields, ButtonSubmit, ErrorBox, FormLabel, FormLabelFile, H1, InputFileStyled, InputStyled, Signature } from './newTovar.style';
+import { BoxBtn, BoxFields, ButtonSubmit, ErrorBox, FormLabel, FormLabelFile, H1, InputFileStyled, InputStyled, SelectType, Signature, TypesSelect } from './newTovar.style';
 import { TextEditor } from '../utils/textEditor';
 import axios from 'axios';
 import { AddTovar } from '../../Types/tovar';
+import { useAppSelector } from '../../hooks';
+import { selectTypes } from '../../redux/types/slice';
 
 
 const TovarSchema = Yup.object().shape({
@@ -76,6 +78,8 @@ interface OtherProps {
 
 const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
     const { touched, errors, isSubmitting, message } = props;
+    const types = useAppSelector(selectTypes)
+
     return (
         <Form>
             <H1>{message.toUpperCase()}</H1>
@@ -97,7 +101,6 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
                     <TextEditor
                         setFieldValue={(val) => props.setFieldValue('descriptionUA', val)}
                         value={props.values.descriptionUA}
-
                     />
                     {touched.descriptionUA && errors.descriptionUA && <ErrorBox>{errors.descriptionUA}</ErrorBox>}
 
@@ -146,7 +149,14 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 
                 <FormLabel error={Boolean(touched.type && errors.type)}>
                     <Signature>Type </Signature>
-                    <InputStyled type='text' name="type" />
+                    {/* <InputStyled type='text' name="type" /> */}
+
+                    
+                    <TypesSelect name='type' onChange={e => props.values.type = e.target.value}>
+                        {types.map(type => 
+                            <SelectType key={type.id} value={type.eu}>{type.ua}</SelectType>
+                            )}
+                    </TypesSelect>
                     {touched.type && errors.type && <ErrorBox>{errors.type}</ErrorBox>}
                 </FormLabel>
 
@@ -199,7 +209,8 @@ interface MyFormProps {
 
 // Wrap our form with the withFormik HoC
 const MyForm = withFormik<MyFormProps, FormValues>({
-    // Transform outer props into form values
+    
+
     mapPropsToValues: props => {
         return {
             nameUA: 'Oleksiy',
@@ -212,7 +223,7 @@ const MyForm = withFormik<MyFormProps, FormValues>({
             parameters: 'wfwef',
             completeSet: 'fwefefw',
 
-            type: 'wef',
+            type: '',
             cost: 1,
             quantity: 1,
             popularity: 1,
@@ -275,6 +286,8 @@ const MyForm = withFormik<MyFormProps, FormValues>({
 type NewTovarProps = {};
 
 const NewTovar: FC<NewTovarProps> = (props) => {
+    
+
     return (
         <div>
             <MyForm message='add tovarchik' />

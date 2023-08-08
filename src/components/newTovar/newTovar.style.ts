@@ -139,3 +139,12 @@ export const ErrorBox = styled.div`
   /* transform: translateY(-30%); */
   color: red;
 `;
+
+export const SelectType = styled.option`
+  background-color: pink;
+`;
+
+export const TypesSelect = styled.select`
+  border: 1px solid #DADADA;
+  padding: 8px;
+`;
