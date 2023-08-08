@@ -15,6 +15,7 @@ import Tovars from './components/tovars/tovars';
 import TovarsByType from './components/tovarsByType/tovarsByType';
 import NewTovar from './components/newTovar/newTovar';
 import Feedback from './components/feedback/feedback';
+import Checkout from './pages/checkout/checkout';
 
 
 export const Wrapper = styled.div`
@@ -40,6 +41,7 @@ function App() {
     <Wrapper>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/checkout" element={<Checkout />} />
         <Route path="/tovar/:id" element={<Product />} />
         <Route
           path="/admin"
@@ -66,7 +68,6 @@ function App() {
                 element={<Navigate to={`${Types[0].eu}`}></Navigate>}
               />
             )}
-
 
             <Route path=":id" element={<TovarsByType />} />
           </Route>
