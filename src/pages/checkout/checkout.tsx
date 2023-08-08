@@ -12,6 +12,8 @@ import Heder from '../../components/header/heder';
 import ContactCheckoutForm from '../../components/contactCheckoutForm/contactCheckoutForm';
 import ContactCheckoutInfo from '../../components/contactCheckoutInfo/contactCheckoutInfo';
 import BasketTovars from '../../components/basketTovars/basketTovars';
+import Delivery from '../../components/delivery/delivery';
+import { Warehous } from '../../Types/novaposhta';
 
 type CheckoutProps = {};
 
@@ -27,9 +29,16 @@ const Checkout: FC<CheckoutProps> = props => {
   const [cotact, setCotact] = useState<FormValues | null>(null);
   const [cotactCheck, setCotactCheck] = useState<boolean>(false);
 
+  const [Warehouses, setWarehouses] = useState<Warehous | null>(null);
+  const [warehousesCheck, setWarehousesCheck] = useState<boolean>(false);
+
   const cotactCheckSubmit = (values: FormValues) => {
     setCotact(values);
     setCotactCheck(true);
+  };
+  const WarehousesSubmit = (values: Warehous) => {
+    setWarehouses(values);
+    setWarehousesCheck(true);
   };
   return (
     <>
@@ -58,7 +67,24 @@ const Checkout: FC<CheckoutProps> = props => {
               <CheckoutItem>
                 <div style={{ widows: '100%' }}>
                   <SubTitle>Доставка </SubTitle>
-                  <div></div>
+                  {warehousesCheck && Warehouses !== null ? (
+                    // <ContactCheckoutInfo values={cotact} />
+                    <>
+                      <div style={{ color: '#fff' }}>
+                        Доставка у {Warehouses.Description}
+                      </div>
+                      <button
+                        style={{ color: '#fff' }}
+                        onClick={() => {
+                          setWarehousesCheck(false);
+                        }}
+                      >
+                        Змінити
+                      </button>
+                    </>
+                  ) : (
+                    <Delivery submit={WarehousesSubmit} />
+                  )}
                 </div>
               </CheckoutItem>
             </CheckoutList>
