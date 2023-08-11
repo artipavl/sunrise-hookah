@@ -71,7 +71,6 @@ const Delivery: FC<DeliveryProps> = ({ submit }) => {
       getWarehouses(curentAdress);
     }
   }, [curentAdress, warehouseNumber]);
-  console.log(warehouses);
   return (
     <>
       <div>

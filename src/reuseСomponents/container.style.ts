@@ -19,5 +19,6 @@ export const Container = styled.div<ContainerProps>`
 
   @media screen and (min-width: 1440px) {
     margin: auto;
+    width: 1440px;
   }
 `;

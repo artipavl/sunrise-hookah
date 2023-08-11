@@ -15,7 +15,14 @@ export const SubTitle = styled.h2`
 `;
 
 export const Box = styled.div`
+  width: 100%;
   display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  @media screen and (min-width: 756px) {
+    flex-direction: row;
+  }
 `;
 
 export const CheckoutList = styled.ol`
@@ -36,10 +43,28 @@ export const CheckoutItem = styled.li`
     align-items: center;
     /* margin-top: 5px; */
     margin-right: 10px;
-    width: 30px;
+    min-width: 30px;
+    max-width: 30px;
     height: 30px;
     background-color: #ffffff50;
-    /* color: red; */
     border-radius: 50%;
   }
+`;
+
+export const DeliveryInform = styled.div`
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+`;
+
+export const Paylist = styled.div`
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+export const PayItem = styled.label`
+  display: flex;
+  gap: 20px;
 `;
