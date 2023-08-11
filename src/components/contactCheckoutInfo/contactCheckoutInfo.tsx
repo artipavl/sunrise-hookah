@@ -13,7 +13,7 @@ type ContactCheckoutInfoProps = {
 
 const ContactCheckoutInfo: FC<ContactCheckoutInfoProps> = ({ values }) => {
   return (
-    <>
+    <div>
       <p style={{ color: '#fff' }}>
         {values.firstName}
         {' ' + values.lastName}
@@ -21,7 +21,7 @@ const ContactCheckoutInfo: FC<ContactCheckoutInfoProps> = ({ values }) => {
         {values.phone && ', ' + values.phone}
       </p>
       {values.message && <p style={{ color: '#fff' }}>{values.message}</p>}
-    </>
+    </div>
   );
 };
 
