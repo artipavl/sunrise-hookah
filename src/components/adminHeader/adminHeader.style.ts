@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Header = styled.header`
+  position: fixed;
   display: flex;
   flex-direction: column;
   align-items: center;

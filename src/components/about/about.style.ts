@@ -22,7 +22,7 @@ export const AboutItem = styled.li`
   gap: 20px;
   align-items: center;
 
-  width: 280px;
+  max-width: 280px;
 
   @media screen and (min-width: 950px) {
     width: calc((100% - 40px) / 3);

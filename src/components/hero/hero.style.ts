@@ -52,7 +52,7 @@ export const HeroPromotionLink = styled(Link)`
   text-transform: uppercase;
 `;
 
-export const HeroArrow = styled(Link)`
+export const HeroArrow = styled.button`
   position: absolute;
 
   bottom: 10px;

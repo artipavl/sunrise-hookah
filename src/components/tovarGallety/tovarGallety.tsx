@@ -53,26 +53,31 @@ const TovarGallery: FC<GalleryProps> = props => {
   }, [swpPoint, transition, width]);
 
   useEffect(() => {
-    function resize() {
-      const _w = sliderList.current?.firstElementChild?.scrollWidth;
-      if (_w) {
-        setWidth(_w + 20);
-      }
-      setSwpPoint(0);
-      if (sliderList.current)
-        setSliderListWidth(sliderList.current?.scrollWidth);
-    }
     async function getPopul() {
       const { data } = await axios.get('tovar/populate');
       setGalleryItams(data.tovars);
     }
     getPopul();
+
     window.addEventListener('resize', resize);
-    resize();
+
     return () => {
       window.removeEventListener('resize', resize);
     };
   }, []);
+
+  useEffect(() => {
+    resize();
+  }, [sliderList.current?.firstElementChild?.scrollWidth]);
+
+  function resize() {
+    const _w = sliderList.current?.firstElementChild?.scrollWidth;
+    if (_w) {
+      setWidth(_w + 20);
+    }
+    setSwpPoint(0);
+    if (sliderList.current) setSliderListWidth(sliderList.current?.scrollWidth);
+  }
 
   function swap(swap: 'left' | 'right') {
     switch (swap) {

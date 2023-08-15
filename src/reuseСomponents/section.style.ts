@@ -7,7 +7,7 @@ type SectionProps = {
 
 export const Section = styled.section<SectionProps>`
   scroll-snap-align: start;
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
 
   display: grid;
