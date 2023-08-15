@@ -12,6 +12,7 @@ export const Box = styled.div`
   @media screen and (min-width: 1440px) {
     flex-direction: row-reverse;
     gap: 40px;
+    align-items: center;
   }
 `;
 
