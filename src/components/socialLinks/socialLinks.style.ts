@@ -6,7 +6,6 @@ export const SocialLinksList = styled.ul`
   position: fixed;
   left: 0;
   top: 50%;
-  margin-right: 0.65em;
   background-color: #000;
   opacity: 0.7;
   @media screen and (min-width: 720px) {
