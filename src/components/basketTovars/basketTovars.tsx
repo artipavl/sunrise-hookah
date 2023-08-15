@@ -35,7 +35,7 @@ const BasketTovars: FC<BasketTovarsProps> = props => {
                     ? tovar.fotos[0]
                     : 'https://kor.ill.in.ua/m/610x385/2722809.jpg'
                 }
-                alt={tovar.name.eu}
+                alt={tovar.name.en}
               />
             </div>
 

@@ -1,6 +1,6 @@
 interface TwoLeng {
   ua: string;
-  eu: string;
+  en: string;
 }
 
 type Tovar = {
@@ -15,7 +15,7 @@ type Tovar = {
   type: string;
   fotos: string[];
 };
-export type AddTovar = { 
+export type AddTovar = {
   name: TwoLeng;
   cost: number;
   description: TwoLeng;

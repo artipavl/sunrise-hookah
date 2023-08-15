@@ -51,7 +51,7 @@ export const Basket: FC<BasketProps> = ({ openBasket }) => {
                     ? tovar.fotos[0]
                     : 'https://kor.ill.in.ua/m/610x385/2722809.jpg'
                 }
-                alt={tovar.name.eu}
+                alt={tovar.name.en}
               />
               <BasketItamInformation>
                 <span>{tovar.name.ua}</span>
