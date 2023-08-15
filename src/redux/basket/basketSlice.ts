@@ -20,20 +20,20 @@ const initialState: BasketState = {
       cost: 8,
       quantity: 15,
       completeSet: {
-        eu: 'test',
+        en: 'test',
         ua: 'test',
       },
       parameters: {
-        eu: 'test',
+        en: 'test',
         ua: 'test',
       },
       fotos: [],
       name: {
-        eu: 'test',
+        en: 'test',
         ua: 'test',
       },
       description: {
-        eu: 'test',
+        en: 'test',
         ua: 'test',
       },
       type: 'hookahs',
@@ -45,20 +45,20 @@ const initialState: BasketState = {
       cost: 8,
       quantity: 15,
       completeSet: {
-        eu: 'testqweq',
+        en: 'testqweq',
         ua: 'testqwewqew',
       },
       parameters: {
-        eu: 'testasda',
+        en: 'testasda',
         ua: 'testasd',
       },
       fotos: [],
       name: {
-        eu: 'test123213213',
+        en: 'test123213213',
         ua: 'test17896',
       },
       description: {
-        eu: 'test',
+        en: 'test',
         ua: 'test',
       },
       type: 'hookahs',

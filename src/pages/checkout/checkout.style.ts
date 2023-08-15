@@ -20,7 +20,7 @@ export const Box = styled.div`
   flex-direction: column;
   gap: 20px;
 
-  @media screen and (min-width: 756px) {
+  @media screen and (min-width: 1000px) {
     flex-direction: row;
   }
 `;
@@ -67,4 +67,11 @@ export const Paylist = styled.div`
 export const PayItem = styled.label`
   display: flex;
   gap: 20px;
+`;
+
+export const CenterBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 `;

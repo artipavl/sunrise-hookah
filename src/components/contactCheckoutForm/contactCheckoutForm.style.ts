@@ -35,7 +35,7 @@ export const RegForm = styled(Form)`
   gap: 30px;
 
   @media screen and (min-width: 570px) {
-    width: 543px;
+    max-width: 543px;
     margin-inline: auto;
   }
 `;

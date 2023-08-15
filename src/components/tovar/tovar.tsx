@@ -22,12 +22,12 @@ const Tovar: FC<TovarProps> = ({ tovar }) => {
               ? tovar.fotos[0]
               : 'https://kor.ill.in.ua/m/610x385/2722809.jpg'
           }
-          alt={tovar.name.eu}
+          alt={tovar.name.en}
         />
         <TovarImageBoxUpper id="Upper">Перегляд</TovarImageBoxUpper>
       </TovarImageBox>
       <TovarInformation>
-        <span>{tovar.name.eu}</span>
+        <span>{tovar.name.en}</span>
         <span>{tovar.cost}₴</span>
         <TovarInformationAvailability>
           {tovar.quantity > 0 ? 'В наявності' : 'відсутній'}
