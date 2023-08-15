@@ -3,6 +3,7 @@ import { Section } from '../../reuseСomponents/section.style';
 import { Container } from '../../reuseСomponents/container.style';
 import {
   Box,
+  CenterBox,
   CheckoutItem,
   CheckoutList,
   DeliveryInform,
@@ -56,7 +57,7 @@ const Checkout: FC<CheckoutProps> = props => {
           <Box>
             <CheckoutList>
               <CheckoutItem>
-                <div>
+                <div style={{ width: '100%' }}>
                   <SubTitle>Ваші контактні дані</SubTitle>
                   {cotactCheck && cotact !== null ? (
                     <DeliveryInform>
@@ -72,18 +73,20 @@ const Checkout: FC<CheckoutProps> = props => {
                       </button>
                     </DeliveryInform>
                   ) : (
-                    <ContactCheckoutForm submit={cotactCheckSubmit} />
+                    <CenterBox>
+                      <ContactCheckoutForm submit={cotactCheckSubmit} />
+                    </CenterBox>
                   )}
                 </div>
               </CheckoutItem>
               <CheckoutItem>
-                <div>
+                <div style={{ width: '100%' }}>
                   <SubTitle>Замовлення</SubTitle>
                   <BasketTovars />
                 </div>
               </CheckoutItem>
               <CheckoutItem>
-                <div>
+                <div style={{ width: '100%' }}>
                   <SubTitle>Доставка </SubTitle>
                   {warehousesCheck && warehouses !== null ? (
                     <DeliveryInform>
@@ -106,7 +109,7 @@ const Checkout: FC<CheckoutProps> = props => {
                 </div>
               </CheckoutItem>
               <CheckoutItem>
-                <div>
+                <div style={{ width: '100%' }}>
                   <SubTitle>Оплата</SubTitle>
                   <Paylist>
                     <PayItem>
