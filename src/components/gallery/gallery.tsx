@@ -42,21 +42,24 @@ const Gallery: FC<GalleryProps> = props => {
   const sliderList = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
-    function resize() {
-      const _w = swapEl.current?.offsetWidth;
-      if (_w) {
-        setWidth(_w);
-      }
-      setSwpPoint(0);
-      if (sliderList.current)
-        setSliderListWidth(sliderList.current?.scrollWidth);
-    }
     window.addEventListener('resize', resize);
-    resize();
     return () => {
       window.removeEventListener('resize', resize);
     };
   }, []);
+
+  useEffect(() => {
+    resize();
+  }, [swapEl.current?.offsetWidth]);
+
+  function resize() {
+    const _w = swapEl.current?.offsetWidth;
+    if (_w) {
+      setWidth(_w);
+    }
+    setSwpPoint(0);
+    if (sliderList.current) setSliderListWidth(sliderList.current?.scrollWidth);
+  }
 
   function swap(swap: 'left' | 'right') {
     switch (swap) {
