@@ -31,13 +31,13 @@ const TovarSchema = Yup.object().shape({
     .max(50, 'Too Long!')
     .required('Required'),
 
-  descriptionUA: Yup.string().min(10, 'пісюн закороткий').required('Required'),
-  parametersUA: Yup.string().min(2, 'пісюн закороткий').required('Required'),
-  completeSetUA: Yup.string().min(2, 'пісюн закороткий').required('Required'),
+  descriptionUA: Yup.string().min(2, 'пісюн закороткий').required('Required'),
+  parametersUA: Yup.string().min(1, 'пісюн закороткий').required('Required'),
+  completeSetUA: Yup.string().min(1, 'пісюн закороткий').required('Required'),
 
-  description: Yup.string().min(10, 'пісюн закороткий').required('Required'),
-  parameters: Yup.string().min(2, 'пісюн закороткий').required('Required'),
-  completeSet: Yup.string().min(2, 'пісюн закороткий').required('Required'),
+  description: Yup.string().min(2, 'пісюн закороткий').required('Required'),
+  parameters: Yup.string().min(1, 'пісюн закороткий').required('Required'),
+  completeSet: Yup.string().min(1, 'пісюн закороткий').required('Required'),
 
   type: Yup.string().required('Required'),
   cost: Yup.number().min(1, 'Зроби нормально').required('Required'),
@@ -226,17 +226,17 @@ interface MyFormProps {
 const MyForm = withFormik<MyFormProps, FormValues>({
   mapPropsToValues: props => {
     return {
-      nameUA: 'Oleksiy',
-      descriptionUA: 'vervefdfsrvev',
-      parametersUA: 'dfvfv',
-      completeSetUA: 'erfvvfr',
+      nameUA: 'Hookah',
+      descriptionUA: 'Lyaps',
+      parametersUA: '-',
+      completeSetUA: '-',
 
-      name: 'Олексій',
-      description: 'jifnsdfdsffvfnvie',
-      parameters: 'wfwef',
-      completeSet: 'fwefefw',
+      name: 'Hookah',
+      description: 'Lyaps',
+      parameters: '-',
+      completeSet: '-',
 
-      type: '',
+      type: 'hookahs',
       cost: 1,
       quantity: 1,
       popularity: 1,
