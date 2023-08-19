@@ -38,8 +38,10 @@ const TovarPage: FC<TovarPageProps> = (props) => {
         return <div>Fuck you</div>
     }
 
+    console.log(tovar?.description.ua)
+
     return (
-        <SectionTovar>
+        <SectionTovar h>
             <Heder></Heder>
             <ContainerTovar>
                 <InfoBox>
@@ -57,10 +59,10 @@ const TovarPage: FC<TovarPageProps> = (props) => {
                             )}
                         </MiniGallery>
                     </Gallery>
-                    <SubinfoBox>
-                        <p>{tovar.description.ua}</p>
-                        <p>{tovar.parameters.ua}</p>
-                    </SubinfoBox>
+                    <SubinfoBox >
+                        <p dangerouslySetInnerHTML={{ __html: tovar.parameters.ua }}></p>
+                        <p dangerouslySetInnerHTML={{ __html: tovar.description.ua }}></p>
+                    </SubinfoBox> 
                 </InfoBox>
                 <MainInfoBox>
                     <h1>{tovar?.name.ua}</h1>
