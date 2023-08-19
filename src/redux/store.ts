@@ -4,6 +4,7 @@ import selectTovars from './tovars/slice';
 import typesSlice from './types/slice';
 import basketSlice from './basket/basketSlice';
 import feedbackSlice from './feedback/slice';
+import adminsSlice from './adminList/slice';
 import { authSlice } from './auth/authReducer';
 
 const store = configureStore({
@@ -13,6 +14,7 @@ const store = configureStore({
     basket: basketSlice,
     feedbacks: feedbackSlice,
     auth: authSlice.reducer,
+    admins: adminsSlice,
   },
 });
 

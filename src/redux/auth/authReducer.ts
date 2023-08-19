@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { logOut, signIn, signUp } from './authOperations';
+import { logOut, signIn } from './authOperations';
 
 interface AuthSliceTypes {
   user: {
@@ -27,23 +27,23 @@ export const authSlice = createSlice({
   reducers: {},
   extraReducers: builder =>
     builder
-      .addCase(signUp.pending, (state, _) => {
-        state.isLoggedIn = true;
-        state.isLogin = false;
-      })
-      .addCase(signUp.fulfilled, (state, { payload }) => {
-        state.user.name = payload.user.name;
-        state.user.email = payload.user.email;
-        state.token = payload.token;
-        state.isLoggedIn = false;
-        state.isLogin = true;
-      })
-      .addCase(signUp.rejected, (state, _) => {
-        state.user = initialState.user;
-        state.token = null;
-        state.isLoggedIn = false;
-        state.isLogin = false;
-      })
+      // .addCase(signUp.pending, (state, _) => {
+      //   state.isLoggedIn = true;
+      //   state.isLogin = false;
+      // })
+      // .addCase(signUp.fulfilled, (state, { payload }) => {
+      //   state.user.name = payload.user.name;
+      //   state.user.email = payload.user.email;
+      //   state.token = payload.token;
+      //   state.isLoggedIn = false;
+      //   state.isLogin = true;
+      // })
+      // .addCase(signUp.rejected, (state, _) => {
+      //   state.user = initialState.user;
+      //   state.token = null;
+      //   state.isLoggedIn = false;
+      //   state.isLogin = false;
+      // })
 
       .addCase(signIn.pending, (state, _) => {
         state.isLoggedIn = true;
