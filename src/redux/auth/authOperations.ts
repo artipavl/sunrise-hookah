@@ -11,24 +11,6 @@ const clearAuthHeader = (): void => {
   axios.defaults.headers.common.Authorization = '';
 };
 
-export const signUp = createAsyncThunk<
-  IAuth,
-  ICredentials,
-  { rejectValue: string }
->('auth/signUp', async (credentials, thunkAPI) => {
-  try {
-    const { data } = await axios.post('', credentials);
-    setAuthHeader(data.token);
-    return data;
-  } catch (error: any) {
-    if (error.response.status === 409) {
-      console.log(error);
-    }
-
-    return thunkAPI.rejectWithValue(error.message);
-  }
-});
-
 export const signIn = createAsyncThunk<
   IAuth,
   ICredentials,
@@ -36,7 +18,6 @@ export const signIn = createAsyncThunk<
 >('auth/signIn', async (credentials, thunkAPI) => {
   try {
     const { data } = await axios.patch('', credentials);
-    console.log(data);
     setAuthHeader(data.token);
     return data;
   } catch (error: any) {
