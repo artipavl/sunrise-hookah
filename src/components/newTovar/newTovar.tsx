@@ -227,12 +227,12 @@ const MyForm = withFormik<MyFormProps, FormValues>({
   mapPropsToValues: props => {
     return {
       nameUA: 'Hookah',
-      descriptionUA: 'Lyaps',
+      descriptionUA: '<p>Lyaps</p>',
       parametersUA: '-',
       completeSetUA: '-',
 
       name: 'Hookah',
-      description: 'Lyaps',
+      description: '<p>Lyaps</p>',
       parameters: '-',
       completeSet: '-',
 
