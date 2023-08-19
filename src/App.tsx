@@ -16,7 +16,7 @@ import TovarsByType from './components/tovarsByType/tovarsByType';
 import NewTovar from './components/newTovar/newTovar';
 import Feedback from './components/feedback/feedback';
 import Checkout from './pages/checkout/checkout';
-
+import AdminList from './pages/adminList/adminList';
 
 export const Wrapper = styled.div`
   /* display: flex;
@@ -72,10 +72,7 @@ function App() {
             <Route path=":id" element={<TovarsByType />} />
           </Route>
           <Route path="newtovar" element={<NewTovar />} />
-          <Route
-            path="admins"
-            element={<div style={{ color: '#fff' }}>2</div>}
-          />
+          <Route path="admins" element={<AdminList></AdminList>} />
           <Route path="feedback" element={<Feedback />} />
         </Route>
       </Routes>
