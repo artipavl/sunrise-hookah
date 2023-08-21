@@ -3,6 +3,7 @@ import { Section } from '../../reuseСomponents/section.style';
 import { Container } from '../../reuseСomponents/container.style';
 
 export const SectionTovar = styled(Section)`
+font-family: 'Courier New', Courier, monospace;
   display: block;
   padding-top: 0; 
   color: aqua; 
@@ -10,9 +11,9 @@ export const SectionTovar = styled(Section)`
 `;
 
 export const ContainerTovar = styled(Container)`
-  display: flex;
-  /* justify-content: center; */
+  display: flex; 
   align-items: center;
+
   flex-direction: column;
 
   background-color: #fff;
@@ -23,7 +24,23 @@ export const ContainerTovar = styled(Container)`
 `;
 
 export const MainInfoBox = styled.div`
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+ 
+  width: 100%;
+`;
+
+export const H1 = styled.h1`
+  font-size: 2rem;
+  font-style: oblique;
+`;
+
+export const Price = styled.p`
+  font-weight: 500;
+  font-style: italic;
 `;
 
 export const ButtonCase = styled.button`
@@ -32,13 +49,17 @@ export const ButtonCase = styled.button`
   border-radius: 8px;
 `;
 
-export const InfoBox = styled.div` 
-  max-width: fit-content;
+export const InfoBox = styled.div`  
 `;
 
 export const FormBox = styled.form`
   display: flex;
   flex-direction: column;
+  margin-top: 20px;
+  gap: 10px;
+  justify-content: flex-end;
+  align-items: end;
+  width: 100%;
 `;
 
 export const InputQuantity = styled.input`
@@ -68,8 +89,8 @@ export const SubinfoBox = styled.div`
 `;
 
 export const MiniGallery = styled.ul`
-  margin-top: 10px;
   display: flex; 
+  margin-top: 10px;
   gap: 10px;
 `;
 
@@ -100,3 +121,4 @@ export const MiniImg = styled.img`
     transition: ease 600ms opacity, ease 600ms border;
   }
 `;
+
