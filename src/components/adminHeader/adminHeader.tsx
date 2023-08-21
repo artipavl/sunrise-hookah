@@ -40,6 +40,9 @@ const AdminHeader: FC<AdminHeaderProps> = props => {
           <li>
             <Link to={'feedback'}>Зворотній зв'язок</Link>
           </li>
+          <li>
+            <Link to={'orders'}>Замовлення</Link>
+          </li>
         </NavList>
       </Nav>
     </Header>
