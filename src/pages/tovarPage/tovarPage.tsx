@@ -1,6 +1,6 @@
 import React, { FC, useState, useEffect } from 'react';
 import Heder from '../../components/header/heder';
-import { BtnImg, ButtonCase, ContainerTovar, FormBox, Gallery, H1, Img, ImgBox, InfoBox, InputQuantity, MainInfoBox, MiniGallery, MiniGalleryItem, MiniImg, Price, SectionTovar, SubinfoBox } from './tovarPage.style';
+import { BtnImg, ButtonCase, ContainerTovar, FormBox, Gallery, H1, Img, ImgBox, InputQuantity, MainInfoBox, MiniGallery, MiniGalleryItem, MiniImg, Price, SectionTovar, SubinfoBox } from './tovarPage.style';
 import { useParams } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
 import { selectTovars } from '../../redux/tovars/slice';
