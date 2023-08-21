@@ -14,13 +14,11 @@ import { useAppDispatch } from '../../hooks';
 import { signUp } from '../../redux/adminList/adminsOperations';
 
 const SignupSchema = Yup.object().shape({
-  email: Yup.string()
-    .email('Недійсна електронна адреса')
-    .required('Обов’язковий'),
+  email: Yup.string().email('Invalid email').required('Required'),
   password: Yup.string()
-    .required('Обов’язковий')
-    .min(8, 'Пароль надто короткий - має містити мінімум 8 символів.')
-    .matches(/[a-zA-Z]/, 'Пароль може містити лише латинські літери.'),
+    .required('No password provided.')
+    .min(8, 'Password is too short - should be 8 chars minimum.')
+    .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
 });
 
 interface FormValues {
@@ -65,7 +63,7 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
         )}
       </Label>
       <Button type="submit" disabled={isSubmitting}>
-        Створити
+        Надіслати
       </Button>
     </RegForm>
   );
@@ -101,9 +99,6 @@ const AdminRegistrationForm: FC<AdminRegistrationFormProps> = props => {
   }
   return (
     <Container>
-      <h2 style={{ marginBottom: '20px', textAlign: 'center' }}>
-        Створити нового адміністратора
-      </h2>
       <MyForm onSubmit={isLoggedin} />
     </Container>
   );
