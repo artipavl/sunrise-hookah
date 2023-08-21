@@ -20,11 +20,12 @@ import {
 	SubinfoBox,
 } from './tovarPage.style';
 import { useParams } from 'react-router-dom';
-import { useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { selectTovars } from '../../redux/tovars/slice';
 import axios from 'axios';
 import Tovar from '../../Types/tovar';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
+import { addToBasket } from '../../redux/basket/basketSlice';
 
 type TovarPageProps = {};
 
@@ -33,6 +34,9 @@ const TovarPage: FC<TovarPageProps> = props => {
 	const tovars = useAppSelector(selectTovars);
 	const { id } = useParams();
 	const [imgUrl, setImgUrl] = useState(0);
+	const [quantity, setQuantity] = useState<number>(1);
+
+	const dispatch = useAppDispatch();
 
 	useEffect(() => {
 		const get = async (id: string | undefined, tovars: Tovar[]) => {
@@ -55,8 +59,6 @@ const TovarPage: FC<TovarPageProps> = props => {
 		return <div>Fuck U</div>;
 	}
 
-	
-
 	console.log(tovar?.description.ua);
 
 	return (
@@ -70,7 +72,7 @@ const TovarPage: FC<TovarPageProps> = props => {
 						</BtnArrow>
 
 						<Img src={tovar.fotos[imgUrl]} alt="foto hookah" />
-						
+
 						<BtnArrow type="button" position={false}>
 							<MdKeyboardArrowRight size={40} />{' '}
 						</BtnArrow>
@@ -87,9 +89,21 @@ const TovarPage: FC<TovarPageProps> = props => {
 				</Gallery>
 				<MainInfoBox>
 					<H1>{tovar?.name.ua}</H1>
-					<FormBox>
+					<FormBox
+						onSubmit={e => {
+							e.preventDefault();
+
+							dispatch(addToBasket({ ...tovar, baskeQuantity: quantity }));
+						}}
+					>
 						<Price>Ціна: {tovar?.cost}грн.</Price>
-						<InputQuantity type="number" min={1} value={1} />
+						<InputQuantity
+							type="number"
+							name={'quantity'}
+							min={1}
+							value={quantity}
+							onChange={e => setQuantity(Number(e.currentTarget.value))}
+						/>
 						<ButtonCase type="submit">Додати в кошик</ButtonCase>
 					</FormBox>
 				</MainInfoBox>
