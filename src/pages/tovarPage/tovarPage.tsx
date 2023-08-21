@@ -1,6 +1,6 @@
 import React, { FC, useState, useEffect } from 'react';
 import Heder from '../../components/header/heder';
-import { BtnImg, ButtonCase, ContainerTovar, FormBox, Gallery, Img, ImgBox, InfoBox, InputQuantity, MainInfoBox, MiniGallery, MiniGalleryItem, MiniImg, SectionTovar, SubinfoBox } from './tovarPage.style';
+import { BtnImg, ButtonCase, ContainerTovar, FormBox, Gallery, H1, Img, ImgBox, InfoBox, InputQuantity, MainInfoBox, MiniGallery, MiniGalleryItem, MiniImg, Price, SectionTovar, SubinfoBox } from './tovarPage.style';
 import { useParams } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
 import { selectTovars } from '../../redux/tovars/slice';
@@ -44,34 +44,33 @@ const TovarPage: FC<TovarPageProps> = (props) => {
         <SectionTovar h>
             <Heder></Heder>
             <ContainerTovar>
-                <InfoBox>
-                    <Gallery>
-                        <ImgBox>
-                            <Img src={tovar.fotos[imgUrl]} alt="foto hookah" />
-                        </ImgBox>
-                        <MiniGallery>
-                            {tovar?.fotos.map((foto, index) =>
+                <Gallery>
+                    <ImgBox>
+                        <Img src={tovar.fotos[imgUrl]} alt="foto hookah" />
+                    </ImgBox>
+                    <MiniGallery>
+                        {
+                            tovar?.fotos.map((foto, index) =>
                                 <MiniGalleryItem key={foto}>
                                     <BtnImg type='button' onClick={() => setImgUrl(index)}>
                                         <MiniImg src={foto} alt='фото кальяну' />
                                     </BtnImg>
                                 </MiniGalleryItem>
                             )}
-                        </MiniGallery>
-                    </Gallery>
-                    <SubinfoBox >
-                        <p dangerouslySetInnerHTML={{ __html: tovar.parameters.ua }}></p>
-                        <p dangerouslySetInnerHTML={{ __html: tovar.description.ua }}></p>
-                    </SubinfoBox> 
-                </InfoBox>
+                    </MiniGallery>
+                </Gallery>
                 <MainInfoBox>
-                    <h1>{tovar?.name.ua}</h1>
-                    <p>{tovar?.cost}</p>
+                    <H1>{tovar?.name.ua}</H1>
+                    <Price>Ціна: {tovar?.cost}грн.</Price>
                     <FormBox>
                         <InputQuantity type='number' min={1} value={1} />
                         <ButtonCase type="submit">Додати в кошик</ButtonCase>
                     </FormBox>
                 </MainInfoBox>
+                <SubinfoBox >
+                    <p dangerouslySetInnerHTML={{ __html: tovar.parameters.ua }}></p>
+                    <p dangerouslySetInnerHTML={{ __html: tovar.description.ua }}></p>
+                </SubinfoBox>
             </ContainerTovar>
         </SectionTovar >
     )
