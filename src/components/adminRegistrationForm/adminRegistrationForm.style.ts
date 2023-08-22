@@ -65,12 +65,13 @@ export const Input = styled(Field)<InputPrpos>`
   position: relative;
   display: inline-block;
   width: 100%;
-  background: #ffffff;
-  border: 1px solid #ffffff;
-  border-color: ${props => props.errors && 'red'};
-  /* border-radius: 90px; */
 
-  padding: 10px 20px;
+  padding: 10px 14px;
+
+  border-radius: 8px;
+  border: 1px solid #d0d5dd;
+  background: #fff;
+  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
 
   ::placeholder {
     font-weight: 400;
@@ -147,20 +148,21 @@ export const Accent = styled.span`
 `;
 
 export const Button = styled.button`
-  background-color: #e74e13;
-  /* border-radius: 90px; */
-  min-height: 47px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid #d0d5dd;
+  background: #fff;
+  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
 
   font-weight: 700;
   font-size: 16px;
   line-height: 20px;
   text-align: center;
 
-  color: #ffffff;
+  color: #344054;
 
   :hover,
   :focus {
-    color: #e74e13;
-    background-color: #ffffff;
+    background-color: #e74e13;
   }
 `;
