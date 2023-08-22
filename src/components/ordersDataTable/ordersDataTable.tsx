@@ -30,6 +30,8 @@ import {
 import { AiFillCaretDown, AiFillCaretUp, AiOutlineContainer, AiOutlineRest } from 'react-icons/ai';
 import Modal from '../modal/modal';
 import { Order } from '../../Types/order';
+import { useAppSelector } from '../../hooks';
+import { selectTovars } from '../../redux/tovars/slice';
 
 type OrdersDataTableProps = {
 	data: Order[];
@@ -45,6 +47,8 @@ const OrdersDataTable: FC<OrdersDataTableProps> = ({ data }) => {
 	const [current, setCurrent] = useState<Order | null>(null);
 	const [deleteOpen, setDeleteOpen] = useState<boolean>();
 	const [readOpen, setReadOpen] = useState<boolean>();
+
+	const tovars = useAppSelector(selectTovars);
 
 	// const dispatch = useAppDispatch();
 
@@ -246,7 +250,22 @@ const OrdersDataTable: FC<OrdersDataTableProps> = ({ data }) => {
 								</div>
 								<p>Час: {current.date}</p>
 								<p>Доставка у {current.delivery.Description}</p>
-                
+								<p>Замовлення</p>
+								<ul>
+									{current.orders.map(order => {
+										const tovar = tovars.find(tovar => tovar.id === order.id);
+										if (tovar) {
+											return (
+												<li>
+													<p>назва: {tovar.name.ua}</p>
+													<p>кількість: {order.baskeQuantity}</p>
+													<p>ціна за один: {tovar.cost}</p>
+												</li>
+											);
+										}
+										return null;
+									})}
+								</ul>
 								<DeleteButton
 									onClick={() => {
 										setDeleteOpen(true);
