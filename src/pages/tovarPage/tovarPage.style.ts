@@ -2,6 +2,17 @@ import styled from 'styled-components';
 import { Section } from '../../reuseСomponents/section.style';
 import { Container } from '../../reuseСomponents/container.style';
 
+const colors = {
+	mainBg: '#222',
+
+	textGrey: '#dcdcdc',
+	subGrey: '#686868',
+
+	black: '#262626',
+
+	yellow: '#ffd058',
+};
+
 export const SectionTovar = styled(Section)`
 	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 	display: block;
@@ -19,7 +30,7 @@ export const ContainerTovar = styled(Container)`
 	padding: 20px;
 	gap: 30px;
 
-	background-color: #222;
+	background-color: ${colors.mainBg};
 
 	@media screen and (min-width: 720px) {
 		display: grid;
@@ -36,7 +47,7 @@ export const MainInfoBox = styled.div`
 
 	width: 100%;
 
-	color: #dcdcdc;
+	color: ${colors.textGrey};
 
 	@media screen and (min-width: 720px) {
 		grid-column-start: 3;
@@ -67,7 +78,7 @@ export const Price = styled.p`
 `;
 
 export const ButtonCase = styled.button`
-	background-color: #686868;
+	background-color: ${colors.yellow};
 	padding-block: 8px;
 	border-radius: 8px;
 	width: 100%;
@@ -128,7 +139,6 @@ export const Img = styled.img`
 	height: 100%;
 
 	object-fit: contain;
-	/* background-color: #dcdcdc; */
 `;
 
 export const SubinfoBox = styled.div`
@@ -186,7 +196,7 @@ export const MiniImg = styled.img`
 	height: 100%;
 	width: 100%;
 
-	border: 0px solid #fff;
+	border: 0px solid ${colors.subGrey};
 
 	opacity: 0.5;
 	object-fit: cover;
@@ -214,7 +224,7 @@ export const BtnArrow = styled.button<BtnArrowProps>`
 	position: absolute;
 	top: 50%;
 
-	height:  50px;
+	height: 50px;
 	width: 30px;
 
 	border-radius: 3px;
@@ -222,11 +232,11 @@ export const BtnArrow = styled.button<BtnArrowProps>`
 	left: ${props => (props.position ? 0 : '100%')};
 	transform: translate(${props => (props.position ? 0 : '-100%')}, -50%);
 
-	color: #fff;
+	color: ${colors.textGrey};
 
 	&:hover,
 	&:focus {
-		background-color: #686868;
+		background-color: ${colors.subGrey};
 	}
 
 	@media screen and (min-width: 720px) {

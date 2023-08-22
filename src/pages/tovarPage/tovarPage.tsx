@@ -62,57 +62,60 @@ const TovarPage: FC<TovarPageProps> = props => {
 	console.log(tovar?.description.ua);
 
 	return (
-		<SectionTovar h>
+		<>
 			<Heder></Heder>
-			<ContainerTovar>
-				<Gallery>
-					<ImgBox>
-						<BtnArrow type="button" position={true}>
-							<MdKeyboardArrowLeft size={40} />
-						</BtnArrow>
-
-						<Img src={tovar.fotos[imgUrl]} alt="foto hookah" />
-
-						<BtnArrow type="button" position={false}>
-							<MdKeyboardArrowRight size={40} />{' '}
-						</BtnArrow>
-					</ImgBox>
-					<MiniGallery>
-						{tovar?.fotos.map((foto, index) => (
-							<MiniGalleryItem key={foto}>
-								<BtnImg type="button" onClick={() => setImgUrl(index)}>
-									<MiniImg src={foto} alt="фото кальяну" />
-								</BtnImg>
-							</MiniGalleryItem>
-						))}
-					</MiniGallery>
-				</Gallery>
-				<MainInfoBox>
+			<SectionTovar h>
+				<ContainerTovar>
 					<H1>{tovar?.name.ua}</H1>
-					<FormBox
-						onSubmit={e => {
-							e.preventDefault();
+					<Gallery>
+						<ImgBox>
+							<BtnArrow type="button" position={true}>
+								<MdKeyboardArrowLeft size={40} />
+							</BtnArrow>
 
-							dispatch(addToBasket({ ...tovar, baskeQuantity: quantity }));
-						}}
-					>
-						<Price>Ціна: {tovar?.cost}грн.</Price>
-						<InputQuantity
-							type="number"
-							name={'quantity'}
-							min={1}
-							value={quantity}
-							onChange={e => setQuantity(Number(e.currentTarget.value))}
-						/>
-						<ButtonCase type="submit">Додати в кошик</ButtonCase>
-					</FormBox>
-				</MainInfoBox>
-				<SubinfoBox>
-					<div dangerouslySetInnerHTML={{ __html: tovar.parameters.ua }}></div>
-					<div dangerouslySetInnerHTML={{ __html: tovar.description.ua }}></div>
-				</SubinfoBox>
-			</ContainerTovar>
-		</SectionTovar>
+							<Img src={tovar.fotos[imgUrl]} alt="foto hookah" />
+
+							<BtnArrow type="button" position={false}>
+								<MdKeyboardArrowRight size={40} />{' '}
+							</BtnArrow>
+						</ImgBox>
+						<MiniGallery>
+							{tovar?.fotos.map((foto, index) => (
+								<MiniGalleryItem key={foto}>
+									<BtnImg type="button" onClick={() => setImgUrl(index)}>
+										<MiniImg src={foto} alt="фото кальяну" />
+									</BtnImg>
+								</MiniGalleryItem>
+							))}
+						</MiniGallery>
+					</Gallery>
+					<MainInfoBox>
+						<H1>{tovar?.name.ua}</H1>
+						<FormBox
+							onSubmit={e => {
+								e.preventDefault();
+
+								dispatch(addToBasket({ ...tovar, baskeQuantity: quantity }));
+							}}
+						>
+							<Price>Ціна: {tovar?.cost}грн.</Price>
+							<InputQuantity
+								type="number"
+								name={'quantity'}
+								min={1}
+								value={quantity}
+								onChange={e => setQuantity(Number(e.currentTarget.value))}
+							/>
+							<ButtonCase type="submit">Додати в кошик</ButtonCase>
+						</FormBox>
+					</MainInfoBox>
+					<SubinfoBox>
+						<div dangerouslySetInnerHTML={{ __html: tovar.parameters.ua }}></div>
+						<div dangerouslySetInnerHTML={{ __html: tovar.description.ua }}></div>
+					</SubinfoBox>
+				</ContainerTovar>
+			</SectionTovar>
+		</>
 	);
 };
 
