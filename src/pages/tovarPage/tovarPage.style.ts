@@ -9,14 +9,23 @@ const colors = {
 	subGrey: '#686868',
 
 	black: '#262626',
+	subBlack: '#5a5a5a',
 
 	yellow: '#ffd058',
 };
 
 export const SectionTovar = styled(Section)`
-	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	display: block;
 	padding-top: 0;
+
+	@media screen and (min-width: 720px) {
+		width: 720px;
+		margin: auto;
+	}
+	@media screen and (min-width: 1280px) {
+		width: 900px;
+	}
 `;
 
 export const ContainerTovar = styled(Container)`
@@ -28,13 +37,17 @@ export const ContainerTovar = styled(Container)`
 	height: auto;
 
 	padding: 20px;
-	gap: 30px;
+
+	gap: 10px;
 
 	background-color: ${colors.mainBg};
 
 	@media screen and (min-width: 720px) {
 		display: grid;
 		grid-template-columns: 1fr 1fr 1fr;
+		gap: 20px;
+	}
+	@media screen and (min-width: 1280px) {
 	}
 `;
 
@@ -46,48 +59,158 @@ export const MainInfoBox = styled.div`
 	align-items: center;
 
 	width: 100%;
+	height: 100%;
 
 	color: ${colors.textGrey};
 
 	@media screen and (min-width: 720px) {
 		grid-column-start: 3;
-
+	}
+	@media screen and (min-width: 1280px) {
+		display: block;
 		height: 100%;
+
+		padding-inline: 20px 0;
 	}
 `;
 
-export const H1 = styled.h1`
-	font-size: 2rem;
-	font-style: oblique;
+type H1Props = {
+	h?: boolean;
+};
+
+export const H1 = styled.h1<H1Props>`
+	font-size: 24px;
+	/* font-style: oblique; */
+	color: ${colors.textGrey};
+	${`text-wrap: balance;`};
+
+	display: ${props => (props.h ? 'block' : 'none')};
 
 	@media screen and (min-width: 720px) {
-		font-size: 3rem;
+		display: ${props => (props.h ? 'none' : 'flex')};
+		justify-content: center;
+		align-items: center;
+
+		height: 50%;
+		font-size: 32px;
 	}
+	@media screen and (min-width: 1280px) {
+		font-size: 42px;
+		height: 70%;
+		font-weight: 700;
+	}
+`;
+
+export const FormBox = styled.form`
+	display: flex;
+	flex-direction: column;
+
+	align-items: end;
+	justify-content: flex-end;
+
+	width: 100%;
+
+	gap: 10px;
+	margin-top: 20px;
 `;
 
 export const Price = styled.p`
-	font-weight: 500;
+	font-size: 15px;
+	font-weight: 400;
 	font-style: italic;
 
 	@media screen and (min-width: 720px) {
-		font-size: 24px;
+		font-size: 18px;
 	}
 	@media screen and (min-width: 1280px) {
-		font-size: 28px;
+		font-size: 24px;
+	}
+`;
+
+export const CustomInput = styled.div`
+	display: flex;
+	height: 44px;
+	width: 70px;
+
+	justify-content: center;
+	align-items: center;
+
+	position: relative;
+
+	color: ${colors.textGrey};
+	font-weight: 900;
+
+	gap: 5px;
+`;
+
+type ButtonsValueProps = {
+	onClick?: Function; 
+	r?: boolean;
+};
+
+export const ButtonNav = styled.div`
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 2px;
+`;
+
+export const ButtonValue = styled.button<ButtonsValueProps>`
+	height: 20px; 
+	width: 20px;
+
+	/* position: absolute; */
+
+	/* top: ${props => props.r ? '100%' : 0};
+	
+	transform: translateY(${props => props.r ? '-100%' : 0}); */
+	/* right: 0; */
+
+	text-align: center;
+	text-justify: auto;
+
+	background-color: ${colors.subGrey};
+
+	&:hover,
+	&:focus {
+	}
+
+	cursor: pointer;
+	text-align: center;
+	color: #333;
+`;
+
+export const InputQuantity = styled.input`
+	width: 50px;
+	height: 44px;
+	background-color: ${colors.subGrey};
+	border-color: ${colors.subGrey};
+
+	padding: 3px 10px;
+	text-align: center;
+
+	color: ${colors.yellow};
+
+	&::-webkit-inner-spin-button,
+	&::-webkit-outer-spin-button {
+		-webkit-appearance: none; 
 	}
 `;
 
 export const ButtonCase = styled.button`
-	background-color: ${colors.yellow};
-	padding-block: 8px;
-	border-radius: 8px;
 	width: 100%;
 
+	padding-block: 8px;
+	border-radius: 8px;
+
+	background-color: ${colors.yellow};
+	color: ${colors.subBlack};
+
 	@media screen and (min-width: 720px) {
-		padding-block: 11px;
+		padding-block: 10px;
 	}
 	@media screen and (min-width: 1280px) {
-		padding: 8px 28px;
+		width: 60%;
+		padding-block: 13px;
 		border-radius: 10px;
 	}
 `;
@@ -97,20 +220,6 @@ export const InfoBox = styled.div`
 	}
 	@media screen and (min-width: 1280px) {
 	}
-`;
-
-export const FormBox = styled.form`
-	display: flex;
-	flex-direction: column;
-	margin-top: 20px;
-	gap: 10px;
-	justify-content: flex-end;
-	align-items: end;
-	width: 100%;
-`;
-
-export const InputQuantity = styled.input`
-	width: 100px;
 `;
 
 export const Gallery = styled.div`
@@ -130,7 +239,7 @@ export const ImgBox = styled.div`
 		height: 400px;
 	}
 	@media screen and (min-width: 1280px) {
-		height: 600px;
+		height: 400px;
 	}
 `;
 
@@ -161,6 +270,7 @@ export const MiniGallery = styled.ul`
 	display: flex;
 
 	gap: 10px;
+
 	margin-top: 10px;
 
 	@media screen and (min-width: 720px) {
@@ -174,16 +284,16 @@ export const MiniGallery = styled.ul`
 `;
 
 export const MiniGalleryItem = styled.li`
-	height: 50px;
-	width: 50px;
+	height: 60px;
+	width: 60px;
 
 	@media screen and (min-width: 720px) {
 		height: 70px;
 		width: 70px;
 	}
 	@media screen and (min-width: 1280px) {
-		height: 100px;
-		width: 100px;
+		height: 80px;
+		width: 80px;
 	}
 `;
 
@@ -224,10 +334,10 @@ export const BtnArrow = styled.button<BtnArrowProps>`
 	position: absolute;
 	top: 50%;
 
-	height: 50px;
+	height: 45px;
 	width: 30px;
 
-	border-radius: 3px;
+	border-radius: 20px;
 
 	left: ${props => (props.position ? 0 : '100%')};
 	transform: translate(${props => (props.position ? 0 : '-100%')}, -50%);
@@ -237,14 +347,17 @@ export const BtnArrow = styled.button<BtnArrowProps>`
 	&:hover,
 	&:focus {
 		background-color: ${colors.subGrey};
+		border: ${colors.mainBg} solid 1px;
 	}
 
 	@media screen and (min-width: 720px) {
-		height: 70px;
-		width: 70px;
+		height: 54px;
+		width: 35px;
+		border-radius: 30px;
 	}
 	@media screen and (min-width: 1280px) {
-		height: 90px;
-		width: 90px;
+		height: 81px;
+		width: 50px;
+		border-radius: 40px;
 	}
 `;
