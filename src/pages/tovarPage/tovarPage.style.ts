@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { Section } from '../../reuseСomponents/section.style';
-import { Container } from '../../reuseСomponents/container.style'; 
+import { Container } from '../../reuseСomponents/container.style';
 
 export const SectionTovar = styled(Section)`
-	font-family: 'Courier New', Courier, monospace;
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 	display: block;
 	padding-top: 0;
 `;
@@ -11,14 +11,15 @@ export const SectionTovar = styled(Section)`
 export const ContainerTovar = styled(Container)`
 	display: flex;
 	align-items: center;
-
 	flex-direction: column;
 
-	background-color: #fff;
+	width: 100%;
+	height: auto;
+
 	padding: 20px;
 	gap: 30px;
-	height: auto;
-	width: 100%;
+
+	background-color: #222;
 
 	@media screen and (min-width: 720px) {
 		display: grid;
@@ -28,13 +29,14 @@ export const ContainerTovar = styled(Container)`
 
 export const MainInfoBox = styled.div`
 	display: flex;
-
 	flex-direction: column;
+
 	justify-content: center;
 	align-items: center;
-	color: #000;
 
 	width: 100%;
+
+	color: #dcdcdc;
 
 	@media screen and (min-width: 720px) {
 		grid-column-start: 3;
@@ -48,21 +50,43 @@ export const H1 = styled.h1`
 	font-style: oblique;
 
 	@media screen and (min-width: 720px) {
+		font-size: 3rem;
 	}
 `;
 
 export const Price = styled.p`
 	font-weight: 500;
 	font-style: italic;
+
+	@media screen and (min-width: 720px) {
+		font-size: 24px;
+	}
+	@media screen and (min-width: 1280px) {
+		font-size: 28px;
+	}
 `;
 
 export const ButtonCase = styled.button`
-	background-color: #ffd700;
-	padding: 8px 28px;
+	background-color: #686868;
+	padding-block: 8px;
 	border-radius: 8px;
+	width: 100%;
+
+	@media screen and (min-width: 720px) {
+		padding-block: 11px;
+	}
+	@media screen and (min-width: 1280px) {
+		padding: 8px 28px;
+		border-radius: 10px;
+	}
 `;
 
-export const InfoBox = styled.div``;
+export const InfoBox = styled.div`
+	@media screen and (min-width: 720px) {
+	}
+	@media screen and (min-width: 1280px) {
+	}
+`;
 
 export const FormBox = styled.form`
 	display: flex;
@@ -90,20 +114,32 @@ export const ImgBox = styled.div`
 	width: 100%;
 	height: 300px;
 	position: relative;
+
+	@media screen and (min-width: 720px) {
+		height: 400px;
+	}
+	@media screen and (min-width: 1280px) {
+		height: 600px;
+	}
 `;
 
 export const Img = styled.img`
-	object-fit: contain;
 	width: 100%;
 	height: 100%;
 
-	background-color: #dcdcdc;
+	object-fit: contain;
+	/* background-color: #dcdcdc; */
 `;
 
 export const SubinfoBox = styled.div`
-	width: 100%;
 	display: flex;
 	flex-direction: column;
+
+	justify-content: center;
+	align-items: flex-start;
+
+	gap: 10px;
+	width: 100%;
 
 	@media screen and (min-width: 720px) {
 		grid-column-start: 1;
@@ -113,13 +149,32 @@ export const SubinfoBox = styled.div`
 
 export const MiniGallery = styled.ul`
 	display: flex;
-	margin-top: 10px;
+
 	gap: 10px;
+	margin-top: 10px;
+
+	@media screen and (min-width: 720px) {
+		gap: 15px;
+		margin-top: 15px;
+	}
+	@media screen and (min-width: 1280px) {
+		gap: 20px;
+		margin-top: 20px;
+	}
 `;
 
 export const MiniGalleryItem = styled.li`
-	height: 60px;
-	width: 60px;
+	height: 50px;
+	width: 50px;
+
+	@media screen and (min-width: 720px) {
+		height: 70px;
+		width: 70px;
+	}
+	@media screen and (min-width: 1280px) {
+		height: 100px;
+		width: 100px;
+	}
 `;
 
 export const BtnImg = styled.button`
@@ -130,9 +185,11 @@ export const BtnImg = styled.button`
 export const MiniImg = styled.img`
 	height: 100%;
 	width: 100%;
-	object-fit: cover;
-	opacity: 0.5;
+
 	border: 0px solid #fff;
+
+	opacity: 0.5;
+	object-fit: cover;
 
 	transition: ease 600ms opacity, ease 600ms border;
 
@@ -150,9 +207,34 @@ interface BtnArrowProps {
 }
 
 export const BtnArrow = styled.button<BtnArrowProps>`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
 	position: absolute;
 	top: 50%;
-	transform: translate(${props => (props.position ? 0 : '-100%')}, -50%);
+
+	height:  50px;
+	width: 30px;
+
+	border-radius: 3px;
 
 	left: ${props => (props.position ? 0 : '100%')};
+	transform: translate(${props => (props.position ? 0 : '-100%')}, -50%);
+
+	color: #fff;
+
+	&:hover,
+	&:focus {
+		background-color: #686868;
+	}
+
+	@media screen and (min-width: 720px) {
+		height: 70px;
+		width: 70px;
+	}
+	@media screen and (min-width: 1280px) {
+		height: 90px;
+		width: 90px;
+	}
 `;

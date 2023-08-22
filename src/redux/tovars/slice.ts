@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import Tovar from '../../Types/tovar';
 import { RootState } from '../store';
-import { fetchTovarsByTypes} from './tovarsOperations';
+import { fetchAllTovars, fetchTovarsByTypes} from './tovarsOperations';
 
 
 
@@ -24,17 +24,28 @@ const tovarsSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder
-      .addCase(fetchTovarsByTypes.pending, state => {
-        state.tovarIsLoading = false;
-      })
-      .addCase(fetchTovarsByTypes.fulfilled, (state, action) => {
-        state.tovars = action.payload.tovars;
-        state.count = action.payload.count.count;
-        state.tovarIsLoading = true;
-      })
-      .addCase(fetchTovarsByTypes.rejected, state => {
-        state.tovarIsLoading = false;
-      });
+			.addCase(fetchTovarsByTypes.pending, state => {
+				state.tovarIsLoading = false;
+			})
+			.addCase(fetchTovarsByTypes.fulfilled, (state, action) => {
+				state.tovars = action.payload.tovars;
+				state.count = action.payload.count.count;
+				state.tovarIsLoading = true;
+			})
+			.addCase(fetchTovarsByTypes.rejected, state => {
+				state.tovarIsLoading = false;
+			})
+			.addCase(fetchAllTovars.pending, state => {
+				state.tovarIsLoading = false;
+			})
+			.addCase(fetchAllTovars.fulfilled, (state, action) => {
+        state.tovars = action.payload; 
+        state.count = action.payload.length;
+				state.tovarIsLoading = true;
+			})
+			.addCase(fetchAllTovars.rejected, state => {
+				state.tovarIsLoading = false;
+			});
   },
 });
 

@@ -28,3 +28,18 @@ export const fetchTovarsByTypes = createAsyncThunk(
     }
   }
 );
+export const fetchAllTovars = createAsyncThunk(
+  'users/fetchAllTovars',
+  async (_, thunkAPI) => {
+    try {
+      const date = await axios.get(`tovar`);
+      if (date.status !== 200) {
+        return thunkAPI.rejectWithValue(date.data);
+      }
+
+      return date.data.tovars as Tovar[];
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);

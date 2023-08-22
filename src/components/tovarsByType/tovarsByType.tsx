@@ -32,55 +32,59 @@ const TovarsByType: FC<AdminPanelProps> = props => {
 
   const type = types.find(type => type.eu === params.id?.toLowerCase());
   const AppDispatch = useAppDispatch();
-  useEffect(() => {
-    if (type?.eu) {
-      AppDispatch(fetchTovarsByTypes(type.eu));
-    }
-  }, [AppDispatch, type]);
 
-  if (!start) {
-    return <TovarBox>Loading... </TovarBox>;
-  }
+  // useEffect(() => {
+  //   if (type?.eu) {
+  //     AppDispatch(fetchTovarsByTypes(type.eu));
+  //   }
+  // }, [AppDispatch, type]);
+
+  
+  // if (!start) {
+  //   return <TovarBox>Loading... </TovarBox>;
+  // }
+
+  const filteredTovars = tovars.filter(tovar => tovar.type === type?.eu )
 
   return (
-    <TovarBox>
-      <Panel />
+		<TovarBox>
+			<Panel />
 
-      {/* {type?.ua} */}
-      <TovarList>
-        {tovars.map(tovar => (
-          <li key={tovar.id}>
-            <TovarItem>
-              <span>{tovar.name.ua}</span>
-              <TovarInfo>
-                <TovarItemListProps>
-                  <TovarItemListPropItem>
-                    <AiOutlineDollarCircle /> {tovar.cost}
-                  </TovarItemListPropItem>
-                  <TovarItemListPropItem>
-                    <AiOutlineRise />
-                    {tovar.popularity}
-                  </TovarItemListPropItem>
-                  <TovarItemListPropItem>
-                    <AiOutlineGold />
-                    {tovar.quantity}
-                  </TovarItemListPropItem>
-                </TovarItemListProps>
-                <TovarItemListProps>
-                  <TovarItemListPropItem>
-                    <AiOutlineForm />
-                  </TovarItemListPropItem>
-                  <TovarItemListPropItem>
-                    <AiOutlineDelete />
-                  </TovarItemListPropItem>
-                </TovarItemListProps>
-              </TovarInfo>
-            </TovarItem>
-          </li>
-        ))}
-      </TovarList>
-    </TovarBox>
-  );
+			{/* {type?.ua} */}
+			<TovarList>
+				{filteredTovars .map(tovar => (
+					<li key={tovar.id}>
+						<TovarItem>
+							<span>{tovar.name.ua}</span>
+							<TovarInfo>
+								<TovarItemListProps>
+									<TovarItemListPropItem>
+										<AiOutlineDollarCircle /> {tovar.cost}
+									</TovarItemListPropItem>
+									<TovarItemListPropItem>
+										<AiOutlineRise />
+										{tovar.popularity}
+									</TovarItemListPropItem>
+									<TovarItemListPropItem>
+										<AiOutlineGold />
+										{tovar.quantity}
+									</TovarItemListPropItem>
+								</TovarItemListProps>
+								<TovarItemListProps>
+									<TovarItemListPropItem>
+										<AiOutlineForm />
+									</TovarItemListPropItem>
+									<TovarItemListPropItem>
+										<AiOutlineDelete />
+									</TovarItemListPropItem>
+								</TovarItemListProps>
+							</TovarInfo>
+						</TovarItem>
+					</li>
+				))}
+			</TovarList>
+		</TovarBox>
+	);
 };
 
 export default TovarsByType;
