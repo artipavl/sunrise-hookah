@@ -1,4 +1,4 @@
-import React, { FC, useState, useMemo } from 'react';
+import React, { FC, useState, useMemo, useEffect } from 'react';
 import {
 	Column,
 	ColumnDelete,
@@ -32,6 +32,7 @@ import Modal from '../modal/modal';
 import { Order } from '../../Types/order';
 import { useAppSelector } from '../../hooks';
 import { selectTovars } from '../../redux/tovars/slice';
+import Tovar from '../../Types/tovar';
 
 type OrdersDataTableProps = {
 	data: Order[];
@@ -39,18 +40,32 @@ type OrdersDataTableProps = {
 
 const OrdersDataTable: FC<OrdersDataTableProps> = ({ data }) => {
 	const [p, setP] = useState(1);
-	const [total] = useState(data.length);
+	const [total, setTotal] = useState(0);
 	const [items] = useState(5);
 	const [key, setKey] = useState<keyof Order>('date');
 	const [filter, setFilter] = useState(true);
 
-	const [current, setCurrent] = useState<Order | null>(null);
+	const [current, setCurrent] = useState<(Order & { cost: number }) | null>(null);
 	const [deleteOpen, setDeleteOpen] = useState<boolean>();
 	const [readOpen, setReadOpen] = useState<boolean>();
 
 	const tovars = useAppSelector(selectTovars);
+	useEffect(() => {
+		setTotal(data.length);
+	}, [data]);
 
 	// const dispatch = useAppDispatch();
+
+	const pay = (order: Order, tovars: Tovar[]) => {
+		let pay = 0;
+		for (const iterator of order.orders) {
+			const tovar = tovars.find(tovar => tovar.id === iterator.id);
+			if (tovar) {
+				pay = pay + iterator.baskeQuantity * tovar.cost;
+			}
+		}
+		return pay;
+	};
 
 	function sortByKey<T extends Order, K extends keyof T>(arr: T[], key: K, filter: boolean): T[] {
 		return arr.slice().sort((a, b) => {
@@ -74,10 +89,16 @@ const OrdersDataTable: FC<OrdersDataTableProps> = ({ data }) => {
 		});
 	}
 
+	const newData = useMemo(() => {
+		return data.map(order => {
+			return { ...order, cost: pay(order, tovars) };
+		});
+	}, [data, tovars]);
+
 	const sortData = useMemo(() => {
-		const D = [...data];
+		const D = [...newData];
 		return sortByKey(D, key, filter);
-	}, [data, filter, key]);
+	}, [newData, filter, key]);
 
 	return (
 		<>
@@ -129,6 +150,11 @@ const OrdersDataTable: FC<OrdersDataTableProps> = ({ data }) => {
 								<RowsText>Дата</RowsText> {key === 'date' && filter ? <AiFillCaretUp /> : <AiFillCaretDown />}
 							</RowsBox>
 						</Rows>
+						<Rows active>
+							<RowsBox>
+								<RowsText>Загальна сума</RowsText>
+							</RowsBox>
+						</Rows>
 						{/* <Rows
               active={key === rowsType[index]}
               onClick={() => {
@@ -178,6 +204,9 @@ const OrdersDataTable: FC<OrdersDataTableProps> = ({ data }) => {
 									timeZone: 'UTC',
 								})}`}</ColumnText>
 							</Column>
+							<Column>
+								<ColumnText>{column.cost} грн.</ColumnText>
+							</Column>
 							<ColumnDelete>
 								<DeleteButton
 									onClick={() => {
@@ -201,7 +230,7 @@ const OrdersDataTable: FC<OrdersDataTableProps> = ({ data }) => {
 				</Tbody>
 				<Tfoot>
 					<TfootTr>
-						<TfootTh colSpan={5}>
+						<TfootTh colSpan={7}>
 							<TfootButton type="button" disabled={p === 1} onClick={() => setP(p => p - 1)}>
 								Previous
 							</TfootButton>
@@ -240,7 +269,7 @@ const OrdersDataTable: FC<OrdersDataTableProps> = ({ data }) => {
 					<ModalBox>
 						{current ? (
 							<ReadBox>
-								<ReadBoxTitle>Лист</ReadBoxTitle>
+								<ReadBoxTitle>Замовлення</ReadBoxTitle>
 								<p>Абонент: {current.customer.firstName + ' ' + current.customer.lastName}</p>
 								<p>Пошта: {current.customer.email}</p>
 								<p>Телефон: {current.customer.phone}</p>
@@ -248,15 +277,21 @@ const OrdersDataTable: FC<OrdersDataTableProps> = ({ data }) => {
 									<p>Повідомлення:</p>
 									<ReadBoxMessage>{current.customer.message}</ReadBoxMessage>
 								</div>
-								<p>Час: {current.date}</p>
+								<p>
+									Час:{' '}
+									{new Date(current.date).toLocaleString('en-GB', {
+										timeZone: 'UTC',
+									})}
+								</p>
 								<p>Доставка у {current.delivery.Description}</p>
 								<p>Замовлення</p>
 								<ul>
-									{current.orders.map(order => {
+									{current.orders.map((order, index) => {
 										const tovar = tovars.find(tovar => tovar.id === order.id);
 										if (tovar) {
 											return (
-												<li>
+												<li key={order.id}>
+													<p>{index + 1}</p>
 													<p>назва: {tovar.name.ua}</p>
 													<p>кількість: {order.baskeQuantity}</p>
 													<p>ціна за один: {tovar.cost}</p>
@@ -266,6 +301,7 @@ const OrdersDataTable: FC<OrdersDataTableProps> = ({ data }) => {
 										return null;
 									})}
 								</ul>
+								<p>Загалом: {current.cost}</p>
 								<DeleteButton
 									onClick={() => {
 										setDeleteOpen(true);
