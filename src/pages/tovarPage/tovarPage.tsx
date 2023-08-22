@@ -108,8 +108,8 @@ const TovarPage: FC<TovarPageProps> = props => {
 					</FormBox>
 				</MainInfoBox>
 				<SubinfoBox>
-					<p dangerouslySetInnerHTML={{ __html: tovar.parameters.ua }}></p>
-					<p dangerouslySetInnerHTML={{ __html: tovar.description.ua }}></p>
+					<div dangerouslySetInnerHTML={{ __html: tovar.parameters.ua }}></div>
+					<div dangerouslySetInnerHTML={{ __html: tovar.description.ua }}></div>
 				</SubinfoBox>
 			</ContainerTovar>
 		</SectionTovar>
