@@ -6,11 +6,13 @@ import { Order } from '../../Types/order';
 
 interface TovarsSliceType {
 	orders: Order[];
+	count: number;
 	orderIsLoading: boolean;
 }
 
 const initialState: TovarsSliceType = {
 	orders: [],
+	count: 0,
 	orderIsLoading: false,
 };
 
@@ -25,6 +27,7 @@ const tovarsSlice = createSlice({
 			})
 			.addCase(fetchOrders.fulfilled, (state, action) => {
 				state.orders = action.payload;
+				state.count = action.payload.length;
 				state.orderIsLoading = true;
 			})
 			.addCase(fetchOrders.rejected, state => {
@@ -35,5 +38,6 @@ const tovarsSlice = createSlice({
 
 export const selectOrders = (state: RootState) => state.orders.orders;
 export const selectOrdersLoading = (state: RootState) => state.orders.orderIsLoading;
+export const selectOrdersCount = (state: RootState) => state.orders.count;
 
 export default tovarsSlice.reducer;
