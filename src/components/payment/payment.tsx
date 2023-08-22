@@ -4,6 +4,8 @@ import { selectBasket } from '../../redux/basket/basketSelectors';
 import { GarantItem, GarantList, PaymentBottomLine, PaymentBox, PaymentLine, SubmitButton } from './payment.style';
 import { Warehous } from '../../Types/novaposhta';
 import axios from 'axios';
+import { AddOrder } from '../../Types/order';
+import { useNavigate } from 'react-router-dom';
 
 interface FormValues {
 	firstName: string;
@@ -21,6 +23,7 @@ type PaymentProps = {
 
 const Payment: FC<PaymentProps> = ({ cotact, warehouses, pay }) => {
 	const tovars = useAppSelector(selectBasket);
+	const navigate = useNavigate();
 	return (
 		<PaymentBox>
 			<h2>Разом</h2>
@@ -55,7 +58,13 @@ const Payment: FC<PaymentProps> = ({ cotact, warehouses, pay }) => {
 									baskeQuantity,
 								};
 							});
-							await axios.post('order', { customer: cotact, orders, delivery: warehouses, payment: pay });
+							await axios.post('order', {
+								customer: cotact,
+								orders,
+								delivery: warehouses,
+								payment: pay,
+							} as AddOrder);
+							navigate('/');
 						} catch (error) {
 							console.log(error);
 							alert('Невідома помилка спробуйте пізніше');
