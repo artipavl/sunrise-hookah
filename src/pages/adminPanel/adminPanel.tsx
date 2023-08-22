@@ -1,9 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import styled from 'styled-components';
 import { Outlet } from 'react-router-dom';
 
 import AdminHeader from '../../components/adminHeader/adminHeader';
 import AdminPanelOutlet from '../../components/adminPanelOutlet/adminPanelOutlet';
+import { useAppDispatch } from '../../hooks';
+import { fetchAllTovars } from '../../redux/tovars/tovarsOperations';
 
 export const AdminPanelBox = styled.div`
   display: flex;
@@ -13,6 +15,12 @@ export const AdminPanelBox = styled.div`
 type AdminPanelProps = {};
 
 const AdminPanel: FC<AdminPanelProps> = props => {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchAllTovars())
+  }, [dispatch]);
+
   return (
     <AdminPanelBox>
       <AdminHeader />
