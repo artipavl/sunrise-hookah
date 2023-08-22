@@ -14,7 +14,7 @@ type TovarProps = {
 
 const Tovar: FC<TovarProps> = ({ tovar }) => {
   return (
-    <TovarBox>
+    <TovarBox> 
       <TovarImageBox>
         <img
           src={

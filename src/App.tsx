@@ -16,6 +16,7 @@ import TovarsByType from './components/tovarsByType/tovarsByType';
 import NewTovar from './components/newTovar/newTovar';
 import Feedback from './components/feedback/feedback';
 import Checkout from './pages/checkout/checkout';
+import TovarPage from './pages/tovarPage/tovarPage';
 import AdminList from './pages/adminList/adminList';
 import Orders from './pages/orders/Orders';
 
@@ -43,6 +44,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/tovarPage/:id" element={<TovarPage />} />
         <Route path="/tovar/:id" element={<Product />} />
         <Route
           path="/admin"

@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled from 'styled-components'; 
+import { Section } from '../../reuseСomponents/section.style';
 
 export const Title = styled.h1`
   color: #fff;
@@ -12,9 +13,19 @@ export const Title = styled.h1`
 
 export const TovarList = styled.ul`
   width: 100%;
-  display: flex;
+  display: grid;
+  
   gap: 20px;
   flex-wrap: wrap;
+
+  grid-template-columns: 1fr;
+  @media screen and (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media screen and (min-width: 1440px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 `;
 
 export const TovarItem = styled.li`
@@ -33,4 +44,11 @@ export const TovarItem = styled.li`
     min-width: calc((100% - 60px) / 4);
     max-width: calc((100% - 60px) / 4);
   }
+`;
+
+export const SectionTovars = styled(Section)`
+  display: block;
+  position: relative;
+  
+  padding-top: 0; 
 `;
