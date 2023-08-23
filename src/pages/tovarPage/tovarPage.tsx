@@ -63,9 +63,9 @@ const TovarPage: FC<TovarPageProps> = props => {
 	}
 
 	function onChangeCapacity(quantity: number, step: number) {
-		if ((quantity + step) <= 0 ) {
+		if (quantity + step <= 0) {
 			setQuantity(1);
-			return
+			return;
 		}
 		const newQuantity = quantity + step;
 		setQuantity(newQuantity);
@@ -114,10 +114,14 @@ const TovarPage: FC<TovarPageProps> = props => {
 							<CustomInput>
 								<InputQuantity type="number" name={'quantity'} min={1} value={quantity} />
 								<ButtonNav>
-									<ButtonValue type="button" disabled={Boolean(quantity === 1)} onClick={e => onChangeCapacity(quantity, Number(-1))}>
+									<ButtonValue
+										type="button"
+										disabled={Boolean(quantity === 1)}
+										onClick={e => onChangeCapacity(quantity, Number(-1))}
+									>
 										-
 									</ButtonValue>
-									<ButtonValue type="button" r onClick={e => onChangeCapacity(quantity, Number(1))}>
+									<ButtonValue type="button" onClick={e => onChangeCapacity(quantity, Number(1))}>
 										+
 									</ButtonValue>
 								</ButtonNav>
@@ -136,4 +140,3 @@ const TovarPage: FC<TovarPageProps> = props => {
 };
 
 export default TovarPage;
-
