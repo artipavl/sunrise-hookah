@@ -91,7 +91,7 @@ export const H1 = styled.h1<H1Props>`
 		justify-content: center;
 		align-items: center;
 
-		height: 50%;
+		margin-block: auto;
 		font-size: 32px;
 	}
 	@media screen and (min-width: 1280px) {
@@ -280,12 +280,18 @@ export const SubinfoBox = styled.div`
 	}
 `;
 
+export const SubInfoItem = styled.div`
+	background-color: ${colors.mainBg} !important;
+`;
+
 export const MiniGallery = styled.ul`
 	display: flex;
 
 	gap: 10px;
 
 	margin-top: 10px;
+
+	width: 100%;
 
 	@media screen and (min-width: 720px) {
 		gap: 15px;
@@ -296,10 +302,12 @@ export const MiniGallery = styled.ul`
 		margin-top: 20px;
 	}
 `;
-
-export const MiniGalleryItem = styled.li`
+type MiniGalleryItemProps = {
+	isActive?: boolean;
+};
+export const MiniGalleryItem = styled.li<MiniGalleryItemProps>`
 	height: 60px;
-	width: 60px;
+	width: 120px;
 
 	@media screen and (min-width: 720px) {
 		height: 70px;
@@ -308,6 +316,19 @@ export const MiniGalleryItem = styled.li`
 	@media screen and (min-width: 1280px) {
 		height: 80px;
 		width: 80px;
+	}
+
+	opacity: ${props => (props.isActive ? '1' : '0.5')};
+	border: ${props => (props.isActive ? `1px solid ${colors.yellow}` : 'none')};
+
+	transition: ease 2600ms opacity, ease 600ms border;
+
+	&:hover,
+	&:focus {
+		opacity: 1;
+		border: 1px solid ${colors.yellow};
+
+		transition: ease 600ms opacity, ease 600ms border;
 	}
 `;
 
@@ -320,20 +341,9 @@ export const MiniImg = styled.img`
 	height: 100%;
 	width: 100%;
 
-	border: 0px solid ${colors.subGrey};
-
-	opacity: 0.5;
 	object-fit: cover;
 
-	transition: ease 600ms opacity, ease 600ms border;
-
-	&:hover,
-	&:focus {
-		opacity: 1;
-		border: 1px solid red;
-
-		transition: ease 600ms opacity, ease 600ms border;
-	}
+	border: 0px solid ${colors.subGrey};
 `;
 
 interface BtnArrowProps {
@@ -348,10 +358,8 @@ export const BtnArrow = styled.button<BtnArrowProps>`
 	position: absolute;
 	top: 50%;
 
-	height: 45px;
-	width: 30px;
-
-	border-radius: 20px;
+	height: 100%;
+	width: auto;
 
 	left: ${props => (props.position ? 0 : '100%')};
 	transform: translate(${props => (props.position ? 0 : '-100%')}, -50%);
@@ -360,18 +368,10 @@ export const BtnArrow = styled.button<BtnArrowProps>`
 
 	&:hover,
 	&:focus {
-		background-color: ${colors.subGrey};
-		border: ${colors.mainBg} solid 1px;
-	}
+		color: ${colors.yellow};
 
-	@media screen and (min-width: 720px) {
-		height: 54px;
-		width: 35px;
-		border-radius: 30px;
-	}
-	@media screen and (min-width: 1280px) {
-		height: 81px;
-		width: 50px;
-		border-radius: 40px;
+		& > svg {
+			scale: 1.3;
+		}
 	}
 `;
