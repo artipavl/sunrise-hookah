@@ -84,4 +84,5 @@ export type Order = AddOrder & {
 	id: string;
 	status: 'new' | 'paid' | 'accepted' | 'done';
 	date: number;
+	cost?: number;
 };

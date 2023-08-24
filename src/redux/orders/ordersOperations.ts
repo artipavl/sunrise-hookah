@@ -26,3 +26,29 @@ export const fetchOrders = createAsyncThunk('orders/fetchOrders', async (_, thun
 		return thunkAPI.rejectWithValue(error);
 	}
 });
+
+export const delOerder = createAsyncThunk('orders/delOrder', async (id: string, thunkAPI) => {
+	try {
+		const date = await axios.delete(`/order/${id}`);
+		if (date.status !== 200) {
+			return thunkAPI.rejectWithValue(date.data);
+		}
+
+		return id;
+	} catch (error) {
+		return thunkAPI.rejectWithValue(error);
+	}
+});
+
+export const putOrders = createAsyncThunk('orders/putOrder', async (order: Order, thunkAPI) => {
+	try {
+		const date = await axios.put(`order`, order);
+		if (date.status !== 201) {
+			return thunkAPI.rejectWithValue(date.data);
+		}
+
+		return date.data as Order;
+	} catch (error) {
+		return thunkAPI.rejectWithValue(error);
+	}
+});
