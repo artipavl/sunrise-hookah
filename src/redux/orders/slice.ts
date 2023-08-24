@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { RootState } from '../store';
-import { fetchOrders } from './ordersOperations';
+import { fetchOrders, delOerder, putOrders } from './ordersOperations';
 import { Order } from '../../Types/order';
 
 interface TovarsSliceType {
@@ -32,7 +32,18 @@ const tovarsSlice = createSlice({
 			})
 			.addCase(fetchOrders.rejected, state => {
 				state.orderIsLoading = false;
-			});
+			})
+			.addCase(delOerder.pending, state => {})
+			.addCase(delOerder.fulfilled, (state, action) => {
+				state.orders = state.orders.filter(feedback => feedback.id !== action.payload);
+			})
+			.addCase(delOerder.rejected, state => {})
+			.addCase(putOrders.pending, state => {})
+			.addCase(putOrders.fulfilled, (state, action) => {
+				state.orders = state.orders.filter(feedback => feedback.id !== action.payload.id);
+				state.orders.push(action.payload);
+			})
+			.addCase(putOrders.rejected, state => {});
 	},
 });
 
