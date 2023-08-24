@@ -286,11 +286,9 @@ export const SubInfoItem = styled.div`
 
 export const MiniGallery = styled.ul`
 	display: flex;
-
 	gap: 10px;
 
 	margin-top: 10px;
-
 	width: 100%;
 
 	@media screen and (min-width: 720px) {
@@ -307,15 +305,18 @@ type MiniGalleryItemProps = {
 };
 export const MiniGalleryItem = styled.li<MiniGalleryItemProps>`
 	height: 60px;
-	width: 120px;
+	min-width: 60px;
+	max-width: 60px;
 
 	@media screen and (min-width: 720px) {
 		height: 70px;
-		width: 70px;
+		min-width: 70px;
+		max-width: 70px;
 	}
 	@media screen and (min-width: 1280px) {
 		height: 80px;
-		width: 80px;
+		min-width: 80px;
+		max-width: 80px;
 	}
 
 	opacity: ${props => (props.isActive ? '1' : '0.5')};
@@ -366,8 +367,7 @@ export const BtnArrow = styled.button<BtnArrowProps>`
 
 	color: ${colors.textGrey};
 
-	&:hover,
-	&:focus {
+	&:hover {
 		color: ${colors.yellow};
 
 		& > svg {
