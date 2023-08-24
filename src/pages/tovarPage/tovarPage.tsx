@@ -20,6 +20,7 @@ import {
 	MiniImg,
 	Price,
 	SectionTovar,
+	SubInfoItem,
 	SubinfoBox,
 } from './tovarPage.style';
 import { useParams } from 'react-router-dom';
@@ -34,10 +35,12 @@ type TovarPageProps = {};
 
 const TovarPage: FC<TovarPageProps> = props => {
 	const [tovar, setTovar] = useState<Tovar | null>(null);
-	const tovars = useAppSelector(selectTovars);
-	const { id } = useParams();
-	const [imgUrl, setImgUrl] = useState(0);
 	const [quantity, setQuantity] = useState<number>(1);
+	const [imgUrl, setImgUrl] = useState(0);
+
+	const tovars = useAppSelector(selectTovars);
+
+	const { id } = useParams();
 
 	const dispatch = useAppDispatch();
 
@@ -63,15 +66,13 @@ const TovarPage: FC<TovarPageProps> = props => {
 	}
 
 	function onChangeCapacity(quantity: number, step: number) {
-		if ((quantity + step) <= 0 ) {
+		if (quantity + step <= 0) {
 			setQuantity(1);
-			return
+			return;
 		}
 		const newQuantity = quantity + step;
 		setQuantity(newQuantity);
 	}
-
-	console.log(tovar?.description.ua);
 
 	return (
 		<>
@@ -81,21 +82,29 @@ const TovarPage: FC<TovarPageProps> = props => {
 					<H1 h>{tovar?.name.ua}</H1>
 					<Gallery>
 						<ImgBox>
-							<BtnArrow type="button" position={true}>
+							<BtnArrow
+								type="button"
+								position={true}
+								onClick={() => (imgUrl === 0 ? setImgUrl(tovar.fotos.length - 1) : setImgUrl(() => imgUrl - 1))}
+							>
 								<MdKeyboardArrowLeft size={40} />
 							</BtnArrow>
 
-							<Img src={tovar.fotos[imgUrl]} alt="foto hookah" />
+							<Img src={tovar.fotos[imgUrl]} alt="photo hookah" />
 
-							<BtnArrow type="button" position={false}>
+							<BtnArrow
+								type="button"
+								position={false}
+								onClick={() => (imgUrl === tovar.fotos.length - 1 ? setImgUrl(0) : setImgUrl(() => imgUrl + 1))}
+							>
 								<MdKeyboardArrowRight size={40} />
 							</BtnArrow>
 						</ImgBox>
 						<MiniGallery>
 							{tovar?.fotos.map((foto, index) => (
-								<MiniGalleryItem key={foto}>
+								<MiniGalleryItem key={foto} isActive={ index === imgUrl } >
 									<BtnImg type="button" onClick={() => setImgUrl(index)}>
-										<MiniImg src={foto} alt="фото кальяну" />
+										<MiniImg src={foto} alt="photo hookah" />
 									</BtnImg>
 								</MiniGalleryItem>
 							))}
@@ -114,10 +123,14 @@ const TovarPage: FC<TovarPageProps> = props => {
 							<CustomInput>
 								<InputQuantity type="number" name={'quantity'} min={1} value={quantity} />
 								<ButtonNav>
-									<ButtonValue type="button" disabled={Boolean(quantity === 1)} onClick={e => onChangeCapacity(quantity, Number(-1))}>
+									<ButtonValue
+										type="button"
+										disabled={Boolean(quantity === 1)}
+										onClick={e => onChangeCapacity(quantity, Number(-1))}
+									>
 										-
 									</ButtonValue>
-									<ButtonValue type="button" r onClick={e => onChangeCapacity(quantity, Number(1))}>
+									<ButtonValue type="button" onClick={e => onChangeCapacity(quantity, Number(1))}>
 										+
 									</ButtonValue>
 								</ButtonNav>
@@ -126,8 +139,8 @@ const TovarPage: FC<TovarPageProps> = props => {
 						</FormBox>
 					</MainInfoBox>
 					<SubinfoBox>
-						<div dangerouslySetInnerHTML={{ __html: tovar.parameters.ua }}></div>
-						<div dangerouslySetInnerHTML={{ __html: tovar.description.ua }}></div>
+						<SubInfoItem dangerouslySetInnerHTML={{ __html: tovar.parameters.ua }}></SubInfoItem>
+						<SubInfoItem dangerouslySetInnerHTML={{ __html: tovar.description.ua }}></SubInfoItem>
 					</SubinfoBox>
 				</ContainerTovar>
 			</SectionTovar>
@@ -136,4 +149,3 @@ const TovarPage: FC<TovarPageProps> = props => {
 };
 
 export default TovarPage;
-

@@ -24,7 +24,7 @@ export const SectionTovar = styled(Section)`
 		margin: auto;
 	}
 	@media screen and (min-width: 1280px) {
-		width: 900px;
+		width: 1120px;
 	}
 `;
 
@@ -91,7 +91,7 @@ export const H1 = styled.h1<H1Props>`
 		justify-content: center;
 		align-items: center;
 
-		height: 50%;
+		margin-block: auto;
 		font-size: 32px;
 	}
 	@media screen and (min-width: 1280px) {
@@ -102,7 +102,8 @@ export const H1 = styled.h1<H1Props>`
 `;
 
 export const FormBox = styled.form`
-	display: flex;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
 	flex-direction: column;
 
 	align-items: end;
@@ -112,23 +113,44 @@ export const FormBox = styled.form`
 
 	gap: 10px;
 	margin-top: 20px;
+
+	@media screen and (min-width: 720px) {
+		display: flex;
+	}
+	@media screen and (min-width: 1280px) {
+		display: grid;
+
+		font-size: 24px;
+	}
 `;
 
 export const Price = styled.p`
-	font-size: 15px;
+	grid-column-start: 1;
+
+	font-size: 18px;
 	font-weight: 400;
 	font-style: italic;
 
+	margin: auto auto;
+	margin-left: 0;
+
 	@media screen and (min-width: 720px) {
-		font-size: 18px;
+		font-size: 21px;
+		margin-right: 0;
+		margin-left: auto;
 	}
 	@media screen and (min-width: 1280px) {
+		margin: auto auto;
+		margin-left: 0;
 		font-size: 24px;
 	}
 `;
 
 export const CustomInput = styled.div`
+	grid-column-start: 2;
+
 	display: flex;
+	margin-left: auto;
 	height: 44px;
 	width: 70px;
 
@@ -143,40 +165,28 @@ export const CustomInput = styled.div`
 	gap: 5px;
 `;
 
-type ButtonsValueProps = {
-	onClick?: Function; 
-	r?: boolean;
-};
-
 export const ButtonNav = styled.div`
-  display: flex;
-  flex-direction: column-reverse;
-  gap: 2px;
+	display: flex;
+	flex-direction: column-reverse;
+	gap: 2px;
 `;
 
-export const ButtonValue = styled.button<ButtonsValueProps>`
-	height: 20px; 
+export const ButtonValue = styled.button`
+	height: 20px;
 	width: 20px;
 
-	/* position: absolute; */
-
-	/* top: ${props => props.r ? '100%' : 0};
-	
-	transform: translateY(${props => props.r ? '-100%' : 0}); */
-	/* right: 0; */
-
+	font-size: 15px;
 	text-align: center;
-	text-justify: auto;
+	text-justify: center;
 
+	color: ${colors.yellow};
 	background-color: ${colors.subGrey};
+
+	cursor: pointer;
 
 	&:hover,
 	&:focus {
 	}
-
-	cursor: pointer;
-	text-align: center;
-	color: #333;
 `;
 
 export const InputQuantity = styled.input`
@@ -192,12 +202,15 @@ export const InputQuantity = styled.input`
 
 	&::-webkit-inner-spin-button,
 	&::-webkit-outer-spin-button {
-		-webkit-appearance: none; 
+		-webkit-appearance: none;
 	}
 `;
 
 export const ButtonCase = styled.button`
 	width: 100%;
+
+	grid-column-start: 1;
+	grid-column-end: 3;
 
 	padding-block: 8px;
 	border-radius: 8px;
@@ -209,7 +222,8 @@ export const ButtonCase = styled.button`
 		padding-block: 10px;
 	}
 	@media screen and (min-width: 1280px) {
-		width: 60%;
+		width: 100%;
+
 		padding-block: 13px;
 		border-radius: 10px;
 	}
@@ -266,12 +280,18 @@ export const SubinfoBox = styled.div`
 	}
 `;
 
+export const SubInfoItem = styled.div`
+	background-color: ${colors.mainBg} !important;
+`;
+
 export const MiniGallery = styled.ul`
 	display: flex;
 
 	gap: 10px;
 
 	margin-top: 10px;
+
+	width: 100%;
 
 	@media screen and (min-width: 720px) {
 		gap: 15px;
@@ -282,10 +302,12 @@ export const MiniGallery = styled.ul`
 		margin-top: 20px;
 	}
 `;
-
-export const MiniGalleryItem = styled.li`
+type MiniGalleryItemProps = {
+	isActive?: boolean;
+};
+export const MiniGalleryItem = styled.li<MiniGalleryItemProps>`
 	height: 60px;
-	width: 60px;
+	width: 120px;
 
 	@media screen and (min-width: 720px) {
 		height: 70px;
@@ -294,6 +316,19 @@ export const MiniGalleryItem = styled.li`
 	@media screen and (min-width: 1280px) {
 		height: 80px;
 		width: 80px;
+	}
+
+	opacity: ${props => (props.isActive ? '1' : '0.5')};
+	border: ${props => (props.isActive ? `1px solid ${colors.yellow}` : 'none')};
+
+	transition: ease 2600ms opacity, ease 600ms border;
+
+	&:hover,
+	&:focus {
+		opacity: 1;
+		border: 1px solid ${colors.yellow};
+
+		transition: ease 600ms opacity, ease 600ms border;
 	}
 `;
 
@@ -306,20 +341,9 @@ export const MiniImg = styled.img`
 	height: 100%;
 	width: 100%;
 
-	border: 0px solid ${colors.subGrey};
-
-	opacity: 0.5;
 	object-fit: cover;
 
-	transition: ease 600ms opacity, ease 600ms border;
-
-	&:hover,
-	&:focus {
-		opacity: 1;
-		border: 1px solid red;
-
-		transition: ease 600ms opacity, ease 600ms border;
-	}
+	border: 0px solid ${colors.subGrey};
 `;
 
 interface BtnArrowProps {
@@ -334,10 +358,8 @@ export const BtnArrow = styled.button<BtnArrowProps>`
 	position: absolute;
 	top: 50%;
 
-	height: 45px;
-	width: 30px;
-
-	border-radius: 20px;
+	height: 100%;
+	width: auto;
 
 	left: ${props => (props.position ? 0 : '100%')};
 	transform: translate(${props => (props.position ? 0 : '-100%')}, -50%);
@@ -346,18 +368,10 @@ export const BtnArrow = styled.button<BtnArrowProps>`
 
 	&:hover,
 	&:focus {
-		background-color: ${colors.subGrey};
-		border: ${colors.mainBg} solid 1px;
-	}
+		color: ${colors.yellow};
 
-	@media screen and (min-width: 720px) {
-		height: 54px;
-		width: 35px;
-		border-radius: 30px;
-	}
-	@media screen and (min-width: 1280px) {
-		height: 81px;
-		width: 50px;
-		border-radius: 40px;
+		& > svg {
+			scale: 1.3;
+		}
 	}
 `;
