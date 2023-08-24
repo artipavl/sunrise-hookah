@@ -43,7 +43,7 @@ export const delOerder = createAsyncThunk('orders/delOrder', async (id: string, 
 export const putOrders = createAsyncThunk('orders/putOrder', async (order: Order, thunkAPI) => {
 	try {
 		const date = await axios.put(`order`, order);
-		if (date.status !== 200) {
+		if (date.status !== 201) {
 			return thunkAPI.rejectWithValue(date.data);
 		}
 

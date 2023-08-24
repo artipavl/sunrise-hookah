@@ -34,12 +34,12 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { selectTovars } from '../../redux/tovars/slice';
 import Tovar from '../../Types/tovar';
 import { delOerder, putOrders } from '../../redux/orders/ordersOperations';
+import { selectOrders } from '../../redux/orders/slice';
 
-type OrdersDataTableProps = {
-	data: Order[];
-};
+type OrdersDataTableProps = {};
 
-const OrdersDataTable: FC<OrdersDataTableProps> = ({ data }) => {
+const OrdersDataTable: FC<OrdersDataTableProps> = () => {
+	const data = useAppSelector(selectOrders);
 	const [p, setP] = useState(1);
 	const [total, setTotal] = useState(0);
 	const [items] = useState(5);
@@ -112,17 +112,17 @@ const OrdersDataTable: FC<OrdersDataTableProps> = ({ data }) => {
 			<Table cellSpacing={0}>
 				<Thead>
 					<tr>
-						<Rows active={true}>
+						<Rows active={false}>
 							<RowsBox>
 								<RowsText>Абонент</RowsText>{' '}
 							</RowsBox>
 						</Rows>
-						<Rows active={true}>
+						<Rows active={false}>
 							<RowsBox>
 								<RowsText>Телефон</RowsText>{' '}
 							</RowsBox>
 						</Rows>
-						<Rows active={true}>
+						<Rows active={false}>
 							<RowsBox>
 								<RowsText>Повідомлення</RowsText>{' '}
 							</RowsBox>
@@ -157,7 +157,7 @@ const OrdersDataTable: FC<OrdersDataTableProps> = ({ data }) => {
 								<RowsText>Дата</RowsText> {key === 'date' && filter ? <AiFillCaretUp /> : <AiFillCaretDown />}
 							</RowsBox>
 						</Rows>
-						<Rows active>
+						<Rows active={false}>
 							<RowsBox>
 								<RowsText>Загальна сума</RowsText>
 							</RowsBox>

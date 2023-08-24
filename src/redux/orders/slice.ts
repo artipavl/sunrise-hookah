@@ -40,8 +40,12 @@ const tovarsSlice = createSlice({
 			.addCase(delOerder.rejected, state => {})
 			.addCase(putOrders.pending, state => {})
 			.addCase(putOrders.fulfilled, (state, action) => {
-				state.orders = state.orders.filter(feedback => feedback.id !== action.payload.id);
-				state.orders.push(action.payload);
+				state.orders = state.orders.map(order => {
+					if (order.id === action.payload.id) {
+						return action.payload;
+					}
+					return order;
+				});
 			})
 			.addCase(putOrders.rejected, state => {});
 	},
