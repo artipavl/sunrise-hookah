@@ -64,3 +64,45 @@ export const SectionTovars = styled(Section)`
 
 	padding-top: 0;
 `;
+
+export const FiltersBox = styled.div`
+	height: 70px;
+	width: 100%;
+
+	padding: 2px;
+`;
+
+export const SortCustomBtn = styled.div`
+	position: relative;
+	width: 100%;
+`;
+
+export const SortingBtn = styled.button`
+	width: 50%;
+	color: ${colors.textGrey};
+	background-color: ${colors.mainBg};
+`;
+
+type SortListProps = {
+	h?: boolean;
+};
+
+export const SortList = styled.ul<SortListProps>`
+	display: ${props => props.h ? 'none' : 'flex'}; 
+	flex-direction: column;
+
+	align-items: center;
+	justify-content: center;
+
+	width: 100%;
+
+	position: absolute;
+	z-index: 3;
+
+	background-color: ${colors.mainBg};
+	color: ${colors.textGrey};
+`;
+
+export const SortItem = styled.li`
+	width: 50%;
+`;

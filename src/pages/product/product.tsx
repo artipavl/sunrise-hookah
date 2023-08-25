@@ -1,6 +1,15 @@
 import React, { FC, useEffect } from 'react';
 import { Container } from '../../reuseСomponents/container.style';
-import { SectionTovars, Title, TovarList } from './product.style';
+import {
+	FiltersBox,
+	SectionTovars,
+	SortCustomBtn,
+	SortItem,
+	SortList,
+	SortingBtn,
+	Title,
+	TovarList,
+} from './product.style';
 import { Navigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { selectTovars, selectTovarsLoading } from '../../redux/tovars/slice';
@@ -33,6 +42,34 @@ const Product: FC<ProductProps> = () => {
 		return <Navigate to="/"></Navigate>;
 	}
 
+	const sortingParams = [
+		{
+			name: 'за алфавітом',
+			sortableParam: '',
+			sortBy: 'a-z',
+		},
+		{
+			name: 'проти алфавіта',
+			sortableParam: '',
+			sortBy: 'z-a',
+		},
+		{
+			name: 'спочатку дешеві',
+			sortableParam: '',
+			sortBy: '<',
+		},
+		{
+			name: 'спочатку дорожчі',
+			sortableParam: '',
+			sortBy: '>',
+		},
+		{
+			name: 'найновіші',
+			sortableParam: '',
+			sortBy: '?',
+		},
+	];
+
 	return (
 		<>
 			<SectionTovars>
@@ -43,7 +80,16 @@ const Product: FC<ProductProps> = () => {
 						<p>loading...</p>
 					) : (
 						<>
-							<div></div>
+							<FiltersBox>
+								<SortCustomBtn>
+									<SortingBtn type="button">сортувати за</SortingBtn>
+									<SortList h>
+										{sortingParams.map(param => (
+											<SortItem key={param.name}>{param.name}</SortItem>
+										))}
+									</SortList>
+								</SortCustomBtn>
+							</FiltersBox>
 							<TovarList>
 								{tovars.map(tovar => (
 									<li key={tovar.id}>
