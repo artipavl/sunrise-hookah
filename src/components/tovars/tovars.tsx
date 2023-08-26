@@ -13,7 +13,7 @@ const Tovars: FC<AdminPanelProps> = props => {
     return (
         <div>
             <NavUl>
-                {Types.map(type => <UlItem key={type.id}><Link to={type.eu}>{type.ua}</Link> </UlItem>)}
+                {Types.map(type => <UlItem key={type.id}><Link to={type.en}>{type.ukr}</Link> </UlItem>)}
             </NavUl>
             <Outlet />
         </div>

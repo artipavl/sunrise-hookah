@@ -81,8 +81,8 @@ const Heder: FC<HederProps> = props => {
                 <DropMenuList open={subMenu}>
                   {types.map(type => (
                     <li key={type.id}>
-                      <NavLinkItem to={`/tovar/${type.eu}`}>
-                        {type.ua}
+                      <NavLinkItem to={`/tovar/${type.en}`}>
+                        {type.ukr}
                       </NavLinkItem>
                     </li>
                   ))}

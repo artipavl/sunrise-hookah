@@ -31,14 +31,14 @@ const Product: FC<ProductProps> = () => {
 	const types = useAppSelector(selectTypes);
 	const start = useAppSelector(selectTovarsLoading);
 
-	const type = types.find(type => type.eu === params.id?.toLowerCase());
+	const type = types.find(type => type.en === params.id?.toLowerCase());
 	const AppDispatch = useAppDispatch();
 
 	const tovars = useAppSelector(selectTovars);
 
 	useEffect(() => {
-		if (type?.eu) {
-			AppDispatch(fetchTovarsByTypes(type.eu));
+		if (type?.en) {
+			AppDispatch(fetchTovarsByTypes(type.en));
 		}
 	}, [AppDispatch, type]);
 
@@ -99,7 +99,7 @@ const Product: FC<ProductProps> = () => {
 		});
 	}
 	console.log(tovars)
-	const sorted =	sortByKey(tovars, `nameEn`, false)
+	const sorted =	sortByKey(tovars, `nameEN`, false)
 	console.log(sorted)
 
 	return (
@@ -107,7 +107,7 @@ const Product: FC<ProductProps> = () => {
 			<SectionTovars>
 				<Heder></Heder>
 				<Container>
-					<Title>{type.ua}</Title>
+					<Title>{type.ukr}</Title>
 					{!start ? (
 						<p>loading...</p>
 					) : (

@@ -1,34 +1,38 @@
-interface TwoLeng {
-  ua: string;
-  en: string;
-}
-
 type Tovar = {
-  id: string;
-  name: TwoLeng;
-  cost: number;
-  description: TwoLeng;
-  parameters: TwoLeng;
-  completeSet: TwoLeng;
-  quantity: number;
-  popularity: number;
-  type: string;
-  fotos: string[];
+	id: string;
+	nameUKR: string;
+	nameEN: string;
+	cost: number;
+	descriptionUKR: string;
+	descriptionEN: string;
+	parametersUKR: string;
+	parametersEN: string;
+	completeSetUKR: string;
+	completeSetEN: string;
+	quantity: number;
+	popularity: number;
+	type: string;
+	fotos: string[];
 };
+
 export type AddTovar = {
-  name: TwoLeng;
-  cost: number;
-  description: TwoLeng;
-  parameters: TwoLeng;
-  completeSet: TwoLeng;
-  quantity: number;
-  popularity: number;
-  type: string;
-  fotos: string[];
+	nameUKR: string;
+	nameEN: string;
+	cost: number;
+	descriptionUKR: string;
+	descriptionEN: string;
+	parametersUKR: string;
+	parametersEN: string;
+	completeSetUKR: string;
+	completeSetEN: string;
+	quantity: number;
+	popularity: number;
+	type: string;
+	fotos: string[];
 };
 
 export type TovarBasket = Tovar & {
-  baskeQuantity: number;
+	baskeQuantity: number;
 };
 
 export default Tovar;

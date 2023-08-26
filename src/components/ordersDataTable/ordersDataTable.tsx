@@ -311,7 +311,7 @@ const OrdersDataTable: FC<OrdersDataTableProps> = () => {
 											return (
 												<li key={order.id}>
 													<p>{index + 1}</p>
-													<p>назва: {tovar.name.ua}</p>
+													<p>назва: {tovar.nameUKR}</p>
 													<p>кількість: {order.baskeQuantity}</p>
 													<p>ціна за один: {tovar.cost}</p>
 												</li>
