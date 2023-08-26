@@ -1,40 +1,42 @@
 import React, { FC } from 'react';
 import {
-  TovarBox,
-  TovarImageBox,
-  TovarImageBoxUpper,
-  TovarInformation,
-  TovarInformationAvailability,
+  ImgTovar,
+  NameTovar,
+	TovarBox,
+	TovarImageBox,
+	TovarImageBoxUpper,
+	TovarInformation,
+	TovarInformationAvailability,
 } from './tovar.style';
 import TovarType from '../../Types/tovar';
 
 type TovarProps = {
-  tovar: TovarType;
+	tovar: TovarType;
 };
 
-const Tovar: FC<TovarProps> = ({ tovar }) => {
-  return (
-    <TovarBox> 
-      <TovarImageBox>
-        <img
-          src={
-            tovar.fotos[0]
-              ? tovar.fotos[0]
-              : 'https://kor.ill.in.ua/m/610x385/2722809.jpg'
-          }
-          alt={tovar.name.en}
-        />
-        <TovarImageBoxUpper id="Upper">Перегляд</TovarImageBoxUpper>
-      </TovarImageBox>
-      <TovarInformation>
-        <span>{tovar.name.en}</span>
-        <span>{tovar.cost}₴</span>
-        <TovarInformationAvailability>
-          {tovar.quantity > 0 ? 'В наявності' : 'відсутній'}
-        </TovarInformationAvailability>
-      </TovarInformation>
-    </TovarBox>
-  );
+const TovarCard: FC<TovarProps> = ({ tovar }) => {
+	return (
+		<TovarBox>
+			<TovarImageBox>
+				<ImgTovar
+					src={
+						tovar.fotos[0]
+							? tovar.fotos[0]
+							: 'https://kor.ill.in.ua/m/610x385/2722809.jpg'
+					}
+					alt={tovar.nameEN}
+				/>
+				<TovarImageBoxUpper id="Upper">Детальніше</TovarImageBoxUpper>
+			</TovarImageBox>
+			<TovarInformation>
+				<NameTovar>{tovar.nameEN}</NameTovar>
+				<span>{tovar.cost}₴</span>
+				<TovarInformationAvailability>
+					{tovar.quantity > 0 ? 'В наявності' : 'Відсутній'}
+				</TovarInformationAvailability>
+			</TovarInformation>
+		</TovarBox>
+	);
 };
 
-export default Tovar;
+export default TovarCard;

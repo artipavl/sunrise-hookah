@@ -79,7 +79,7 @@ const TovarPage: FC<TovarPageProps> = props => {
 			<Heder></Heder>
 			<SectionTovar h>
 				<ContainerTovar>
-					<H1 h>{tovar?.name.ua}</H1>
+					<H1 h>{tovar?.nameUKR}</H1>
 					<Gallery>
 						<ImgBox>
 							<BtnArrow
@@ -111,7 +111,7 @@ const TovarPage: FC<TovarPageProps> = props => {
 						</MiniGallery>
 					</Gallery>
 					<MainInfoBox>
-						<H1>{tovar?.name.ua}</H1>
+						<H1>{tovar?.nameUKR}</H1>
 						<FormBox
 							onSubmit={e => {
 								e.preventDefault();
@@ -139,8 +139,8 @@ const TovarPage: FC<TovarPageProps> = props => {
 						</FormBox>
 					</MainInfoBox>
 					<SubinfoBox>
-						<SubInfoItem dangerouslySetInnerHTML={{ __html: tovar.parameters.ua }}></SubInfoItem>
-						<SubInfoItem dangerouslySetInnerHTML={{ __html: tovar.description.ua }}></SubInfoItem>
+						<SubInfoItem dangerouslySetInnerHTML={{ __html: tovar.parametersUKR }}></SubInfoItem>
+						<SubInfoItem dangerouslySetInnerHTML={{ __html: tovar.descriptionUKR }}></SubInfoItem>
 					</SubinfoBox>
 				</ContainerTovar>
 			</SectionTovar>

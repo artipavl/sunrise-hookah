@@ -22,9 +22,9 @@ const TovarsByType: FC<AdminPanelProps> = props => {
 	const types = useAppSelector(selectTypes);
 	const tovars = useAppSelector(selectTovars);
 
-	const type = types.find(type => type.eu === params.id?.toLowerCase());
+	const type = types.find(type => type.en === params.id?.toLowerCase());
 
-	const filteredTovars = tovars.filter(tovar => tovar.type === type?.eu);
+	const filteredTovars = tovars.filter(tovar => tovar.type === type?.en);
 
 	return (
 		<TovarBox>
@@ -35,7 +35,7 @@ const TovarsByType: FC<AdminPanelProps> = props => {
 				{filteredTovars.map(tovar => (
 					<li key={tovar.id}>
 						<TovarItem>
-							<span>{tovar.name.ua}</span>
+							<span>{tovar.nameUKR}</span>
 							<TovarInfo>
 								<TovarItemListProps>
 									<TovarItemListPropItem>

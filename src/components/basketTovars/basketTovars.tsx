@@ -26,7 +26,7 @@ const BasketTovars: FC<BasketTovarsProps> = props => {
     <BasketList>
       {tovars.map(tovar => (
         <BasketItam key={tovar.id}>
-          <span>{tovar.name.ua}</span>
+          <span>{tovar.nameUKR}</span>
           <BasketItamBox>
             <div>
               <BasketItamImage
@@ -35,7 +35,7 @@ const BasketTovars: FC<BasketTovarsProps> = props => {
                     ? tovar.fotos[0]
                     : 'https://kor.ill.in.ua/m/610x385/2722809.jpg'
                 }
-                alt={tovar.name.en}
+                alt={tovar.nameEN}
               />
             </div>
 
