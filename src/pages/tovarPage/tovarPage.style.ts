@@ -19,12 +19,12 @@ export const SectionTovar = styled(Section)`
 	display: block;
 	padding-top: 0;
 
-	@media screen and (min-width: 720px) {
-		width: 720px;
+	@media screen and (min-width: 768px) {
+		width: 768px;
 		margin: auto;
 	}
-	@media screen and (min-width: 1280px) {
-		width: 1120px;
+	@media screen and (min-width: 1440px) {
+		width: 1340px;
 	}
 `;
 
@@ -42,12 +42,12 @@ export const ContainerTovar = styled(Container)`
 
 	background-color: ${colors.mainBg};
 
-	@media screen and (min-width: 720px) {
+	@media screen and (min-width: 768px) {
 		display: grid;
 		grid-template-columns: 1fr 1fr 1fr;
 		gap: 20px;
 	}
-	@media screen and (min-width: 1280px) {
+	@media screen and (min-width: 1440px) {
 	}
 `;
 
@@ -63,10 +63,10 @@ export const MainInfoBox = styled.div`
 
 	color: ${colors.textGrey};
 
-	@media screen and (min-width: 720px) {
+	@media screen and (min-width: 768px) {
 		grid-column-start: 3;
 	}
-	@media screen and (min-width: 1280px) {
+	@media screen and (min-width: 1440px) {
 		display: block;
 		height: 100%;
 
@@ -86,7 +86,7 @@ export const H1 = styled.h1<H1Props>`
 
 	display: ${props => (props.h ? 'block' : 'none')};
 
-	@media screen and (min-width: 720px) {
+	@media screen and (min-width: 768px) {
 		display: ${props => (props.h ? 'none' : 'flex')};
 		justify-content: center;
 		align-items: center;
@@ -94,7 +94,7 @@ export const H1 = styled.h1<H1Props>`
 		margin-block: auto;
 		font-size: 32px;
 	}
-	@media screen and (min-width: 1280px) {
+	@media screen and (min-width: 1440px) {
 		font-size: 42px;
 		height: 70%;
 		font-weight: 700;
@@ -114,10 +114,10 @@ export const FormBox = styled.form`
 	gap: 10px;
 	margin-top: 20px;
 
-	@media screen and (min-width: 720px) {
+	@media screen and (min-width: 768px) {
 		display: flex;
 	}
-	@media screen and (min-width: 1280px) {
+	@media screen and (min-width: 1440px) {
 		display: grid;
 
 		font-size: 24px;
@@ -134,12 +134,12 @@ export const Price = styled.p`
 	margin: auto auto;
 	margin-left: 0;
 
-	@media screen and (min-width: 720px) {
+	@media screen and (min-width: 768px) {
 		font-size: 21px;
 		margin-right: 0;
 		margin-left: auto;
 	}
-	@media screen and (min-width: 1280px) {
+	@media screen and (min-width: 1440px) {
 		margin: auto auto;
 		margin-left: 0;
 		font-size: 24px;
@@ -218,10 +218,10 @@ export const ButtonCase = styled.button`
 	background-color: ${colors.yellow};
 	color: ${colors.subBlack};
 
-	@media screen and (min-width: 720px) {
+	@media screen and (min-width: 768px) {
 		padding-block: 10px;
 	}
-	@media screen and (min-width: 1280px) {
+	@media screen and (min-width: 1440px) {
 		width: 100%;
 
 		padding-block: 13px;
@@ -230,16 +230,16 @@ export const ButtonCase = styled.button`
 `;
 
 export const InfoBox = styled.div`
-	@media screen and (min-width: 720px) {
+	@media screen and (min-width: 768px) {
 	}
-	@media screen and (min-width: 1280px) {
+	@media screen and (min-width: 1440px) {
 	}
 `;
 
 export const Gallery = styled.div`
 	width: 100%;
 
-	@media screen and (min-width: 720px) {
+	@media screen and (min-width: 768px) {
 		grid-column-start: 1;
 		grid-column-end: 3;
 	}
@@ -249,10 +249,10 @@ export const ImgBox = styled.div`
 	height: 300px;
 	position: relative;
 
-	@media screen and (min-width: 720px) {
+	@media screen and (min-width: 768px) {
 		height: 400px;
 	}
-	@media screen and (min-width: 1280px) {
+	@media screen and (min-width: 1440px) {
 		height: 400px;
 	}
 `;
@@ -274,7 +274,7 @@ export const SubinfoBox = styled.div`
 	gap: 10px;
 	width: 100%;
 
-	@media screen and (min-width: 720px) {
+	@media screen and (min-width: 768px) {
 		grid-column-start: 1;
 		grid-column-end: 4;
 	}
@@ -291,11 +291,11 @@ export const MiniGallery = styled.ul`
 	margin-top: 10px;
 	width: 100%;
 
-	@media screen and (min-width: 720px) {
+	@media screen and (min-width: 768px) {
 		gap: 15px;
 		margin-top: 15px;
 	}
-	@media screen and (min-width: 1280px) {
+	@media screen and (min-width: 1440px) {
 		gap: 20px;
 		margin-top: 20px;
 	}
@@ -308,12 +308,12 @@ export const MiniGalleryItem = styled.li<MiniGalleryItemProps>`
 	min-width: 60px;
 	max-width: 60px;
 
-	@media screen and (min-width: 720px) {
+	@media screen and (min-width: 768px) {
 		height: 70px;
 		min-width: 70px;
 		max-width: 70px;
 	}
-	@media screen and (min-width: 1280px) {
+	@media screen and (min-width: 1440px) {
 		height: 80px;
 		min-width: 80px;
 		max-width: 80px;

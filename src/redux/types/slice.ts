@@ -3,8 +3,8 @@ import { RootState } from '../store';
 import { fetchTovarsTypes } from './typesOperations';
 
 export type Type = {
-  ua: string;
-  eu: string;
+  ukr: string;
+  en: string;
   id: string;
 };
 
@@ -31,7 +31,7 @@ const typesSlice = createSlice({
         state.types = action.payload;
         state.typesIsLoading = true;
       })
-      .addCase(fetchTovarsTypes.rejected, (state, action) => {
+      .addCase(fetchTovarsTypes.rejected, (state ) => {
         state.typesIsLoading = false;
       });
   },

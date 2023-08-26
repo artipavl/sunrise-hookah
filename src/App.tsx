@@ -68,7 +68,7 @@ function App() {
             {Loading && (
               <Route
                 index
-                element={<Navigate to={`${Types[0].eu}`}></Navigate>}
+                element={<Navigate to={`${Types[0].en}`}></Navigate>}
               />
             )}
 
