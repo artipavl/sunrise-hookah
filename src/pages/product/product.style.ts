@@ -88,13 +88,13 @@ type SortListProps = {
 };
 
 export const SortList = styled.ul<SortListProps>`
-	display: ${props => props.h ? 'none' : 'flex'}; 
+	display: ${props => props.h ? 'flex' : 'none'}; 
 	flex-direction: column;
 
 	align-items: center;
 	justify-content: center;
 
-	width: 100%;
+	width: auto;
 
 	position: absolute;
 	z-index: 3;
@@ -104,5 +104,11 @@ export const SortList = styled.ul<SortListProps>`
 `;
 
 export const SortItem = styled.li`
-	width: 50%;
+	width: auto;
 `;
+
+export const ButtonSort = styled.button`
+	width: 200px;
+	padding: 5px 10px;
+`;
+

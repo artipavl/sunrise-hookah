@@ -14,7 +14,7 @@ type TovarProps = {
 	tovar: TovarType;
 };
 
-const Tovar: FC<TovarProps> = ({ tovar }) => {
+const TovarCard: FC<TovarProps> = ({ tovar }) => {
 	return (
 		<TovarBox>
 			<TovarImageBox>
@@ -39,4 +39,4 @@ const Tovar: FC<TovarProps> = ({ tovar }) => {
 	);
 };
 
-export default Tovar;
+export default TovarCard;

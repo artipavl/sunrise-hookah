@@ -1,6 +1,7 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Container } from '../../reuseСomponents/container.style';
 import {
+	ButtonSort,
 	FiltersBox,
 	SectionTovars,
 	SortCustomBtn,
@@ -16,12 +17,15 @@ import { selectTovars, selectTovarsLoading } from '../../redux/tovars/slice';
 import { fetchTovarsByTypes } from '../../redux/tovars/tovarsOperations';
 import { selectTypes } from '../../redux/types/slice';
 import Heder from '../../components/header/heder';
-import Tovar from '../../components/tovar/tovar';
 import { Link } from 'react-router-dom';
+import Tovar from '../../Types/tovar';
+import TovarCard from '../../components/tovar/tovar';
 
 type ProductProps = {};
 
 const Product: FC<ProductProps> = () => {
+	const [isOpenSort, setIsOpenSort] = useState<boolean>(false);
+
 	const params = useParams();
 
 	const types = useAppSelector(selectTypes);
@@ -68,7 +72,35 @@ const Product: FC<ProductProps> = () => {
 			sortableParam: '',
 			sortBy: '?',
 		},
-	];
+	]; 
+	function sortByKey<T extends Tovar, K extends keyof T>(
+		arr: T[],
+		key: K,
+		filter: boolean
+	): T[] {
+		return arr.slice().sort((a, b) => {
+			if (filter) {
+				if (a[key] < b[key]) {
+					return -1;
+				}
+				if (a[key] > b[key]) {
+					return 1;
+				}
+			} else {
+				if (a[key] < b[key]) {
+					return 1;
+				}
+				if (a[key] > b[key]) {
+					return -1;
+				}
+			}
+
+			return 0;
+		});
+	}
+	console.log(tovars)
+	const sorted =	sortByKey(tovars, `nameEn`, false)
+	console.log(sorted)
 
 	return (
 		<>
@@ -82,10 +114,17 @@ const Product: FC<ProductProps> = () => {
 						<>
 							<FiltersBox>
 								<SortCustomBtn>
-									<SortingBtn type="button">сортувати за</SortingBtn>
-									<SortList h>
+									<SortingBtn
+										type="button"
+										onClick={() => setIsOpenSort(!isOpenSort)}
+									>
+										сортувати за
+									</SortingBtn>
+									<SortList h={isOpenSort}>
 										{sortingParams.map(param => (
-											<SortItem key={param.name}>{param.name}</SortItem>
+											<SortItem key={param.name}>
+												<ButtonSort type="button">{param.name}</ButtonSort>
+											</SortItem>
 										))}
 									</SortList>
 								</SortCustomBtn>
@@ -94,7 +133,7 @@ const Product: FC<ProductProps> = () => {
 								{tovars.map(tovar => (
 									<li key={tovar.id}>
 										<Link to={`/tovarPage/${tovar.id}`}>
-											<Tovar tovar={tovar}></Tovar>
+											<TovarCard tovar={tovar}></TovarCard>
 										</Link>
 									</li>
 								))}
