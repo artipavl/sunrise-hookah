@@ -4,7 +4,9 @@ import {
 	FiltersBox,
 	InputRadio,
 	ItemOpt,
+	ProgressBar,
 	SectionTovars,
+	SliderBar,
 	SortCustomBtn,
 	SortingBtn,
 	Title,
@@ -19,6 +21,7 @@ import Heder from '../../components/header/heder';
 import { Link } from 'react-router-dom';
 import Tovar from '../../Types/tovar';
 import TovarCard from '../../components/tovar/tovar';
+import sortArrByKey from '../../helpers/sortArrByKey';
 
 type ProductProps = {};
 interface sortingParamsTypes {
@@ -57,6 +60,8 @@ const sortingParams: sortingParamsTypes[] = [
 const Product: FC<ProductProps> = () => {
 	const [isOpenSort, setIsOpenSort] = useState<boolean>(false);
 	const [sortParams, setSortParams] = useState<number>(0);
+	const [minPrice, setMinPrice] = useState<number>(1);
+	const [maxPrice, setMaxPrice] = useState<number>(10000);
 
 	const params = useParams();
 
@@ -75,41 +80,27 @@ const Product: FC<ProductProps> = () => {
 	}, [AppDispatch, type]);
 
 	const sorted = useMemo(() => {
-		return sortByKey(
+		return sortArrByKey(
 			tovars,
 			sortingParams[sortParams].sortableParam,
 			sortingParams[sortParams].sortBy
 		);
 	}, [sortParams, tovars]);
 
+	const sortedByPrice = useMemo(() => {
+		const data = sortArrByKey(tovars, sortingParams[2].sortableParam, true);
+		setMinPrice(data[0]?.cost);
+		setMaxPrice(data[tovars.length - 1]?.cost);
+		console.log(minPrice);
+		console.log(maxPrice);
+
+		return data;
+	}, [maxPrice, minPrice, tovars]);
+
+	console.log(sortedByPrice);
+
 	if (!type) {
 		return <Navigate to="/"></Navigate>;
-	}
-
-	function sortByKey<T extends Tovar, K extends keyof T>(
-		arr: T[],
-		key: K,
-		filter: boolean
-	): T[] {
-		return arr.slice().sort((a, b) => {
-			if (filter) {
-				if (a[key] < b[key]) {
-					return -1;
-				}
-				if (a[key] > b[key]) {
-					return 1;
-				}
-			} else {
-				if (a[key] < b[key]) {
-					return 1;
-				}
-				if (a[key] > b[key]) {
-					return -1;
-				}
-			}
-
-			return 0;
-		});
 	}
 
 	return (
@@ -161,7 +152,29 @@ const Product: FC<ProductProps> = () => {
 										))}
 									</form>
 								</SortCustomBtn>
-								<input type="range" />
+								<div>
+									<label>
+										<input
+											type="number"
+											name="min"
+											id="minValue"
+											value={minPrice}
+										/>
+									</label>
+									<label>
+										<input
+											type="number"
+											name="max"
+											id="maxValue"
+												value={maxPrice}
+												// onChange={() => setMaxPrice()}
+										/>
+										</label>
+										
+										<SliderBar>
+											<ProgressBar></ProgressBar>
+										</SliderBar>
+								</div>
 							</FiltersBox>
 							<TovarList>
 								{sorted.map(tovar => (

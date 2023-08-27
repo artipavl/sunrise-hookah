@@ -151,3 +151,19 @@ export const ItemOpt = styled.label<ItemOptTypes>`
 export const InputRadio = styled.input`
 	display: none;
 `;
+
+export const SliderBar = styled.div`
+  height: 5px;
+  border-radius: 2px;
+  color: ${colors.subGrey};
+  position: relative;
+  width: 300px;
+`;
+
+export const ProgressBar = styled.div`
+  position: absolute;
+  height: 100%;
+  background-color: ${colors.yellow};
+	width: 100%;
+`;
+
