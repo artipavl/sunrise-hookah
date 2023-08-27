@@ -11,9 +11,6 @@ import {
 	ModalDeleteButton,
 	ModalDeleteButtonsBox,
 	ModalDeleteTitle,
-	ReadBox,
-	ReadBoxMessage,
-	ReadBoxTitle,
 	Rows,
 	RowsBox,
 	RowsBoxCenter,
@@ -40,6 +37,7 @@ import { selectTovars } from '../../redux/tovars/slice';
 import Tovar from '../../Types/tovar';
 import { delOerder, putOrders } from '../../redux/orders/ordersOperations';
 import sortArrByKey from '../../helpers/sortArrByKey';
+import OrderRead from '../orderRead/orderRead';
 
 type OrdersDataTableProps = {
 	data: Order[];
@@ -321,44 +319,7 @@ const OrdersDataTable: FC<OrdersDataTableProps> = ({ data }) => {
 			{readOpen && current && (
 				<Modal openBasket={() => setReadOpen(false)}>
 					<ModalBox>
-						<ReadBox>
-							<ReadBoxTitle>Замовлення</ReadBoxTitle>
-							<p>
-								Абонент:{' '}
-								{current.customer.firstName + ' ' + current.customer.lastName}
-							</p>
-							<p>Пошта: {current.customer.email}</p>
-							<p>Телефон: {current.customer.phone}</p>
-							<div>
-								<p>Повідомлення:</p>
-								<ReadBoxMessage>{current.customer.message}</ReadBoxMessage>
-							</div>
-							<p>
-								Час:{' '}
-								{new Date(current.date).toLocaleString('en-GB', {
-									timeZone: 'UTC',
-								})}
-							</p>
-							<p>Доставка у {current.delivery.Description}</p>
-							<p>Замовлення</p>
-							<ul>
-								{current.orders.map((order, index) => {
-									const tovar = tovars.find(tovar => tovar.id === order.id);
-									if (tovar) {
-										return (
-											<li key={order.id}>
-												<p>{index + 1}</p>
-												<p>назва: {tovar.nameUKR}</p>
-												<p>кількість: {order.baskeQuantity}</p>
-												<p>ціна за один: {tovar.cost}</p>
-											</li>
-										);
-									}
-									return null;
-								})}
-							</ul>
-							<p>Загалом: {current.cost}</p>
-						</ReadBox>
+						<OrderRead order={current} />
 					</ModalBox>
 				</Modal>
 			)}
