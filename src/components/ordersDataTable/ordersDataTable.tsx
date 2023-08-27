@@ -193,38 +193,19 @@ const OrdersDataTable: FC<OrdersDataTableProps> = ({ data }) => {
 								)}
 							</RowsBox>
 						</Rows>
-						{/* <Rows
-              active={key === rowsType[index]}
-              onClick={() => {
-                if (key === rowsType[index]) {
-                  setFilter(filter => !filter);
-                } else {
-                  setKey(rowsType[index]);
-                  setFilter(true);
-                }
-              }}
-            >
-              <RowsBox>
-                <RowsText>{row}</RowsText>{' '}
-                {key === rowsType[index] && filter ? (
-                  <AiFillCaretUp />
-                ) : (
-                  <AiFillCaretDown />
-                )}
-              </RowsBox>
-            </Rows> */}
 						<RowsDelete>
-							<RowsBoxCenter>
-								{/* <AiOutlineRest />
-                    <AiOutlineContainer /> */}
-							</RowsBoxCenter>
+							<RowsBoxCenter></RowsBoxCenter>
 						</RowsDelete>
 					</tr>
 				</Thead>
 				<Tbody>
 					{sortData.slice((p - 1) * items, items * p).map((column, index) => {
 						return (
-							<Columns key={index}>
+							<Columns
+								key={index}
+								active={column.id === current?.id}
+								onClick={() => setCurrent(column)}
+							>
 								<Column>
 									<ColumnName>
 										{column.customer.firstName + ' ' + column.customer.lastName}
@@ -244,7 +225,6 @@ const OrdersDataTable: FC<OrdersDataTableProps> = ({ data }) => {
 								</Column>
 								<Column>
 									<ColumnText>
-										{/* {column.status} */}
 										<select
 											value={column.status}
 											onChange={e => {
@@ -338,58 +318,47 @@ const OrdersDataTable: FC<OrdersDataTableProps> = ({ data }) => {
 					</ModalBox>
 				</Modal>
 			)}
-			{readOpen && (
+			{readOpen && current && (
 				<Modal openBasket={() => setReadOpen(false)}>
 					<ModalBox>
-						{current ? (
-							<ReadBox>
-								<ReadBoxTitle>Замовлення</ReadBoxTitle>
-								<p>
-									Абонент:{' '}
-									{current.customer.firstName + ' ' + current.customer.lastName}
-								</p>
-								<p>Пошта: {current.customer.email}</p>
-								<p>Телефон: {current.customer.phone}</p>
-								<div>
-									<p>Повідомлення:</p>
-									<ReadBoxMessage>{current.customer.message}</ReadBoxMessage>
-								</div>
-								<p>
-									Час:{' '}
-									{new Date(current.date).toLocaleString('en-GB', {
-										timeZone: 'UTC',
-									})}
-								</p>
-								<p>Доставка у {current.delivery.Description}</p>
-								<p>Замовлення</p>
-								<ul>
-									{current.orders.map((order, index) => {
-										const tovar = tovars.find(tovar => tovar.id === order.id);
-										if (tovar) {
-											return (
-												<li key={order.id}>
-													<p>{index + 1}</p>
-													<p>назва: {tovar.nameUKR}</p>
-													<p>кількість: {order.baskeQuantity}</p>
-													<p>ціна за один: {tovar.cost}</p>
-												</li>
-											);
-										}
-										return null;
-									})}
-								</ul>
-								<p>Загалом: {current.cost}</p>
-								<DeleteButton
-									onClick={() => {
-										setDeleteOpen(true);
-									}}
-								>
-									<AiOutlineRest />
-								</DeleteButton>
-							</ReadBox>
-						) : (
-							'Loading...'
-						)}
+						<ReadBox>
+							<ReadBoxTitle>Замовлення</ReadBoxTitle>
+							<p>
+								Абонент:{' '}
+								{current.customer.firstName + ' ' + current.customer.lastName}
+							</p>
+							<p>Пошта: {current.customer.email}</p>
+							<p>Телефон: {current.customer.phone}</p>
+							<div>
+								<p>Повідомлення:</p>
+								<ReadBoxMessage>{current.customer.message}</ReadBoxMessage>
+							</div>
+							<p>
+								Час:{' '}
+								{new Date(current.date).toLocaleString('en-GB', {
+									timeZone: 'UTC',
+								})}
+							</p>
+							<p>Доставка у {current.delivery.Description}</p>
+							<p>Замовлення</p>
+							<ul>
+								{current.orders.map((order, index) => {
+									const tovar = tovars.find(tovar => tovar.id === order.id);
+									if (tovar) {
+										return (
+											<li key={order.id}>
+												<p>{index + 1}</p>
+												<p>назва: {tovar.nameUKR}</p>
+												<p>кількість: {order.baskeQuantity}</p>
+												<p>ціна за один: {tovar.cost}</p>
+											</li>
+										);
+									}
+									return null;
+								})}
+							</ul>
+							<p>Загалом: {current.cost}</p>
+						</ReadBox>
 					</ModalBox>
 				</Modal>
 			)}

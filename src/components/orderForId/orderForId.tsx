@@ -11,10 +11,13 @@ const OrderForId: FC<OrderForIdProps> = props => {
 	const { id } = useParams();
 	const orders = useAppSelector(selectOrders);
 	const ordersFilt = useMemo(() => {
+		if (id === 'all') {
+			return orders;
+		}
 		if ((id as Order['status']) !== undefined) {
 			return orders.filter(order => order.status === id);
 		}
-		return orders;
+		return [];
 	}, [id, orders]);
 	return <OrdersDataTable data={ordersFilt} />;
 };
