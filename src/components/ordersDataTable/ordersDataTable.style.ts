@@ -226,28 +226,3 @@ export const ModalDeleteButton = styled.button`
 		background-color: #eaecf0;
 	}
 `;
-
-export const ReadBox = styled.div`
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-
-	/* color: #8a92a6; */
-	font-family: Circular Std;
-	font-size: 20px;
-	font-style: normal;
-	font-weight: 450;
-	line-height: 175%;
-`;
-
-export const ReadBoxTitle = styled.h1`
-	color: #232d42;
-	font-family: Circular Std;
-	font-size: 20px;
-	font-style: normal;
-	font-weight: 700;
-	line-height: 175%;
-`;
-export const ReadBoxMessage = styled.p`
-	max-width: 400px;
-`;
