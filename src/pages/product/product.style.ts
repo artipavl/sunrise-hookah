@@ -66,21 +66,31 @@ export const SectionTovars = styled(Section)`
 `;
 
 export const FiltersBox = styled.div`
-	height: 70px;
 	width: 100%;
 
-	padding: 2px;
+	margin-bottom: 20px;
 `;
 
 export const SortCustomBtn = styled.div`
-	position: relative;
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: flex-start;
+	gap: 10px;
+
 	width: 100%;
+	position: relative;
 `;
 
 export const SortingBtn = styled.button`
-	width: 50%;
 	color: ${colors.textGrey};
 	background-color: ${colors.mainBg};
+	z-index: 3;
+
+	/* position: absolute; */
+	top: 0;
+
+	width: 200px;
+	height: 70px;
 `;
 
 type SortListProps = {
@@ -88,7 +98,7 @@ type SortListProps = {
 };
 
 export const SortList = styled.ul<SortListProps>`
-	display: ${props => props.h ? 'flex' : 'none'}; 
+	display: ${props => (props.h ? 'flex' : 'none')};
 	flex-direction: column;
 
 	align-items: center;
@@ -112,3 +122,32 @@ export const ButtonSort = styled.button`
 	padding: 5px 10px;
 `;
 
+type ItemOptTypes = {
+	index: number;
+	h: boolean;
+};
+
+export const ItemOpt = styled.label<ItemOptTypes>`
+	display: ${props => (props.h ? 'flex' : 'none')};
+	justify-content: flex-start;
+	align-items: center;
+
+	width: 200px;
+	height: 70px;
+
+	padding: 10px 20px;
+
+	font-size: 18px;
+
+	background-color: ${colors.black};
+	color: ${colors.textGrey};
+
+	position: absolute;
+	top: ${props => `${(props.index + 1) * 70}px`};
+
+	z-index: 4;
+`;
+
+export const InputRadio = styled.input`
+	display: none;
+`;

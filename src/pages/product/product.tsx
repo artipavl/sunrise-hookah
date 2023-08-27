@@ -1,12 +1,11 @@
 import React, { FC, useEffect, useMemo, useState } from 'react';
 import { Container } from '../../reuseСomponents/container.style';
 import {
-	ButtonSort,
 	FiltersBox,
+	InputRadio,
+	ItemOpt,
 	SectionTovars,
 	SortCustomBtn,
-	SortItem,
-	SortList,
 	SortingBtn,
 	Title,
 	TovarList,
@@ -29,14 +28,9 @@ interface sortingParamsTypes {
 }
 const sortingParams: sortingParamsTypes[] = [
 	{
-		name: 'за алфавітом',
-		sortableParam: 'nameUKR',
+		name: 'популярні',
+		sortableParam: 'popularity',
 		sortBy: true,
-	},
-	{
-		name: 'проти алфавіта',
-		sortableParam: 'nameUKR',
-		sortBy: false,
 	},
 	{
 		name: 'спочатку дешеві',
@@ -49,9 +43,14 @@ const sortingParams: sortingParamsTypes[] = [
 		sortBy: false,
 	},
 	{
-		name: 'популярні',
-		sortableParam: 'popularity',
+		name: 'за алфавітом',
+		sortableParam: 'nameUKR',
 		sortBy: true,
+	},
+	{
+		name: 'проти алфавіта',
+		sortableParam: 'nameUKR',
+		sortBy: false,
 	},
 ];
 
@@ -115,7 +114,13 @@ const Product: FC<ProductProps> = () => {
 
 	return (
 		<>
-			<SectionTovars>
+			<SectionTovars
+				onClick={e => {
+					e.target instanceof Element &&
+						e.target?.nodeName !== 'BUTTON' &&
+						setIsOpenSort(false);
+				}}
+			>
 				<Heder></Heder>
 				<Container>
 					<Title>{type.ukr}</Title>
@@ -127,26 +132,36 @@ const Product: FC<ProductProps> = () => {
 								<SortCustomBtn>
 									<SortingBtn
 										type="button"
-										onClick={() => setIsOpenSort(!isOpenSort)}
+										onClick={() => {
+											setIsOpenSort(false);
+											setSortParams(0);
+										}}
 									>
-										сортувати за
+										Очистити фільтр
 									</SortingBtn>
-									<SortList h={isOpenSort}>
+									<form>
+										<SortingBtn
+											type="button"
+											onClick={() => setIsOpenSort(!isOpenSort)}
+										>
+											{sortingParams[sortParams].name}
+										</SortingBtn>
 										{sortingParams.map((param, index) => (
-											<SortItem key={param.name}>
-												<ButtonSort
-													type="button"
-													onClick={() => {
-														setIsOpenSort(false);
+											<ItemOpt key={param.name} index={index} h={isOpenSort}>
+												{param.name}
+												<InputRadio
+													name="sort"
+													type="radio"
+													onChange={() => {
 														setSortParams(index);
+														setIsOpenSort(false);
 													}}
-												>
-													{param.name}
-												</ButtonSort>
-											</SortItem>
+												/>
+											</ItemOpt>
 										))}
-									</SortList>
+									</form>
 								</SortCustomBtn>
+								<input type="range" />
 							</FiltersBox>
 							<TovarList>
 								{sorted.map(tovar => (
