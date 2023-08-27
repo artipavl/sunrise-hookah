@@ -19,69 +19,73 @@ import Checkout from './pages/checkout/checkout';
 import TovarPage from './pages/tovarPage/tovarPage';
 import AdminList from './pages/adminList/adminList';
 import Orders from './pages/orders/Orders';
+import OrderForId from './components/orderForId/orderForId';
 
 export const Wrapper = styled.div`
-  /* display: flex;
+	/* display: flex;
   flex-direction: column; */
 `;
 
 function App() {
-  const AppDispatch = useAppDispatch();
+	const AppDispatch = useAppDispatch();
 
-  useEffect(() => {
-    AppDispatch(fetchTovarsTypes());
-  }, [AppDispatch]);
+	useEffect(() => {
+		AppDispatch(fetchTovarsTypes());
+	}, [AppDispatch]);
 
-  const Loading = useAppSelector(selectTypesIsLoading);
-  const Types = useAppSelector(selectTypes);
+	const Loading = useAppSelector(selectTypesIsLoading);
+	const Types = useAppSelector(selectTypes);
 
-  if (!Loading) {
-    // return <p>loading...</p>;
-  }
+	if (!Loading) {
+		// return <p>loading...</p>;
+	}
 
-  return (
-    <Wrapper>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/tovarPage/:id" element={<TovarPage />} />
-        <Route path="/tovar/:id" element={<Product />} />
-        <Route
-          path="/admin"
-          element={
-            <PublicRoute redirectTo="/adminpanel">
-              <Admin />
-            </PublicRoute>
-          }
-        />
+	return (
+		<Wrapper>
+			<Routes>
+				<Route path="/" element={<Home />} />
+				<Route path="/checkout" element={<Checkout />} />
+				<Route path="/tovarPage/:id" element={<TovarPage />} />
+				<Route path="/tovar/:id" element={<Product />} />
+				<Route
+					path="/admin"
+					element={
+						<PublicRoute redirectTo="/adminpanel">
+							<Admin />
+						</PublicRoute>
+					}
+				/>
 
-        <Route
-          path="/adminpanel"
-          element={
-            <PrivatRoute redirectTo="/">
-              <AdminPanel />
-            </PrivatRoute>
-          }
-        >
-          <Route index element={<Navigate to="tovars"></Navigate>} />
-          <Route path="tovars" element={<Tovars />}>
-            {Loading && (
-              <Route
-                index
-                element={<Navigate to={`${Types[0].en}`}></Navigate>}
-              />
-            )}
+				<Route
+					path="/adminpanel"
+					element={
+						<PrivatRoute redirectTo="/">
+							<AdminPanel />
+						</PrivatRoute>
+					}
+				>
+					<Route index element={<Navigate to="tovars"></Navigate>} />
+					<Route path="tovars" element={<Tovars />}>
+						{Loading && (
+							<Route
+								index
+								element={<Navigate to={`${Types[0].en}`}></Navigate>}
+							/>
+						)}
 
-            <Route path=":id" element={<TovarsByType />} />
-          </Route>
-          <Route path="newtovar" element={<NewTovar />} />
-          <Route path="admins" element={<AdminList />} />
-          <Route path="orders" element={<Orders />} />
-          <Route path="feedback" element={<Feedback />} />
-        </Route>
-      </Routes>
-    </Wrapper>
-  );
+						<Route path=":id" element={<TovarsByType />} />
+					</Route>
+					<Route path="newtovar" element={<NewTovar />} />
+					<Route path="admins" element={<AdminList />} />
+					<Route path="orders" element={<Orders />}>
+						<Route index element={<Navigate to="all"></Navigate>} />
+						<Route path=":id" element={<OrderForId />}></Route>
+					</Route>
+					<Route path="feedback" element={<Feedback />} />
+				</Route>
+			</Routes>
+		</Wrapper>
+	);
 }
 
 export default App;

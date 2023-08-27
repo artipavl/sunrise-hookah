@@ -11,9 +11,6 @@ import {
 	ModalDeleteButton,
 	ModalDeleteButtonsBox,
 	ModalDeleteTitle,
-	ReadBox,
-	ReadBoxMessage,
-	ReadBoxTitle,
 	Rows,
 	RowsBox,
 	RowsBoxCenter,
@@ -27,21 +24,28 @@ import {
 	TfootTr,
 	Thead,
 } from './ordersDataTable.style';
-import { AiFillCaretDown, AiFillCaretUp, AiOutlineContainer, AiOutlineRest } from 'react-icons/ai';
+import {
+	AiFillCaretDown,
+	AiFillCaretUp,
+	AiOutlineContainer,
+	AiOutlineRest,
+} from 'react-icons/ai';
 import Modal from '../modal/modal';
 import { Order } from '../../Types/order';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { selectTovars } from '../../redux/tovars/slice';
 import Tovar from '../../Types/tovar';
 import { delOerder, putOrders } from '../../redux/orders/ordersOperations';
-import { selectOrders } from '../../redux/orders/slice';
+import sortArrByKey from '../../helpers/sortArrByKey';
+import OrderRead from '../orderRead/orderRead';
 
-type OrdersDataTableProps = {};
+type OrdersDataTableProps = {
+	data: Order[];
+};
 
-const OrdersDataTable: FC<OrdersDataTableProps> = () => {
-	const data = useAppSelector(selectOrders);
+const OrdersDataTable: FC<OrdersDataTableProps> = ({ data }) => {
 	const [p, setP] = useState(1);
-	const [total, setTotal] = useState(0);
+	const [total, setTotal] = useState(1);
 	const [items] = useState(5);
 	const [key, setKey] = useState<keyof Order>('date');
 	const [filter, setFilter] = useState(true);
@@ -52,7 +56,7 @@ const OrdersDataTable: FC<OrdersDataTableProps> = () => {
 
 	const tovars = useAppSelector(selectTovars);
 	useEffect(() => {
-		setTotal(data.length);
+		setTotal(data.length === 0 ? 1 : data.length);
 	}, [data]);
 
 	const dispatch = useAppDispatch();
@@ -68,28 +72,6 @@ const OrdersDataTable: FC<OrdersDataTableProps> = () => {
 		return pay;
 	};
 
-	function sortByKey<T extends Order, K extends keyof T>(arr: T[], key: K, filter: boolean): T[] {
-		return arr.slice().sort((a, b) => {
-			if (filter) {
-				if (a[key] < b[key]) {
-					return -1;
-				}
-				if (a[key] > b[key]) {
-					return 1;
-				}
-			} else {
-				if (a[key] < b[key]) {
-					return 1;
-				}
-				if (a[key] > b[key]) {
-					return -1;
-				}
-			}
-
-			return 0;
-		});
-	}
-
 	const newData: Order[] = useMemo(() => {
 		return data.map(order => {
 			return { ...order, cost: pay(order, tovars) };
@@ -97,11 +79,13 @@ const OrdersDataTable: FC<OrdersDataTableProps> = () => {
 	}, [data, tovars]);
 
 	const sortData = useMemo(() => {
-		const D = [...newData];
-		return sortByKey(D, key, filter);
+		return sortArrByKey(newData, key, filter);
 	}, [newData, filter, key]);
 
-	const handleStatusChange = (e: ChangeEvent<HTMLSelectElement>, column: Order) => {
+	const handleStatusChange = (
+		e: ChangeEvent<HTMLSelectElement>,
+		column: Order
+	) => {
 		const newStatus = e.currentTarget.value as Order['status'];
 		delete column.cost;
 		dispatch(putOrders({ ...column, status: newStatus }));
@@ -128,6 +112,26 @@ const OrdersDataTable: FC<OrdersDataTableProps> = () => {
 							</RowsBox>
 						</Rows>
 						<Rows
+							active={key === 'payment'}
+							onClick={() => {
+								if (key === 'payment') {
+									setFilter(filter => !filter);
+								} else {
+									setKey('payment');
+									setFilter(true);
+								}
+							}}
+						>
+							<RowsBox>
+								<RowsText>Оплата</RowsText>{' '}
+								{key === 'payment' && filter ? (
+									<AiFillCaretUp />
+								) : (
+									<AiFillCaretDown />
+								)}
+							</RowsBox>
+						</Rows>
+						<Rows
 							active={key === 'status'}
 							onClick={() => {
 								if (key === 'status') {
@@ -139,7 +143,12 @@ const OrdersDataTable: FC<OrdersDataTableProps> = () => {
 							}}
 						>
 							<RowsBox>
-								<RowsText>Статус</RowsText> {key === 'status' && filter ? <AiFillCaretUp /> : <AiFillCaretDown />}
+								<RowsText>Статус</RowsText>{' '}
+								{key === 'status' && filter ? (
+									<AiFillCaretUp />
+								) : (
+									<AiFillCaretDown />
+								)}
 							</RowsBox>
 						</Rows>
 						<Rows
@@ -154,48 +163,51 @@ const OrdersDataTable: FC<OrdersDataTableProps> = () => {
 							}}
 						>
 							<RowsBox>
-								<RowsText>Дата</RowsText> {key === 'date' && filter ? <AiFillCaretUp /> : <AiFillCaretDown />}
+								<RowsText>Дата</RowsText>{' '}
+								{key === 'date' && filter ? (
+									<AiFillCaretUp />
+								) : (
+									<AiFillCaretDown />
+								)}
 							</RowsBox>
 						</Rows>
-						<Rows active={false}>
+						<Rows
+							active={key === 'cost'}
+							onClick={() => {
+								if (key === 'cost') {
+									setFilter(filter => !filter);
+								} else {
+									setKey('cost');
+									setFilter(true);
+								}
+							}}
+						>
 							<RowsBox>
-								<RowsText>Загальна сума</RowsText>
+								<RowsText>Загальна сума</RowsText>{' '}
+								{key === 'cost' && filter ? (
+									<AiFillCaretUp />
+								) : (
+									<AiFillCaretDown />
+								)}
 							</RowsBox>
 						</Rows>
-						{/* <Rows
-              active={key === rowsType[index]}
-              onClick={() => {
-                if (key === rowsType[index]) {
-                  setFilter(filter => !filter);
-                } else {
-                  setKey(rowsType[index]);
-                  setFilter(true);
-                }
-              }}
-            >
-              <RowsBox>
-                <RowsText>{row}</RowsText>{' '}
-                {key === rowsType[index] && filter ? (
-                  <AiFillCaretUp />
-                ) : (
-                  <AiFillCaretDown />
-                )}
-              </RowsBox>
-            </Rows> */}
 						<RowsDelete>
-							<RowsBoxCenter>
-								{/* <AiOutlineRest />
-                    <AiOutlineContainer /> */}
-							</RowsBoxCenter>
+							<RowsBoxCenter></RowsBoxCenter>
 						</RowsDelete>
 					</tr>
 				</Thead>
 				<Tbody>
 					{sortData.slice((p - 1) * items, items * p).map((column, index) => {
 						return (
-							<Columns key={index}>
+							<Columns
+								key={index}
+								active={column.id === current?.id}
+								onClick={() => setCurrent(column)}
+							>
 								<Column>
-									<ColumnName>{column.customer.firstName + ' ' + column.customer.lastName}</ColumnName>
+									<ColumnName>
+										{column.customer.firstName + ' ' + column.customer.lastName}
+									</ColumnName>
 									<ColumnEmail>{column.customer.email}</ColumnEmail>
 								</Column>
 								<Column>
@@ -206,7 +218,11 @@ const OrdersDataTable: FC<OrdersDataTableProps> = () => {
 								</Column>
 								<Column>
 									<ColumnText>
-										{/* {column.status} */}
+										{column.payment === 1 ? 'при отримані' : 'передплата'}
+									</ColumnText>
+								</Column>
+								<Column>
+									<ColumnText>
 										<select
 											value={column.status}
 											onChange={e => {
@@ -221,9 +237,12 @@ const OrdersDataTable: FC<OrdersDataTableProps> = () => {
 									</ColumnText>
 								</Column>
 								<Column>
-									<ColumnText>{`${new Date(column.date).toLocaleString('en-GB', {
-										timeZone: 'UTC',
-									})}`}</ColumnText>
+									<ColumnText>{`${new Date(column.date).toLocaleString(
+										'en-GB',
+										{
+											timeZone: 'UTC',
+										}
+									)}`}</ColumnText>
 								</Column>
 								<Column>
 									<ColumnText>{column.cost} грн.</ColumnText>
@@ -252,8 +271,12 @@ const OrdersDataTable: FC<OrdersDataTableProps> = () => {
 				</Tbody>
 				<Tfoot>
 					<TfootTr>
-						<TfootTh colSpan={7}>
-							<TfootButton type="button" disabled={p === 1} onClick={() => setP(p => p - 1)}>
+						<TfootTh colSpan={8}>
+							<TfootButton
+								type="button"
+								disabled={p === 1}
+								onClick={() => setP(p => p - 1)}
+							>
 								Previous
 							</TfootButton>
 
@@ -261,7 +284,11 @@ const OrdersDataTable: FC<OrdersDataTableProps> = () => {
 								Сторінка {p} / {Math.ceil(total / items)}
 							</span>
 
-							<TfootButton type="button" disabled={p === Math.ceil(total / items)} onClick={() => setP(p => p + 1)}>
+							<TfootButton
+								type="button"
+								disabled={p === Math.ceil(total / items)}
+								onClick={() => setP(p => p + 1)}
+							>
 								Next
 							</TfootButton>
 						</TfootTh>
@@ -273,65 +300,26 @@ const OrdersDataTable: FC<OrdersDataTableProps> = () => {
 					<ModalBox>
 						<ModalDeleteTitle>Дійсно видалити</ModalDeleteTitle>
 						<ModalDeleteButtonsBox>
-							<ModalDeleteButton type="button" onClick={() => current && dispatch(delOerder(current.id))}>
+							<ModalDeleteButton
+								type="button"
+								onClick={() => current && dispatch(delOerder(current.id))}
+							>
 								Так
 							</ModalDeleteButton>
-							<ModalDeleteButton type="button" onClick={() => setDeleteOpen(false)}>
+							<ModalDeleteButton
+								type="button"
+								onClick={() => setDeleteOpen(false)}
+							>
 								Ні
 							</ModalDeleteButton>
 						</ModalDeleteButtonsBox>
 					</ModalBox>
 				</Modal>
 			)}
-			{readOpen && (
+			{readOpen && current && (
 				<Modal openBasket={() => setReadOpen(false)}>
 					<ModalBox>
-						{current ? (
-							<ReadBox>
-								<ReadBoxTitle>Замовлення</ReadBoxTitle>
-								<p>Абонент: {current.customer.firstName + ' ' + current.customer.lastName}</p>
-								<p>Пошта: {current.customer.email}</p>
-								<p>Телефон: {current.customer.phone}</p>
-								<div>
-									<p>Повідомлення:</p>
-									<ReadBoxMessage>{current.customer.message}</ReadBoxMessage>
-								</div>
-								<p>
-									Час:{' '}
-									{new Date(current.date).toLocaleString('en-GB', {
-										timeZone: 'UTC',
-									})}
-								</p>
-								<p>Доставка у {current.delivery.Description}</p>
-								<p>Замовлення</p>
-								<ul>
-									{current.orders.map((order, index) => {
-										const tovar = tovars.find(tovar => tovar.id === order.id);
-										if (tovar) {
-											return (
-												<li key={order.id}>
-													<p>{index + 1}</p>
-													<p>назва: {tovar.nameUKR}</p>
-													<p>кількість: {order.baskeQuantity}</p>
-													<p>ціна за один: {tovar.cost}</p>
-												</li>
-											);
-										}
-										return null;
-									})}
-								</ul>
-								<p>Загалом: {current.cost}</p>
-								<DeleteButton
-									onClick={() => {
-										setDeleteOpen(true);
-									}}
-								>
-									<AiOutlineRest />
-								</DeleteButton>
-							</ReadBox>
-						) : (
-							'Loading...'
-						)}
+						<OrderRead order={current} />
 					</ModalBox>
 				</Modal>
 			)}
