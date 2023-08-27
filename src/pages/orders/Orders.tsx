@@ -1,7 +1,8 @@
 import React, { FC, useEffect } from 'react';
-import OrdersDataTable from '../../components/ordersDataTable/ordersDataTable';
 import { useAppDispatch } from '../../hooks';
 import { fetchOrders } from '../../redux/orders/ordersOperations';
+import { Outlet } from 'react-router-dom';
+import OrderNav from '../../components/orderNav/orderNav';
 
 type OrdersProps = {};
 
@@ -12,8 +13,13 @@ const Orders: FC<OrdersProps> = props => {
 	}, [dispatch]);
 	return (
 		<div>
-			<p>Orders</p>
-			<OrdersDataTable />
+			<h1>Orders</h1>
+			<div style={{ marginTop: '40px' }}>
+				<OrderNav />
+			</div>
+			<div style={{ marginTop: '40px' }}>
+				<Outlet />
+			</div>
 		</div>
 	);
 };
