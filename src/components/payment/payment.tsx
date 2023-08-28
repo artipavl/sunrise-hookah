@@ -1,11 +1,19 @@
 import React, { FC } from 'react';
-import { useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { selectBasket } from '../../redux/basket/basketSelectors';
-import { GarantItem, GarantList, PaymentBottomLine, PaymentBox, PaymentLine, SubmitButton } from './payment.style';
+import {
+	GarantItem,
+	GarantList,
+	PaymentBottomLine,
+	PaymentBox,
+	PaymentLine,
+	SubmitButton,
+} from './payment.style';
 import { Warehous } from '../../Types/novaposhta';
 import axios from 'axios';
 import { AddOrder } from '../../Types/order';
 import { useNavigate } from 'react-router-dom';
+import { removeBasket } from '../../redux/basket/basketSlice';
 
 interface FormValues {
 	firstName: string;
@@ -23,6 +31,7 @@ type PaymentProps = {
 
 const Payment: FC<PaymentProps> = ({ cotact, warehouses, pay }) => {
 	const tovars = useAppSelector(selectBasket);
+	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 	return (
 		<PaymentBox>
@@ -31,7 +40,8 @@ const Payment: FC<PaymentProps> = ({ cotact, warehouses, pay }) => {
 				<PaymentLine>
 					<p>{tovars.reduce((a, b) => a + b.baskeQuantity, 0)} товар на суму</p>
 					<p>
-						{tovars.reduce((a, b) => a + b.cost * b.baskeQuantity, 0)} <span>₴</span>
+						{tovars.reduce((a, b) => a + b.cost * b.baskeQuantity, 0)}{' '}
+						<span>₴</span>
 					</p>
 				</PaymentLine>
 				<PaymentLine>
@@ -43,7 +53,8 @@ const Payment: FC<PaymentProps> = ({ cotact, warehouses, pay }) => {
 				<PaymentLine>
 					<p>До сплати</p>
 					<p>
-						{tovars.reduce((a, b) => a + b.cost * b.baskeQuantity, 0)} <span>₴</span>
+						{tovars.reduce((a, b) => a + b.cost * b.baskeQuantity, 0)}{' '}
+						<span>₴</span>
 					</p>
 				</PaymentLine>
 			</PaymentBottomLine>
@@ -64,6 +75,7 @@ const Payment: FC<PaymentProps> = ({ cotact, warehouses, pay }) => {
 								delivery: warehouses,
 								payment: pay,
 							} as AddOrder);
+							dispatch(removeBasket);
 							navigate('/');
 						} catch (error) {
 							console.log(error);
@@ -77,7 +89,9 @@ const Payment: FC<PaymentProps> = ({ cotact, warehouses, pay }) => {
 			<div>
 				<p>Підтверджуючи замовлення, я приймаю умови:</p>
 				<GarantList>
-					<GarantItem>положення про обробку і захист персональних даних</GarantItem>
+					<GarantItem>
+						положення про обробку і захист персональних даних
+					</GarantItem>
 					<GarantItem>угоди користувача </GarantItem>
 				</GarantList>
 			</div>
