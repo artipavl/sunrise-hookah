@@ -23,16 +23,21 @@ export const basketSlice = createSlice({
 	initialState,
 	reducers: {
 		addToBasket: (state, action: PayloadAction<TovarBasket>) => {
-			const index = state.tovars.findIndex(item => item.id === action.payload.id);
+			const index = state.tovars.findIndex(
+				item => item.id === action.payload.id
+			);
 
 			if (index !== -1) {
-				state.tovars[index].baskeQuantity = state.tovars[index].baskeQuantity + 1;
+				state.tovars[index].baskeQuantity =
+					state.tovars[index].baskeQuantity + 1;
 			} else {
 				state.tovars.push({ ...action.payload, baskeQuantity: 1 });
 			}
 		},
 		updateQuantity: (state, action: PayloadAction<updateQuantityPayload>) => {
-			const index = state.tovars.findIndex(item => item.id === action.payload.id);
+			const index = state.tovars.findIndex(
+				item => item.id === action.payload.id
+			);
 			if (index !== -1) {
 				state.tovars[index].baskeQuantity = action.payload.baskeQuantity;
 			}
@@ -40,9 +45,13 @@ export const basketSlice = createSlice({
 		deleteFromBasket: (state, action: PayloadAction<string>) => {
 			state.tovars = state.tovars.filter(tovar => tovar.id !== action.payload);
 		},
+		removeBasket: state => {
+			state = initialState;
+		},
 	},
 });
 
-export const { addToBasket, updateQuantity, deleteFromBasket } = basketSlice.actions;
+export const { addToBasket, updateQuantity, deleteFromBasket, removeBasket } =
+	basketSlice.actions;
 
 export default basketSlice.reducer;
