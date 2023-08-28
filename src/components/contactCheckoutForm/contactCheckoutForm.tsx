@@ -121,18 +121,6 @@ const ContactCheckoutForm = withFormik<MyFormProps, FormValues>({
     };
   },
 
-  // validate: values => {
-  //   let errors: FormikErrors<FormValues> = {};
-  //   if (values.password !== values.passwordConfirm) {
-  //     errors.password = 'Паролі мають співпадати';
-  //     errors.passwordConfirm = 'Паролі мають співпадати';
-  //   }
-  //   if (!values.agree) {
-  //     errors.agree = 'Required';
-  //   }
-  //   return errors;
-  // },
-
   validationSchema: SignupSchema,
 
   handleSubmit: (values, formikBag) => {
