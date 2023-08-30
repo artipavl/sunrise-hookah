@@ -1,14 +1,19 @@
 import React, { FC, useEffect, useMemo, useState } from 'react';
 import { Container } from '../../reuseСomponents/container.style';
 import {
+	CustomSliderBox,
+	FieldInput,
 	FiltersBox,
 	InputRadio,
 	ItemOpt,
+	NumbersLine,
+	NumbersSlider,
 	ProgressBar,
 	SectionTovars,
 	SliderBar,
 	SortCustomBtn,
 	SortingBtn,
+	TextSpan,
 	Title,
 	TovarList,
 } from './product.style';
@@ -152,29 +157,33 @@ const Product: FC<ProductProps> = () => {
 										))}
 									</form>
 								</SortCustomBtn>
-								<div>
-									<label>
-										<input
-											type="number"
-											name="min"
-											id="minValue"
-											value={minPrice}
-										/>
-									</label>
-									<label>
-										<input
-											type="number"
-											name="max"
-											id="maxValue"
+								<CustomSliderBox>
+									<NumbersLine>
+										<NumbersSlider>
+											<TextSpan>Min</TextSpan>
+											<FieldInput
+												type="number"
+												name="min"
+												id="minValue"
+												value={minPrice}
+											/>
+										</NumbersSlider>
+										<NumbersSlider>
+											<TextSpan>Max</TextSpan>
+											<FieldInput
+												type="number"
+												name="max"
+												id="maxValue"
 												value={maxPrice}
 												// onChange={() => setMaxPrice()}
-										/>
-										</label>
-										
-										<SliderBar>
-											<ProgressBar></ProgressBar>
-										</SliderBar>
-								</div>
+											/>
+										</NumbersSlider>
+									</NumbersLine>
+
+									<SliderBar>
+										<ProgressBar></ProgressBar>
+									</SliderBar>
+								</CustomSliderBox>
 							</FiltersBox>
 							<TovarList>
 								{sorted.map(tovar => (
