@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import * as Yup from 'yup';
-import { withFormik, FormikProps, Form } from 'formik';
+import { withFormik, FormikProps, Form  } from 'formik';
 import {
 	BoxBtn,
 	BoxFields,
@@ -199,10 +199,16 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 						type="file"
 						multiple
 						accept="image/*,.pdf,.png"
-						onChange={event =>
-							props.setFieldValue('fotos', event.currentTarget.files)
-						}
+						// value={props.values.fotos}
+						onChange={event => {
+							props.setFieldValue('fotos', event.currentTarget.files);
+							console.log(props);
+							console.log(props.values);
+						}}
 					/>
+
+					<div> </div>
+
 					{touched.fotos && errors.fotos && <ErrorBox>{errors.fotos}</ErrorBox>}
 				</FormLabelFile>
 			</BoxFields>
@@ -219,7 +225,7 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 // The type of props MyForm receives
 interface MyFormProps {
 	initialEmail?: string;
-	message: string; // if this passed all the way through you might do this or make a union type
+	message: string;
 }
 
 // Wrap our form with the withFormik HoC
@@ -275,8 +281,8 @@ const MyForm = withFormik<MyFormProps, FormValues>({
 
 			completeSetUKR: values.completeSetUA,
 			completeSetEN: values.completeSet,
-			
-      type: values.type,
+
+			type: values.type,
 			cost: values.cost,
 			quantity: values.quantity,
 			popularity: values.popularity,
