@@ -1,4 +1,9 @@
-import React, { FC, useState, useMemo, useEffect } from 'react';
+import React, {
+	FC,
+	useState,
+	useMemo,
+	useEffect,
+} from 'react';
 import {
 	Column,
 	ColumnDelete,
@@ -29,7 +34,10 @@ import {
 	AiOutlineRest,
 } from 'react-icons/ai';
 import Modal from '../modal/modal';
-import { useAppDispatch, useAppSelector } from '../../hooks';
+import {
+	useAppDispatch,
+	useAppSelector,
+} from '../../hooks';
 import Tovar from '../../Types/tovar';
 import sortArrByKey from '../../helpers/sortArrByKey';
 import { selectTypes } from '../../redux/types/slice';
@@ -39,16 +47,22 @@ type TovarsDataTableProps = {
 	data: Tovar[];
 };
 
-const TovarsDataTable: FC<TovarsDataTableProps> = ({ data }) => {
+const TovarsDataTable: FC<
+	TovarsDataTableProps
+> = ({ data }) => {
 	const [p, setP] = useState(1);
 	const [total, setTotal] = useState(1);
 	const [items] = useState(5);
-	const [key, setKey] = useState<keyof Tovar>('cost');
+	const [key, setKey] =
+		useState<keyof Tovar>('cost');
 	const [filter, setFilter] = useState(false);
 
-	const [current, setCurrent] = useState<Tovar | null>(null);
-	const [deleteOpen, setDeleteOpen] = useState<boolean>();
-	const [readOpen, setReadOpen] = useState<boolean>();
+	const [current, setCurrent] =
+		useState<Tovar | null>(null);
+	const [deleteOpen, setDeleteOpen] =
+		useState<boolean>();
+	const [readOpen, setReadOpen] =
+		useState<boolean>();
 
 	const types = useAppSelector(selectTypes);
 
@@ -95,7 +109,8 @@ const TovarsDataTable: FC<TovarsDataTableProps> = ({ data }) => {
 						>
 							<RowsBox>
 								<RowsText>Популярність</RowsText>{' '}
-								{key === 'popularity' && filter ? (
+								{key === 'popularity' &&
+								filter ? (
 									<AiFillCaretUp />
 								) : (
 									<AiFillCaretDown />
@@ -128,51 +143,72 @@ const TovarsDataTable: FC<TovarsDataTableProps> = ({ data }) => {
 					</tr>
 				</Thead>
 				<Tbody>
-					{sortData.slice((p - 1) * items, items * p).map((column, index) => {
-						return (
-							<Columns
-								key={index}
-								active={column.id === current?.id}
-								onClick={() => setCurrent(column)}
-							>
-								<Column>
-									<ColumnText>{column.nameUKR}</ColumnText>
-								</Column>
-								<Column>
-									<ColumnText>
-										{types.find(type => type.en === column.type)?.ukr}
-									</ColumnText>
-								</Column>
-								<Column>
-									<img src={column.fotos[0]} alt={column.nameUKR} />
-								</Column>
-								<Column>
-									<ColumnText>{column.popularity}</ColumnText>
-								</Column>
-								<Column>
-									<ColumnText>{column.cost} грн.</ColumnText>
-								</Column>
-								<ColumnDelete>
-									<DeleteButton
-										onClick={() => {
-											setCurrent(column);
-											setDeleteOpen(true);
-										}}
-									>
-										<AiOutlineRest />
-									</DeleteButton>
-									<DeleteButton
-										onClick={() => {
-											setCurrent(column);
-											setReadOpen(true);
-										}}
-									>
-										<AiOutlineContainer />
-									</DeleteButton>
-								</ColumnDelete>
-							</Columns>
-						);
-					})}
+					{sortData
+						.slice((p - 1) * items, items * p)
+						.map((column, index) => {
+							return (
+								<Columns
+									key={index}
+									active={
+										column.id === current?.id
+									}
+									onClick={() =>
+										setCurrent(column)
+									}
+								>
+									<Column>
+										<ColumnText>
+											{column.nameUKR}
+										</ColumnText>
+									</Column>
+									<Column>
+										<ColumnText>
+											{
+												types.find(
+													type =>
+														type.en ===
+														column.type
+												)?.ukr
+											}
+										</ColumnText>
+									</Column>
+									<Column>
+										<img
+											src={column.fotos[0]}
+											alt={column.nameUKR}
+										/>
+									</Column>
+									<Column>
+										<ColumnText>
+											{column.popularity}
+										</ColumnText>
+									</Column>
+									<Column>
+										<ColumnText>
+											{column.cost} грн.
+										</ColumnText>
+									</Column>
+									<ColumnDelete>
+										<DeleteButton
+											onClick={() => {
+												setCurrent(column);
+												setDeleteOpen(true);
+											}}
+										>
+											<AiOutlineRest />
+										</DeleteButton>
+										<DeleteButton
+											onClick={() => {
+												setCurrent(column);
+												setReadOpen(true);
+											}}
+										>
+											<AiOutlineContainer />
+										</DeleteButton>
+									</ColumnDelete>
+								</Columns>
+							);
+						})}
 				</Tbody>
 				<Tfoot>
 					<TfootTr>
@@ -186,12 +222,15 @@ const TovarsDataTable: FC<TovarsDataTableProps> = ({ data }) => {
 							</TfootButton>
 
 							<span>
-								Сторінка {p} / {Math.ceil(total / items)}
+								Сторінка {p} /{' '}
+								{Math.ceil(total / items)}
 							</span>
 
 							<TfootButton
 								type="button"
-								disabled={p === Math.ceil(total / items)}
+								disabled={
+									p === Math.ceil(total / items)
+								}
 								onClick={() => setP(p => p + 1)}
 							>
 								Next
@@ -201,19 +240,30 @@ const TovarsDataTable: FC<TovarsDataTableProps> = ({ data }) => {
 				</Tfoot>
 			</Table>
 			{deleteOpen && (
-				<Modal openBasket={() => setDeleteOpen(false)}>
+				<Modal
+					openBasket={() => setDeleteOpen(false)}
+				>
 					<ModalBox>
-						<ModalDeleteTitle>Дійсно видалити</ModalDeleteTitle>
+						<ModalDeleteTitle>
+							Дійсно видалити
+						</ModalDeleteTitle>
 						<ModalDeleteButtonsBox>
 							<ModalDeleteButton
 								type="button"
-								onClick={() => current && dispatch(removeTovarById(current.id))}
+								onClick={() =>
+									current &&
+									dispatch(
+										removeTovarById(current.id)
+									)
+								}
 							>
 								Так
 							</ModalDeleteButton>
 							<ModalDeleteButton
 								type="button"
-								onClick={() => setDeleteOpen(false)}
+								onClick={() =>
+									setDeleteOpen(false)
+								}
 							>
 								Ні
 							</ModalDeleteButton>
@@ -222,7 +272,9 @@ const TovarsDataTable: FC<TovarsDataTableProps> = ({ data }) => {
 				</Modal>
 			)}
 			{readOpen && current && (
-				<Modal openBasket={() => setReadOpen(false)}>
+				<Modal
+					openBasket={() => setReadOpen(false)}
+				>
 					<ModalBox></ModalBox>
 				</Modal>
 			)}

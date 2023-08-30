@@ -8,7 +8,10 @@ import {
 	ErrorBox,
 	FormLabel,
 	FormLabelFile,
+	Gallery,
+	GalleryItem,
 	H1,
+	ImgCard,
 	InputFileStyled,
 	InputStyled,
 	SelectType,
@@ -70,8 +73,11 @@ interface OtherProps {
 
 const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 	const { touched, errors, isSubmitting, message } = props;
-	const types = useAppSelector(selectTypes);
+
 	const [fotosArray, setFotosArray] = useState<string[]>([]);
+	const [first, setFirst] = useState<number | null>(null);
+
+	const types = useAppSelector(selectTypes);
 
 	useEffect(() => {
 		async function createFotosArr(fotos: FileList): Promise<string[]> {
@@ -111,7 +117,6 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 
 		if (props.values.fotos) {
 			createFotosArr(props.values.fotos).then(value => {
-				console.log(value);
 				setFotosArray(value);
 			});
 		}
@@ -138,6 +143,60 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 	// 	console.log(fotos);
 	// 	return fotosArr;
 	// }
+
+	function dragStartHandler(e: React.DragEvent<HTMLLIElement>, index: number) {
+		setFirst(index);
+	}
+
+	function dragEndHandler(
+		e: React.DragEvent<HTMLLIElement>,
+		card: string,
+		index: number
+	) {
+		e.preventDefault();
+	}
+
+	function dragOverHandler(e: React.DragEvent<HTMLLIElement>) {
+		e.preventDefault();
+	}
+
+	function dropHanler(
+		e: React.DragEvent<HTMLLIElement>,
+		card: string,
+		index: number
+	) {
+		e.preventDefault();
+
+		console.log(e.currentTarget.dataset.order);
+
+		if ((first || first === 0) && props.values.fotos instanceof FileList) {
+			// test
+			// files
+			const newFilesFoto = props.values.fotos;
+			const secondFile = newFilesFoto[index];
+			const firstFile = newFilesFoto[first];
+
+			// newFilesFoto[index] = firstFile;
+			// newFilesFoto[first] = secondFile; 3 9
+
+			var dt = new DataTransfer();
+
+			for (let i = 0; i < newFilesFoto.length; i++) {
+				if (i === index) {
+					dt.items.add(firstFile);
+				} else if (i === first) {
+					dt.items.add(secondFile);
+				} else {
+					dt.items.add(newFilesFoto[i]);
+				}
+			}
+			var file_list = dt.files;
+			props.setValues(v => {
+				return { ...v, fotos: file_list };
+			});
+			setFirst(null);
+		}
+	}
 
 	return (
 		<Form>
@@ -278,17 +337,29 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 				</FormLabelFile>
 				<div>
 					{fotosArray.length && (
-						<ul>
+						<Gallery>
 							{fotosArray.map((foto, index) => (
-								<li key={index}>
+								<GalleryItem
+									key={index}
+									draggable={true}
+									onDragStart={e => dragStartHandler(e, index)}
+									onDragLeave={e => dragEndHandler(e, foto, index)}
+									onDragEnd={e => dragEndHandler(e, foto, index)}
+									onDragOver={e => dragOverHandler(e)}
+									onDrop={e => dropHanler(e, foto, index)}
+								>
 									{' '}
-									<img src={foto} alt="" />
-								</li>
+									<ImgCard src={foto} alt="" />
+								</GalleryItem>
 							))}
-						</ul>
+						</Gallery>
 					)}
 				</div>
 			</BoxFields>
+
+			<button type="button" onClick={() => console.log(props.values.fotos)}>
+				get
+			</button>
 
 			<BoxBtn>
 				<ButtonSubmit type="submit" disabled={isSubmitting}>

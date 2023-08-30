@@ -150,3 +150,27 @@ export const TypesSelect = styled.select`
   border: 1px solid #DADADA;
   padding: 8px;
 `;
+
+export const Gallery = styled.ul`
+display: flex;
+flex-wrap: wrap;
+gap: 10px;
+background-color: teal;
+
+`;
+
+export const GalleryItem = styled.li`
+width: calc((100% - 20px) / 3);
+height: 350px;
+
+cursor: grab;
+
+`;
+
+export const ImgCard = styled.img`
+height: 100%;
+width: 100%;
+
+object-fit: contain;
+background-color: aqua;
+`;

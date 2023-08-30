@@ -175,7 +175,6 @@ const Product: FC<ProductProps> = () => {
 												name="max"
 												id="maxValue"
 												value={maxPrice}
-												// onChange={() => setMaxPrice()}
 											/>
 										</NumbersSlider>
 									</NumbersLine>
