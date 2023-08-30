@@ -43,6 +43,21 @@ export const fetchAllTovars = createAsyncThunk(
 		}
 	}
 );
+export const addTovar = createAsyncThunk(
+	'users/addTovar',
+	async (form: any, thunkAPI) => {
+		try {
+			const date = await axios.post('/tovar', form);
+			if (date.status !== 201) {
+				return thunkAPI.rejectWithValue(date.data);
+			}
+
+			return date.data as Tovar;
+		} catch (error) {
+			return thunkAPI.rejectWithValue(error);
+		}
+	}
+);
 
 export const removeTovarById = createAsyncThunk(
 	'users/removeTovar',

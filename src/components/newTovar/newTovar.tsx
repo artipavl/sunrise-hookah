@@ -18,11 +18,11 @@ import {
 	Signature,
 	TypesSelect,
 } from './newTovar.style';
-import { TextEditor } from '../utils/textEditor';
-import axios from 'axios';
+import { TextEditor } from '../utils/textEditor'; 
 import { AddTovar } from '../../Types/tovar';
-import { useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { selectTypes } from '../../redux/types/slice';
+import { addTovar } from '../../redux/tovars/tovarsOperations';
 
 const TovarSchema = Yup.object().shape({
 	nameUA: Yup.string()
@@ -48,7 +48,6 @@ const TovarSchema = Yup.object().shape({
 	popularity: Yup.number().min(1, 'Зроби нормально').required('Required'),
 });
 
-// Shape of form values
 interface FormValues {
 	nameUA: string;
 	descriptionUA: string;
@@ -122,28 +121,6 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 		}
 	}, [props.values.fotos]);
 
-	// function createFotosArr(fotos: FileList) {
-	// 	const fotosArr: string[] = [];
-	// 	if (FileReader && fotos && fotos.length) {
-	// 		for (var i = 0; i < fotos.length; i++) {
-	// 			var fr = new FileReader();
-
-	// 			fr.onload = function () {
-	// 				const result = fr.result;
-	// 				fotosArr.push(result as string);
-	// 			};
-
-	// 			fr.readAsDataURL(fotos[i]);
-	// 			const file = fotos.item(i);
-	// 			file !== null && fotosArr.push(file ? file.name : '');
-	// 			console.log(fotos.item(i));
-	// 		}
-	// 	}
-
-	// 	console.log(fotos);
-	// 	return fotosArr;
-	// }
-
 	function dragStartHandler(e: React.DragEvent<HTMLLIElement>, index: number) {
 		setFirst(index);
 	}
@@ -167,17 +144,10 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 	) {
 		e.preventDefault();
 
-		console.log(e.currentTarget.dataset.order);
-
 		if ((first || first === 0) && props.values.fotos instanceof FileList) {
-			// test
-			// files
 			const newFilesFoto = props.values.fotos;
 			const secondFile = newFilesFoto[index];
 			const firstFile = newFilesFoto[first];
-
-			// newFilesFoto[index] = firstFile;
-			// newFilesFoto[first] = secondFile; 3 9
 
 			var dt = new DataTransfer();
 
@@ -282,7 +252,6 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 
 				<FormLabel error={Boolean(touched.type && errors.type)}>
 					<Signature>Type </Signature>
-					{/* <InputStyled type='text' name="type" /> */}
 
 					<TypesSelect
 						name="type"
@@ -325,7 +294,6 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 						type="file"
 						multiple
 						accept="image/*,.pdf,.png"
-						// value={props.values.fotos}
 						onChange={event => {
 							props.setFieldValue('fotos', event.currentTarget.files);
 						}}
@@ -336,7 +304,7 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 					{touched.fotos && errors.fotos && <ErrorBox>{errors.fotos}</ErrorBox>}
 				</FormLabelFile>
 				<div>
-					{fotosArray.length && (
+					{fotosArray.length > 0 && (
 						<Gallery>
 							{fotosArray.map((foto, index) => (
 								<GalleryItem
@@ -357,10 +325,6 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 				</div>
 			</BoxFields>
 
-			<button type="button" onClick={() => console.log(props.values.fotos)}>
-				get
-			</button>
-
 			<BoxBtn>
 				<ButtonSubmit type="submit" disabled={isSubmitting}>
 					Submit
@@ -370,13 +334,12 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 	);
 };
 
-// The type of props MyForm receives
 interface MyFormProps {
 	initialEmail?: string;
 	message: string;
+	submit: Function;
 }
 
-// Wrap our form with the withFormik HoC
 const MyForm = withFormik<MyFormProps, FormValues>({
 	mapPropsToValues: props => {
 		return {
@@ -398,19 +361,9 @@ const MyForm = withFormik<MyFormProps, FormValues>({
 		};
 	},
 
-	// validate: (values: FormValues) => {
-	//     let errors: FormikErrors<FormValues> = {};
-	//     // if (!values.email) {
-	//     //     errors.email = 'Required';
-	//     // } else if (!isValidEmail(values.email)) {
-	//     //     errors.email = 'Invalid email address';
-	//     // }
-	//     return errors;
-	// },
-
 	validationSchema: TovarSchema,
 
-	handleSubmit: (values, formikBag) => {
+	handleSubmit: (values, formikBag ) => {
 		const form = new FormData();
 		if (values.fotos) {
 			for (let index = 0; index < values.fotos.length; index++) {
@@ -437,17 +390,19 @@ const MyForm = withFormik<MyFormProps, FormValues>({
 			fotos: [],
 		};
 		form.append('tovar', JSON.stringify(tovar));
-		axios.post('/tovar', form).catch(e => {
-			console.log(e);
-		});
+		formikBag.props.submit(form)
 	},
 })(InnerForm);
 type NewTovarProps = {};
 
 const NewTovar: FC<NewTovarProps> = props => {
+	const dispatch = useAppDispatch();
 	return (
 		<div>
-			<MyForm message="add tovarchik" />
+			<MyForm
+				submit={(form: any) => dispatch(addTovar(form))}
+				message="add tovarchik"
+			/>
 		</div>
 	);
 };

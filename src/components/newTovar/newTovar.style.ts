@@ -4,6 +4,20 @@ interface FormLabelProps {
   error?: boolean
 }
 
+const colors = {
+mainBg: '#222',
+
+textGrey: '#dcdcdc',
+subGrey: '#686868',
+
+black: '#262626',
+subBlack: '#5a5a5a',
+
+  yellow: '#ffd058',
+
+white: '#fff'
+};
+
 export const FormLabel = styled.label<FormLabelProps>`
   display: grid;
   grid-template-columns: .4fr 2fr;
@@ -155,7 +169,12 @@ export const Gallery = styled.ul`
 display: flex;
 flex-wrap: wrap;
 gap: 10px;
-background-color: teal;
+background-color: ${colors.textGrey};
+
+padding: 10px;
+
+border-radius: 10px;
+
 
 `;
 
@@ -163,14 +182,18 @@ export const GalleryItem = styled.li`
 width: calc((100% - 20px) / 3);
 height: 350px;
 
+border-radius: 10px;
+
 cursor: grab;
 
 `;
 
 export const ImgCard = styled.img`
-height: 100%;
-width: 100%;
+	height: 100%;
+	width: 100%;
 
-object-fit: contain;
-background-color: aqua;
+	object-fit: contain;
+	background-color: ${colors.white};
+	border-radius: 10px;
 `;
+
