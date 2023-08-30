@@ -155,44 +155,43 @@ export const InputRadio = styled.input`
 // custom slider
 
 export const CustomSliderBox = styled.div`
-  width: 500px;
-  height: 300px;
-	
+	width: 500px;
+	height: 300px;
+
 	background-color: ${colors.subGrey};
 
 	padding: 20px;
-	
-	& input[type=number]::-webkit-outer-spin-button,
-	& input[type=number]::-webkit-inner-spin-button {
+
+	& input[type='number']::-webkit-outer-spin-button,
+	& input[type='number']::-webkit-inner-spin-button {
 		-webkit-appearance: none;
 	}
 `;
 
 export const NumbersLine = styled.div`
-display: flex;
-background-color: azure;
-height: 40px;
-align-items: center;
-justify-content: space-between;
-
+	display: flex;
+	background-color: azure;
+	height: 40px;
+	align-items: center;
+	justify-content: space-between;
 `;
 
 export const SliderBar = styled.div`
-  position: relative;
- 
-  height: 5px;
-  border-radius: 5px;
-  
-  width: 100%;
-  
-color: ${colors.subGrey};
-margin-top: 20px;
+	position: relative;
+
+	height: 5px;
+	border-radius: 5px;
+
+	width: 100%;
+
+	color: ${colors.subGrey};
+	margin-top: 20px;
 `;
 
 export const ProgressBar = styled.div`
-  position: absolute;
-  height: 100%;
-  background-color: ${colors.yellow};
+	position: absolute;
+	height: 100%;
+	background-color: ${colors.yellow};
 	width: 100%;
 `;
 
@@ -204,20 +203,19 @@ export const NumbersSlider = styled.label`
 `;
 
 export const FieldInput = styled.input`
-height: 100%;
-width: 150px;
+	height: 100%;
+	width: 150px;
 
-padding: 10px 15px;
+	padding: 10px 15px;
 
-text-align: center;
-font-size: 17px;
+	text-align: center;
+	font-size: 17px;
 
-appearance: none;
+	appearance: none;
 
-border: none;
-
+	border: none;
 `;
 
 export const TextSpan = styled.span`
- font-size: 21px;
+	font-size: 21px;
 `;
