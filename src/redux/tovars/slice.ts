@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import Tovar from '../../Types/tovar';
 import { RootState } from '../store';
 import {
+	addTovar,
 	fetchAllTovars,
 	fetchTovarsByTypes,
 	removeTovarById,
@@ -53,6 +54,9 @@ const tovarsSlice = createSlice({
 				state.tovars = state.tovars.filter(
 					tovar => tovar.id !== action.payload
 				);
+			})
+			.addCase(addTovar.fulfilled, (state, action) => {
+				state.tovars.push(action.payload);
 			});
 	},
 });
