@@ -102,8 +102,10 @@ export const BoxBtn = styled.div`
   border-top: .5px solid #DADADA;
   margin-inline: -60px;
 `;
-
-export const InputFileStyled = styled.input`
+type InputPhotoType = {
+  value?: Array<object> | null,
+}
+export const InputFileStyled = styled.input<InputPhotoType>`
   width: 0px;
   height: 0px;
   opacity: 0;

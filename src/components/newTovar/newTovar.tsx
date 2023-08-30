@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import * as Yup from 'yup';
 import { withFormik, FormikProps, Form } from 'formik';
 import {
@@ -71,6 +71,73 @@ interface OtherProps {
 const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 	const { touched, errors, isSubmitting, message } = props;
 	const types = useAppSelector(selectTypes);
+	const [fotosArray, setFotosArray] = useState<string[]>([]);
+
+	useEffect(() => {
+		async function createFotosArr(fotos: FileList): Promise<string[]> {
+			const fotosArr: string[] = [];
+			if (FileReader && fotos && fotos.length) {
+				for (let i = 0; i < fotos.length; i++) {
+					const fr = new FileReader();
+
+					fotosArr.push(await readFotos(fr, fotos[i]));
+				}
+			}
+
+			return fotosArr;
+		}
+
+		async function readFotos(fr: FileReader, file: File): Promise<string> {
+			return new Promise((resolve, reject) => {
+				fr.onload = () => {
+					resolve(fr.result as string);
+				};
+
+				fr.onabort = () => {
+					reject('Reading aborted');
+				};
+
+				fr.onerror = () => {
+					reject('Reading error');
+				};
+
+				fr.onloadend = () => {
+					console.log('Reading finished');
+				};
+
+				fr.readAsDataURL(file);
+			});
+		}
+
+		if (props.values.fotos) {
+			createFotosArr(props.values.fotos).then(value => {
+				console.log(value);
+				setFotosArray(value);
+			});
+		}
+	}, [props.values.fotos]);
+
+	// function createFotosArr(fotos: FileList) {
+	// 	const fotosArr: string[] = [];
+	// 	if (FileReader && fotos && fotos.length) {
+	// 		for (var i = 0; i < fotos.length; i++) {
+	// 			var fr = new FileReader();
+
+	// 			fr.onload = function () {
+	// 				const result = fr.result;
+	// 				fotosArr.push(result as string);
+	// 			};
+
+	// 			fr.readAsDataURL(fotos[i]);
+	// 			const file = fotos.item(i);
+	// 			file !== null && fotosArr.push(file ? file.name : '');
+	// 			console.log(fotos.item(i));
+	// 		}
+	// 	}
+
+	// 	console.log(fotos);
+	// 	return fotosArr;
+	// }
 
 	return (
 		<Form>
@@ -199,12 +266,28 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 						type="file"
 						multiple
 						accept="image/*,.pdf,.png"
-						onChange={event =>
-							props.setFieldValue('fotos', event.currentTarget.files)
-						}
+						// value={props.values.fotos}
+						onChange={event => {
+							props.setFieldValue('fotos', event.currentTarget.files);
+						}}
 					/>
+
+					{/* <div>{props.values.fotos !== null && props.values.fotos[0].name }</div> */}
+
 					{touched.fotos && errors.fotos && <ErrorBox>{errors.fotos}</ErrorBox>}
 				</FormLabelFile>
+				<div>
+					{fotosArray.length && (
+						<ul>
+							{fotosArray.map((foto, index) => (
+								<li key={index}>
+									{' '}
+									<img src={foto} alt="" />
+								</li>
+							))}
+						</ul>
+					)}
+				</div>
 			</BoxFields>
 
 			<BoxBtn>
@@ -219,7 +302,7 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 // The type of props MyForm receives
 interface MyFormProps {
 	initialEmail?: string;
-	message: string; // if this passed all the way through you might do this or make a union type
+	message: string;
 }
 
 // Wrap our form with the withFormik HoC
@@ -275,8 +358,8 @@ const MyForm = withFormik<MyFormProps, FormValues>({
 
 			completeSetUKR: values.completeSetUA,
 			completeSetEN: values.completeSet,
-			
-      type: values.type,
+
+			type: values.type,
 			cost: values.cost,
 			quantity: values.quantity,
 			popularity: values.popularity,
