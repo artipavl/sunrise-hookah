@@ -18,8 +18,8 @@ import {
 	Signature,
 	TypesSelect,
 } from './newTovar.style';
-import { TextEditor } from '../utils/textEditor'; 
-import { AddTovar } from '../../Types/tovar';
+import { TextEditor } from '../utils/textEditor';
+import Tovar, { AddTovar } from '../../Types/tovar';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { selectTypes } from '../../redux/types/slice';
 import { addTovar } from '../../redux/tovars/tovarsOperations';
@@ -63,17 +63,20 @@ interface FormValues {
 	cost: number;
 	quantity: number;
 	popularity: number;
-	fotos: FileList | null;
+	fotos: FileList | string[] | null;
 }
 
 interface OtherProps {
 	message: string;
+	tovar?: Tovar;
 }
 
 const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 	const { touched, errors, isSubmitting, message } = props;
 
-	const [fotosArray, setFotosArray] = useState<string[]>([]);
+	const [fotosArray, setFotosArray] = useState<string[]>(() =>
+		props.tovar ? props.tovar.fotos : []
+	);
 	const [first, setFirst] = useState<number | null>(null);
 
 	const types = useAppSelector(selectTypes);
@@ -114,10 +117,13 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 			});
 		}
 
-		if (props.values.fotos) {
+		if (props.values.fotos instanceof FileList) {
 			createFotosArr(props.values.fotos).then(value => {
 				setFotosArray(value);
 			});
+		}
+		if (props.values.fotos instanceof Array) {
+			setFotosArray(props.values.fotos);
 		}
 	}, [props.values.fotos]);
 
@@ -163,6 +169,25 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 			var file_list = dt.files;
 			props.setValues(v => {
 				return { ...v, fotos: file_list };
+			});
+			setFirst(null);
+		}
+
+		if (
+			(first || first === 0) &&
+			props.values.fotos instanceof Array &&
+			props.values.fotos !== null
+		) {
+			console.log('asdasdasd');
+			const newFilesFoto = [...props.values.fotos];
+			const secondFile = newFilesFoto[index];
+			const firstFile = newFilesFoto[first];
+
+			newFilesFoto[index] = firstFile;
+			newFilesFoto[first] = secondFile;
+
+			props.setValues(v => {
+				return { ...v, fotos: newFilesFoto };
 			});
 			setFirst(null);
 		}
@@ -288,21 +313,23 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 					)}
 				</FormLabel>
 
-				<FormLabelFile>
-					<Signature>Завантажити файл</Signature>
-					<InputFileStyled
-						type="file"
-						multiple
-						accept="image/*,.pdf,.png"
-						onChange={event => {
-							props.setFieldValue('fotos', event.currentTarget.files);
-						}}
-					/>
+				{!props.tovar && (
+					<FormLabelFile>
+						<Signature>Завантажити файл</Signature>
+						<InputFileStyled
+							type="file"
+							multiple
+							accept="image/*,.pdf,.png"
+							onChange={event => {
+								props.setFieldValue('fotos', event.currentTarget.files);
+							}}
+						/>
 
-					{/* <div>{props.values.fotos !== null && props.values.fotos[0].name }</div> */}
-
-					{touched.fotos && errors.fotos && <ErrorBox>{errors.fotos}</ErrorBox>}
-				</FormLabelFile>
+						{touched.fotos && errors.fotos && (
+							<ErrorBox>{errors.fotos}</ErrorBox>
+						)}
+					</FormLabelFile>
+				)}
 				<div>
 					{fotosArray.length > 0 && (
 						<Gallery>
@@ -338,23 +365,43 @@ interface MyFormProps {
 	initialEmail?: string;
 	message: string;
 	submit: Function;
+	tovar?: Tovar;
 }
 
-const MyForm = withFormik<MyFormProps, FormValues>({
+export const MyForm = withFormik<MyFormProps, FormValues>({
 	mapPropsToValues: props => {
+		if (props.tovar) {
+			return {
+				nameUA: props.tovar.nameUKR,
+				descriptionUA: props.tovar.descriptionUKR,
+				parametersUA: props.tovar.parametersUKR,
+				completeSetUA: props.tovar.completeSetUKR,
+
+				name: props.tovar.nameEN,
+				description: props.tovar.descriptionEN,
+				parameters: props.tovar.parametersEN,
+				completeSet: props.tovar.completeSetEN,
+
+				type: props.tovar.type,
+				cost: props.tovar.cost,
+				quantity: props.tovar.quantity,
+				popularity: props.tovar.popularity,
+				fotos: props.tovar.fotos,
+			};
+		}
 		return {
 			nameUA: 'Hookah',
-			descriptionUA: '<p>Lyaps</p>',
+			descriptionUA: '<p>Description</p>',
 			parametersUA: '-',
 			completeSetUA: '-',
 
 			name: 'Hookah',
-			description: '<p>Lyaps</p>',
+			description: '<p>Description</p>',
 			parameters: '-',
 			completeSet: '-',
 
 			type: 'hookahs',
-			cost: 1,
+			cost: 1000,
 			quantity: 1,
 			popularity: 1,
 			fotos: null,
@@ -363,9 +410,9 @@ const MyForm = withFormik<MyFormProps, FormValues>({
 
 	validationSchema: TovarSchema,
 
-	handleSubmit: (values, formikBag ) => {
+	handleSubmit: (values, formikBag) => {
 		const form = new FormData();
-		if (values.fotos) {
+		if (values.fotos instanceof FileList) {
 			for (let index = 0; index < values.fotos.length; index++) {
 				form.append(`files`, values.fotos[index]);
 			}
@@ -389,8 +436,16 @@ const MyForm = withFormik<MyFormProps, FormValues>({
 			popularity: values.popularity,
 			fotos: [],
 		};
-		form.append('tovar', JSON.stringify(tovar));
-		formikBag.props.submit(form)
+		// form.append('tovar', JSON.stringify(tovar));
+
+		if (formikBag.props.tovar) {
+			form.append('tovar', JSON.stringify({ ...tovar, fotos: values.fotos }));
+			// const id = formikBag.props.tovar.id;
+			formikBag.props.submit(form, formikBag.props.tovar.id);
+		} else {
+			form.append('tovar', JSON.stringify(tovar));
+			formikBag.props.submit(form);
+		}
 	},
 })(InnerForm);
 type NewTovarProps = {};

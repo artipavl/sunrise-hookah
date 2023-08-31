@@ -33,7 +33,11 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import Tovar from '../../Types/tovar';
 import sortArrByKey from '../../helpers/sortArrByKey';
 import { selectTypes } from '../../redux/types/slice';
-import { removeTovarById } from '../../redux/tovars/tovarsOperations';
+import {
+	removeTovarById,
+	updateTovar,
+} from '../../redux/tovars/tovarsOperations';
+import { MyForm } from '../newTovar/newTovar';
 
 type TovarsDataTableProps = {
 	data: Tovar[];
@@ -228,7 +232,19 @@ const TovarsDataTable: FC<TovarsDataTableProps> = ({ data }) => {
 			)}
 			{readOpen && current && (
 				<Modal openBasket={() => setReadOpen(false)}>
-					<ModalBox></ModalBox>
+					<ModalBox>
+						<div>
+							<MyForm
+								submit={(form: any, id: string) =>
+									dispatch(updateTovar({ form, id })).then(() =>
+										setReadOpen(false)
+									)
+								}
+								message="add tovarchik"
+								tovar={current}
+							/>
+						</div>
+					</ModalBox>
 				</Modal>
 			)}
 		</>

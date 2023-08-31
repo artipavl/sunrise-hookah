@@ -59,6 +59,27 @@ export const addTovar = createAsyncThunk(
 	}
 );
 
+interface updateTovarProps {
+	form: any;
+	id: string;
+}
+
+export const updateTovar = createAsyncThunk(
+	'users/updateTovar',
+	async (props: updateTovarProps, thunkAPI) => {
+		try {
+			const date = await axios.put(`/tovar/${props.id}`, props.form);
+			if (date.status !== 201) {
+				return thunkAPI.rejectWithValue(date.data);
+			}
+
+			return date.data as Tovar;
+		} catch (error) {
+			return thunkAPI.rejectWithValue(error);
+		}
+	}
+);
+
 export const removeTovarById = createAsyncThunk(
 	'users/removeTovar',
 	async (id: string, thunkAPI) => {

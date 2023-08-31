@@ -7,6 +7,7 @@ import {
 	fetchAllTovars,
 	fetchTovarsByTypes,
 	removeTovarById,
+	updateTovar,
 } from './tovarsOperations';
 
 interface TovarsSliceType {
@@ -57,6 +58,14 @@ const tovarsSlice = createSlice({
 			})
 			.addCase(addTovar.fulfilled, (state, action) => {
 				state.tovars.push(action.payload);
+			})
+			.addCase(updateTovar.fulfilled, (state, action) => {
+				state.tovars.forEach(tovar => {
+					if (tovar.id === action.payload.id) {
+						return action.payload;
+					}
+					return tovar;
+				});
 			});
 	},
 });
