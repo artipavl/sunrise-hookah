@@ -59,10 +59,12 @@ export const TovarItem = styled.li`
 `;
 
 export const SectionTovars = styled(Section)`
-	display: block;
+	display: flex;
+	flex-direction: column;
 	position: relative;
 
 	padding-top: 0;
+	padding-bottom: 0;
 `;
 
 export const FiltersBox = styled.div`

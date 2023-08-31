@@ -23,10 +23,10 @@ import { selectTovars, selectTovarsLoading } from '../../redux/tovars/slice';
 import { fetchTovarsByTypes } from '../../redux/tovars/tovarsOperations';
 import { selectTypes } from '../../redux/types/slice';
 import Heder from '../../components/header/heder';
-import { Link } from 'react-router-dom';
 import Tovar from '../../Types/tovar';
 import TovarCard from '../../components/tovar/tovar';
 import sortArrByKey from '../../helpers/sortArrByKey';
+import Footer from '../../components/footer/footer';
 
 type ProductProps = {};
 interface sortingParamsTypes {
@@ -92,17 +92,17 @@ const Product: FC<ProductProps> = () => {
 		);
 	}, [sortParams, tovars]);
 
-	const sortedByPrice = useMemo(() => {
+	useMemo(() => {
 		const data = sortArrByKey(tovars, sortingParams[2].sortableParam, true);
 		setMinPrice(data[0]?.cost);
 		setMaxPrice(data[tovars.length - 1]?.cost);
-		console.log(minPrice);
-		console.log(maxPrice);
+		// console.log(minPrice);
+		// console.log(maxPrice);
 
 		return data;
-	}, [maxPrice, minPrice, tovars]);
+	}, [tovars]);
 
-	console.log(sortedByPrice);
+	// console.log(sortedByPrice);
 
 	if (!type) {
 		return <Navigate to="/"></Navigate>;
@@ -148,6 +148,7 @@ const Product: FC<ProductProps> = () => {
 												<InputRadio
 													name="sort"
 													type="radio"
+													value={index}
 													onChange={() => {
 														setSortParams(index);
 														setIsOpenSort(false);
@@ -165,7 +166,12 @@ const Product: FC<ProductProps> = () => {
 												type="number"
 												name="min"
 												id="minValue"
+												min={minPrice}
+												max={maxPrice}
 												value={minPrice}
+												onChange={e =>
+													setMinPrice(Number(e.currentTarget.value))
+												}
 											/>
 										</NumbersSlider>
 										<NumbersSlider>
@@ -174,7 +180,12 @@ const Product: FC<ProductProps> = () => {
 												type="number"
 												name="max"
 												id="maxValue"
+												min={minPrice}
+												max={maxPrice}
 												value={maxPrice}
+												onChange={e =>
+													setMaxPrice(Number(e.currentTarget.value))
+												}
 											/>
 										</NumbersSlider>
 									</NumbersLine>
@@ -187,15 +198,14 @@ const Product: FC<ProductProps> = () => {
 							<TovarList>
 								{sorted.map(tovar => (
 									<li key={tovar.id}>
-										<Link to={`/tovarPage/${tovar.id}`}>
-											<TovarCard tovar={tovar}></TovarCard>
-										</Link>
+										<TovarCard tovar={tovar}></TovarCard>
 									</li>
 								))}
 							</TovarList>
 						</>
 					)}
 				</Container>
+				<Footer />
 			</SectionTovars>
 		</>
 	);
