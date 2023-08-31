@@ -5,7 +5,7 @@ export const BasketSection = styled.div`
 	position: fixed;
 	top: 0;
 	right: 0;
-	z-index: 99999;
+	z-index: 99999999;
 
 	display: flex;
 	width: 100vw;
