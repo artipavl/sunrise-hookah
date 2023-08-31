@@ -4,11 +4,9 @@ import {
 	CustomSliderBox,
 	EmptyTovarList,
 	FieldInput,
-	// FieldInput,
 	FiltersBox,
 	InputRadio,
 	ItemOpt,
-	// NumbersLine,
 	NumbersSlider,
 	ProgressBar,
 	RangeBox,
@@ -18,7 +16,6 @@ import {
 	SliderBar,
 	SortCustomBtn,
 	SortingBtn,
-	// TextSpan,
 	Title,
 	TovarList,
 } from './product.style';
@@ -68,22 +65,25 @@ const sortingParams: sortingParamsTypes[] = [
 ];
 
 const Product: FC<ProductProps> = () => {
-	const [isOpenSort, setIsOpenSort] = useState<boolean>(false),
-		[sortParams, setSortParams] = useState<number>(0),
-		[minPrice, setMinPrice] = useState<number>(100),
-		[maxPrice, setMaxPrice] = useState<number>(10000),
-		[currentMin, setCurrentMin] = useState<number>(minPrice),
-		[currentMax, setCurrentMax] = useState<number>(maxPrice);
+	const tovars = useAppSelector(selectTovars);
+	const [isOpenSort, setIsOpenSort] = useState<boolean>(false);
+	const [sortParams, setSortParams] = useState<number>(0);
+	const [minPrice, setMinPrice] = useState<number>(1);
+	const [maxPrice, setMaxPrice] = useState<number>(() => {
+		return sortArrByKey(tovars, sortingParams[2].sortableParam, true)[
+			tovars.length - 1
+		]?.cost;
+	});
+	const [currentMin, setCurrentMin] = useState<number>(minPrice);
+	const [currentMax, setCurrentMax] = useState<number>(maxPrice);
 
 	const params = useParams();
 
-	const types = useAppSelector(selectTypes),
-		start = useAppSelector(selectTovarsLoading);
+	const types = useAppSelector(selectTypes);
+	const start = useAppSelector(selectTovarsLoading);
 
 	const type = types.find(type => type.en === params.id?.toLowerCase());
 	const AppDispatch = useAppDispatch();
-
-	const tovars = useAppSelector(selectTovars);
 
 	useEffect(() => {
 		if (type?.en) {
@@ -105,12 +105,10 @@ const Product: FC<ProductProps> = () => {
 		);
 	}, [filtered, sortParams]);
 
-	useMemo(() => {
+	useEffect(() => {
 		const data = sortArrByKey(tovars, sortingParams[2].sortableParam, true);
 		setMinPrice(data[0]?.cost);
 		setMaxPrice(data[tovars.length - 1]?.cost);
-
-		return data;
 	}, [tovars]);
 
 	if (!type) {
@@ -170,11 +168,8 @@ const Product: FC<ProductProps> = () => {
 									</form>
 								</SortCustomBtn>
 
-								{/* slider */}
 								<CustomSliderBox>
-									{/* <NumbersLine> */}
 									<NumbersSlider>
-										{/* <TextSpan>Min {minPrice}</TextSpan> */}
 										<FieldInput
 											type="number"
 											name="min"
@@ -192,15 +187,11 @@ const Product: FC<ProductProps> = () => {
 										/>
 									</NumbersSlider>
 
-									{/* </NumbersLine> */}
-
 									<SliderBar>
-										{/* <BackgroundBar> */}
 										<ProgressBar
 											positionLeft={currentMin / (maxPrice / 100)}
 											positionRight={currentMax / (maxPrice / 100)}
 										></ProgressBar>
-										{/* </BackgroundBar> */}
 										<RangeBox>
 											<RangeInputMin
 												type="range"
@@ -233,7 +224,6 @@ const Product: FC<ProductProps> = () => {
 										</RangeBox>
 									</SliderBar>
 									<NumbersSlider>
-										{/* <TextSpan>Max {maxPrice}</TextSpan> */}
 										<FieldInput
 											type="number"
 											name="max"
