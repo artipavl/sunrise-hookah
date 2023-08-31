@@ -68,9 +68,14 @@ export const SectionTovars = styled(Section)`
 `;
 
 export const FiltersBox = styled.div`
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: space-around;
+
 	width: 100%;
 
 	margin-bottom: 20px;
+	padding-inline: 30px;
 `;
 
 export const SortCustomBtn = styled.div`
@@ -79,7 +84,7 @@ export const SortCustomBtn = styled.div`
 	justify-content: flex-start;
 	gap: 10px;
 
-	width: 100%;
+	/* width: 100%; */
 	position: relative;
 `;
 
@@ -92,7 +97,7 @@ export const SortingBtn = styled.button`
 	top: 0;
 
 	width: 200px;
-	height: 70px;
+	height: 50px;
 `;
 
 type SortListProps = {
@@ -135,7 +140,7 @@ export const ItemOpt = styled.label<ItemOptTypes>`
 	align-items: center;
 
 	width: 200px;
-	height: 70px;
+	height: 50px;
 
 	padding: 10px 20px;
 
@@ -145,9 +150,10 @@ export const ItemOpt = styled.label<ItemOptTypes>`
 	color: ${colors.textGrey};
 
 	position: absolute;
-	top: ${props => `${(props.index + 1) * 70}px`};
+	top: ${props => `${(props.index + 1) * 50}px`};
+	cursor: pointer;
 
-	z-index: 4;
+	z-index: 3;
 `;
 
 export const InputRadio = styled.input`
@@ -157,12 +163,18 @@ export const InputRadio = styled.input`
 // custom slider
 
 export const CustomSliderBox = styled.div`
-	width: 500px;
-	height: 300px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 
-	background-color: ${colors.subGrey};
+	width: 600px;
+	gap: 10px;
+	height: 50px;
 
-	padding: 20px;
+	background-color: ${colors.black};
+
+	padding: 10px;
+	border-radius: 10px;
 
 	& input[type='number']::-webkit-outer-spin-button,
 	& input[type='number']::-webkit-inner-spin-button {
@@ -172,8 +184,8 @@ export const CustomSliderBox = styled.div`
 
 export const NumbersLine = styled.div`
 	display: flex;
-	background-color: azure;
-	height: 40px;
+	background-color: ${colors.black};
+	height: 20px;
 	align-items: center;
 	justify-content: space-between;
 `;
@@ -181,43 +193,107 @@ export const NumbersLine = styled.div`
 export const SliderBar = styled.div`
 	position: relative;
 
-	height: 5px;
+	height: 3px;
 	border-radius: 5px;
 
 	width: 100%;
 
-	color: ${colors.subGrey};
-	margin-top: 20px;
+	background-color: ${colors.subGrey};
 `;
 
-export const ProgressBar = styled.div`
+type ProgressBarTypes = {
+	positionLeft: number;
+	positionRight: number;
+};
+export const ProgressBar = styled.div<ProgressBarTypes>`
 	position: absolute;
 	height: 100%;
 	background-color: ${colors.yellow};
-	width: 100%;
+	width: ${props =>
+		`${100 - props.positionLeft - (100 - props.positionRight)}%`};
+	left: ${props => `${props.positionLeft}%`};
 `;
 
 export const NumbersSlider = styled.label`
 	display: flex;
-	gap: 10px;
-	height: 100%;
+	/* gap: 10px; */
+	/* height: 100%; */
 	align-items: center;
 `;
 
 export const FieldInput = styled.input`
-	height: 100%;
-	width: 150px;
-
-	padding: 10px 15px;
+	height: 20px;
+	width: 50px;
 
 	text-align: center;
-	font-size: 17px;
+	font-size: 14px;
 
 	appearance: none;
 
 	border: none;
+
+	background-color: ${colors.black};
+	color: ${colors.textGrey};
 `;
 
 export const TextSpan = styled.span`
-	font-size: 21px;
+	font-size: 16px;
+`;
+
+export const RangeBox = styled.div`
+	position: relative;
+
+	& input {
+		position: absolute;
+		height: 3px;
+		width: 100%;
+		appearance: none;
+		background: none;
+		pointer-events: none;
+	}
+
+	& input[type='range']::-webkit-slider-thumb {
+		height: 15px;
+		width: 10px;
+		border-radius: 10px;
+		pointer-events: auto;
+		appearance: none;
+		background-color: ${colors.yellow};
+	}
+`;
+
+type RangeInputTypes = {
+	position?: number;
+};
+
+export const RangeInputMin = styled.input<RangeInputTypes>`
+	&::-webkit-slider-thumb {
+		transform: translateX(0%);
+	}
+`;
+
+export const RangeInputMax = styled.input<RangeInputTypes>`
+	&::-webkit-slider-thumb {
+		transform: translateX(10%);
+	}
+`;
+
+export const EmptyTovarList = styled.div`
+	color: ${colors.textGrey};
+	background-color: ${colors.mainBg};
+	height: 200px;
+	width: 100%;
+	font-size: 30px;
+	text-align: center;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	@media screen and (min-width: 768px) {
+		grid-column-start: 1;
+		grid-column-end: 4;
+	}
+
+ 
 `;
