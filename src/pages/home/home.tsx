@@ -11,26 +11,26 @@ import SocialLinks from '../../components/socialLinks/socialLinks';
 type HomeProps = {};
 
 const Home: FC<HomeProps> = props => {
-  return (
-    <div
-      style={{
-        position: 'relative',
-        scrollBehavior: 'smooth',
-        scrollSnapType: 'y mandatory',
-        overflowY: 'scroll',
-        height: '100vh',
-      }}
-    >
-      <Heder />
-      <Hero />
-      <Gallery />
-      <TovarGallery />
-      <About />
-      <Contacts />
-      <Footer />
-      <SocialLinks />
-    </div>
-  );
+	return (
+		<div
+			style={{
+				position: 'relative',
+				// scrollBehavior: 'smooth',
+				// scrollSnapType: 'y mandatory',
+				// overflowY: 'scroll',
+				// height: '100vh',
+			}}
+		>
+			<Heder />
+			<Hero />
+			<Gallery />
+			<TovarGallery />
+			<About />
+			<Contacts />
+			<Footer />
+			<SocialLinks />
+		</div>
+	);
 };
 
 export default Home;
