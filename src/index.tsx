@@ -13,7 +13,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
 	<React.StrictMode>
-		<HashRouter basename="/sunrise-hookah">
+		<HashRouter>
 			<Provider store={store}>
 				<PersistGate loading={<Loader opacity={1} />} persistor={persistor}>
 					<App />
