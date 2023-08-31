@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/static/css/main.8aff206d.css",
-    "main.js": "/static/js/main.3a828d47.js",
-    "static/media/sunrise-hookah-hero.jpg": "/static/media/sunrise-hookah-hero.17a02529d4c3b49c7219.jpg",
-    "static/media/logo-320.png": "/static/media/logo-320.775ef4b994af9f9450b7.png",
-    "static/media/coins.svg": "/static/media/coins.b4fae64d4acf814c91fdf3fda85eab76.svg",
-    "static/media/sunrise-hookah.jpg": "/static/media/sunrise-hookah.a6331056fbb22540b636.jpg",
-    "static/media/biceps.svg": "/static/media/biceps.177b117bd5ee610e19fc3f40b874cba1.svg",
-    "static/media/gear.svg": "/static/media/gear.654f7a7636a0edfb7633aa5f788e91ea.svg",
-    "static/media/moon.svg": "/static/media/moon.7d12dd7b58b732d8fef6af2a551bd323.svg",
-    "static/media/QUALITY.svg": "/static/media/QUALITY.a3f731caff32626478ddf4c3dfc9553d.svg",
-    "static/media/stars.svg": "/static/media/stars.c4102c51c78c96e71a8e014a1df0efda.svg",
-    "index.html": "/index.html",
-    "main.8aff206d.css.map": "/static/css/main.8aff206d.css.map",
-    "main.3a828d47.js.map": "/static/js/main.3a828d47.js.map"
+    "main.css": "/sunrise-hookah/static/css/main.8aff206d.css",
+    "main.js": "/sunrise-hookah/static/js/main.3ae4694d.js",
+    "static/media/sunrise-hookah-hero.jpg": "/sunrise-hookah/static/media/sunrise-hookah-hero.17a02529d4c3b49c7219.jpg",
+    "static/media/logo-320.png": "/sunrise-hookah/static/media/logo-320.775ef4b994af9f9450b7.png",
+    "static/media/coins.svg": "/sunrise-hookah/static/media/coins.b4fae64d4acf814c91fdf3fda85eab76.svg",
+    "static/media/sunrise-hookah.jpg": "/sunrise-hookah/static/media/sunrise-hookah.a6331056fbb22540b636.jpg",
+    "static/media/biceps.svg": "/sunrise-hookah/static/media/biceps.177b117bd5ee610e19fc3f40b874cba1.svg",
+    "static/media/gear.svg": "/sunrise-hookah/static/media/gear.654f7a7636a0edfb7633aa5f788e91ea.svg",
+    "static/media/moon.svg": "/sunrise-hookah/static/media/moon.7d12dd7b58b732d8fef6af2a551bd323.svg",
+    "static/media/QUALITY.svg": "/sunrise-hookah/static/media/QUALITY.a3f731caff32626478ddf4c3dfc9553d.svg",
+    "static/media/stars.svg": "/sunrise-hookah/static/media/stars.c4102c51c78c96e71a8e014a1df0efda.svg",
+    "index.html": "/sunrise-hookah/index.html",
+    "main.8aff206d.css.map": "/sunrise-hookah/static/css/main.8aff206d.css.map",
+    "main.3ae4694d.js.map": "/sunrise-hookah/static/js/main.3ae4694d.js.map"
   },
   "entrypoints": [
     "static/css/main.8aff206d.css",
-    "static/js/main.3a828d47.js"
+    "static/js/main.3ae4694d.js"
   ]
 }
