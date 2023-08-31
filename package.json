@@ -2,6 +2,7 @@
   "name": "sunrise-hookah",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://artipavl.github.io/sunrise-hookah/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.16.5",
