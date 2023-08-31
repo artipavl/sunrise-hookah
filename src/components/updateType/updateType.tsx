@@ -77,7 +77,12 @@ const UpdateType: FC<UpdateTypeProps> = ({ type, close }) => {
 						<ModalDeleteButtonsBox>
 							<ModalDeleteButton
 								type="button"
-								onClick={() => type && dispatch(removeTypeById(type.id))}
+								onClick={() =>
+									type &&
+									dispatch(removeTypeById(type.id)).then(() =>
+										setDeleteOpen(false)
+									)
+								}
 							>
 								Так
 							</ModalDeleteButton>

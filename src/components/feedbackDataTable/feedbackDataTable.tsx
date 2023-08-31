@@ -187,7 +187,12 @@ const FeedbackDataTable: FC<FeedbackDataTableProps> = ({ data }) => {
 						<ModalDeleteButtonsBox>
 							<ModalDeleteButton
 								type="button"
-								onClick={() => current && dispatch(delFeedback(current.id))}
+								onClick={() =>
+									current &&
+									dispatch(delFeedback(current.id)).then(() =>
+										setDeleteOpen(false)
+									)
+								}
 							>
 								Так
 							</ModalDeleteButton>
