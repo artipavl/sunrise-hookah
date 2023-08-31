@@ -196,6 +196,7 @@ export const ModalBox = styled.div`
 	background: #fff;
 	padding: 32px;
 	box-shadow: 0px 10px 30px 0px rgba(17, 38, 146, 0.05);
+	overflow: auto;
 `;
 
 export const ModalDeleteTitle = styled.h1`
