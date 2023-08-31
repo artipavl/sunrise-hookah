@@ -2,18 +2,23 @@ import React, { FC, useEffect, useMemo, useState } from 'react';
 import { Container } from '../../reuseСomponents/container.style';
 import {
 	CustomSliderBox,
+	EmptyTovarList,
 	FieldInput,
+	// FieldInput,
 	FiltersBox,
 	InputRadio,
 	ItemOpt,
-	NumbersLine,
+	// NumbersLine,
 	NumbersSlider,
 	ProgressBar,
+	RangeBox,
+	RangeInputMax,
+	RangeInputMin,
 	SectionTovars,
 	SliderBar,
 	SortCustomBtn,
 	SortingBtn,
-	TextSpan,
+	// TextSpan,
 	Title,
 	TovarList,
 } from './product.style';
@@ -63,15 +68,17 @@ const sortingParams: sortingParamsTypes[] = [
 ];
 
 const Product: FC<ProductProps> = () => {
-	const [isOpenSort, setIsOpenSort] = useState<boolean>(false);
-	const [sortParams, setSortParams] = useState<number>(0);
-	const [minPrice, setMinPrice] = useState<number>(1);
-	const [maxPrice, setMaxPrice] = useState<number>(10000);
+	const [isOpenSort, setIsOpenSort] = useState<boolean>(false),
+		[sortParams, setSortParams] = useState<number>(0),
+		[minPrice, setMinPrice] = useState<number>(100),
+		[maxPrice, setMaxPrice] = useState<number>(10000),
+		[currentMin, setCurrentMin] = useState<number>(minPrice),
+		[currentMax, setCurrentMax] = useState<number>(maxPrice);
 
 	const params = useParams();
 
-	const types = useAppSelector(selectTypes);
-	const start = useAppSelector(selectTovarsLoading);
+	const types = useAppSelector(selectTypes),
+		start = useAppSelector(selectTovarsLoading);
 
 	const type = types.find(type => type.en === params.id?.toLowerCase());
 	const AppDispatch = useAppDispatch();
@@ -84,25 +91,27 @@ const Product: FC<ProductProps> = () => {
 		}
 	}, [AppDispatch, type]);
 
+	const filtered = useMemo(() => {
+		return tovars.filter(tovar => {
+			return currentMax >= tovar.cost && tovar.cost >= currentMin;
+		});
+	}, [currentMax, currentMin, tovars]);
+
 	const sorted = useMemo(() => {
 		return sortArrByKey(
-			tovars,
+			filtered,
 			sortingParams[sortParams].sortableParam,
 			sortingParams[sortParams].sortBy
 		);
-	}, [sortParams, tovars]);
+	}, [filtered, sortParams]);
 
 	useMemo(() => {
 		const data = sortArrByKey(tovars, sortingParams[2].sortableParam, true);
 		setMinPrice(data[0]?.cost);
 		setMaxPrice(data[tovars.length - 1]?.cost);
-		// console.log(minPrice);
-		// console.log(maxPrice);
 
 		return data;
 	}, [tovars]);
-
-	// console.log(sortedByPrice);
 
 	if (!type) {
 		return <Navigate to="/"></Navigate>;
@@ -131,6 +140,8 @@ const Product: FC<ProductProps> = () => {
 										onClick={() => {
 											setIsOpenSort(false);
 											setSortParams(0);
+											setCurrentMax(maxPrice);
+											setCurrentMin(minPrice);
 										}}
 									>
 										Очистити фільтр
@@ -158,49 +169,105 @@ const Product: FC<ProductProps> = () => {
 										))}
 									</form>
 								</SortCustomBtn>
+
+								{/* slider */}
 								<CustomSliderBox>
-									<NumbersLine>
-										<NumbersSlider>
-											<TextSpan>Min</TextSpan>
-											<FieldInput
-												type="number"
-												name="min"
-												id="minValue"
-												min={minPrice}
-												max={maxPrice}
-												value={minPrice}
-												onChange={e =>
-													setMinPrice(Number(e.currentTarget.value))
-												}
-											/>
-										</NumbersSlider>
-										<NumbersSlider>
-											<TextSpan>Max</TextSpan>
-											<FieldInput
-												type="number"
-												name="max"
-												id="maxValue"
-												min={minPrice}
-												max={maxPrice}
-												value={maxPrice}
-												onChange={e =>
-													setMaxPrice(Number(e.currentTarget.value))
-												}
-											/>
-										</NumbersSlider>
-									</NumbersLine>
+									{/* <NumbersLine> */}
+									<NumbersSlider>
+										{/* <TextSpan>Min {minPrice}</TextSpan> */}
+										<FieldInput
+											type="number"
+											name="min"
+											id="minValue"
+											min={minPrice}
+											max={maxPrice}
+											value={currentMin}
+											onChange={e =>
+												Number(e.target.value) <= currentMax
+													? setCurrentMin(Number(e.target.value))
+													: setCurrentMin(
+															Math.round(currentMax - maxPrice / 100)
+													  )
+											}
+										/>
+									</NumbersSlider>
+
+									{/* </NumbersLine> */}
 
 									<SliderBar>
-										<ProgressBar></ProgressBar>
+										{/* <BackgroundBar> */}
+										<ProgressBar
+											positionLeft={currentMin / (maxPrice / 100)}
+											positionRight={currentMax / (maxPrice / 100)}
+										></ProgressBar>
+										{/* </BackgroundBar> */}
+										<RangeBox>
+											<RangeInputMin
+												type="range"
+												min={minPrice}
+												max={maxPrice}
+												value={currentMin}
+												step={Math.round(maxPrice / 400)}
+												onChange={e =>
+													Number(e.target.value) <= currentMax
+														? setCurrentMin(Number(e.target.value))
+														: setCurrentMin(
+																Math.round(currentMax - maxPrice / 100)
+														  )
+												}
+											/>
+											<RangeInputMax
+												type="range"
+												min={minPrice}
+												max={maxPrice}
+												value={currentMax}
+												step={Math.round(maxPrice / 400)}
+												onChange={e =>
+													Number(e.target.value) >= currentMin
+														? setCurrentMax(Number(e.target.value))
+														: setCurrentMax(
+																Math.round(currentMin + maxPrice / 100)
+														  )
+												}
+											/>
+										</RangeBox>
 									</SliderBar>
+									<NumbersSlider>
+										{/* <TextSpan>Max {maxPrice}</TextSpan> */}
+										<FieldInput
+											type="number"
+											name="max"
+											id="maxValue"
+											min={minPrice}
+											max={maxPrice}
+											value={currentMax}
+											onChange={e =>
+												Number(e.target.value) >= currentMin
+													? setCurrentMax(Number(e.target.value))
+													: setCurrentMax(
+															Math.round(currentMin + maxPrice / 100)
+													  )
+											}
+										/>
+									</NumbersSlider>
 								</CustomSliderBox>
+
+								{/*  */}
 							</FiltersBox>
 							<TovarList>
-								{sorted.map(tovar => (
-									<li key={tovar.id}>
-										<TovarCard tovar={tovar}></TovarCard>
-									</li>
-								))}
+								{sorted.length ? (
+									sorted.map(tovar => (
+										<li key={tovar.id}>
+											<TovarCard tovar={tovar}></TovarCard>
+										</li>
+									))
+								) : (
+									<EmptyTovarList>
+										<p>
+											Товар не знайдений, спробуйте інші налаштування фільтрів
+										</p>
+									</EmptyTovarList>
+								)}
 							</TovarList>
 						</>
 					)}
