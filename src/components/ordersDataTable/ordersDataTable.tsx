@@ -302,7 +302,12 @@ const OrdersDataTable: FC<OrdersDataTableProps> = ({ data }) => {
 						<ModalDeleteButtonsBox>
 							<ModalDeleteButton
 								type="button"
-								onClick={() => current && dispatch(delOerder(current.id))}
+								onClick={() =>
+									current &&
+									dispatch(delOerder(current.id)).then(() =>
+										setDeleteOpen(false)
+									)
+								}
 							>
 								Так
 							</ModalDeleteButton>
