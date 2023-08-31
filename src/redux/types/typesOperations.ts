@@ -68,7 +68,7 @@ export const removeTypeById = createAsyncThunk(
 	'users/removeType',
 	async (id: string, thunkAPI) => {
 		try {
-			const date = await axios.get(`type/${id}`);
+			const date = await axios.delete(`type/${id}`);
 			if (date.status !== 200) {
 				return thunkAPI.rejectWithValue(date.data);
 			}
