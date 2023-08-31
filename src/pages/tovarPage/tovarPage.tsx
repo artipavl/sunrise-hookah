@@ -85,7 +85,11 @@ const TovarPage: FC<TovarPageProps> = props => {
 							<BtnArrow
 								type="button"
 								position={true}
-								onClick={() => (imgUrl === 0 ? setImgUrl(tovar.fotos.length - 1) : setImgUrl(() => imgUrl - 1))}
+								onClick={() =>
+									imgUrl === 0
+										? setImgUrl(tovar.fotos.length - 1)
+										: setImgUrl(() => imgUrl - 1)
+								}
 							>
 								<MdKeyboardArrowLeft size={40} />
 							</BtnArrow>
@@ -95,14 +99,18 @@ const TovarPage: FC<TovarPageProps> = props => {
 							<BtnArrow
 								type="button"
 								position={false}
-								onClick={() => (imgUrl === tovar.fotos.length - 1 ? setImgUrl(0) : setImgUrl(() => imgUrl + 1))}
+								onClick={() =>
+									imgUrl === tovar.fotos.length - 1
+										? setImgUrl(0)
+										: setImgUrl(() => imgUrl + 1)
+								}
 							>
 								<MdKeyboardArrowRight size={40} />
 							</BtnArrow>
 						</ImgBox>
 						<MiniGallery>
 							{tovar?.fotos.map((foto, index) => (
-								<MiniGalleryItem key={foto} isActive={ index === imgUrl } >
+								<MiniGalleryItem key={foto} isActive={index === imgUrl}>
 									<BtnImg type="button" onClick={() => setImgUrl(index)}>
 										<MiniImg src={foto} alt="photo hookah" />
 									</BtnImg>
@@ -121,7 +129,13 @@ const TovarPage: FC<TovarPageProps> = props => {
 						>
 							<Price>Ціна: {tovar?.cost}грн.</Price>
 							<CustomInput>
-								<InputQuantity type="number" name={'quantity'} min={1} value={quantity} />
+								<InputQuantity
+									type="number"
+									name={'quantity'}
+									min={1}
+									value={quantity}
+									onChange={e => setQuantity(Number(e.currentTarget.value))}
+								/>
 								<ButtonNav>
 									<ButtonValue
 										type="button"
@@ -130,7 +144,10 @@ const TovarPage: FC<TovarPageProps> = props => {
 									>
 										-
 									</ButtonValue>
-									<ButtonValue type="button" onClick={e => onChangeCapacity(quantity, Number(1))}>
+									<ButtonValue
+										type="button"
+										onClick={e => onChangeCapacity(quantity, Number(1))}
+									>
 										+
 									</ButtonValue>
 								</ButtonNav>
@@ -139,8 +156,12 @@ const TovarPage: FC<TovarPageProps> = props => {
 						</FormBox>
 					</MainInfoBox>
 					<SubinfoBox>
-						<SubInfoItem dangerouslySetInnerHTML={{ __html: tovar.parametersUKR }}></SubInfoItem>
-						<SubInfoItem dangerouslySetInnerHTML={{ __html: tovar.descriptionUKR }}></SubInfoItem>
+						<SubInfoItem
+							dangerouslySetInnerHTML={{ __html: tovar.parametersUKR }}
+						></SubInfoItem>
+						<SubInfoItem
+							dangerouslySetInnerHTML={{ __html: tovar.descriptionUKR }}
+						></SubInfoItem>
 					</SubinfoBox>
 				</ContainerTovar>
 			</SectionTovar>
