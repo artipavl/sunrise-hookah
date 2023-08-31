@@ -63,7 +63,7 @@ export const removeTovarById = createAsyncThunk(
 	'users/removeTovar',
 	async (id: string, thunkAPI) => {
 		try {
-			const date = await axios.get(`tovar/${id}`);
+			const date = await axios.delete(`tovar/${id}`);
 			if (date.status !== 200) {
 				return thunkAPI.rejectWithValue(date.data);
 			}
