@@ -9,7 +9,7 @@ export const BasketSection = styled.div`
 
 	display: flex;
 	width: 100vw;
-	height: 100vh;
+	height: 100dvh;
 	justify-content: end;
 	background-color: rgb(0 0 0 / 58%);
 `;
