@@ -19,7 +19,7 @@ export const BasketBox = styled.div`
 	flex-direction: column;
 	min-width: 320px;
 	max-width: 700px;
-	height: 100vh;
+	height: 100dvh;
 	background-color: #fff;
 `;
 
