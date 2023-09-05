@@ -20,9 +20,8 @@ import {
 	TovarList,
 } from './product.style';
 import { Navigate, useParams } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useAppSelector } from '../../hooks';
 import { selectTovars, selectTovarsLoading } from '../../redux/tovars/slice';
-import { fetchTovarsByTypes } from '../../redux/tovars/tovarsOperations';
 import { selectTypes } from '../../redux/types/slice';
 import Heder from '../../components/header/heder';
 import Tovar from '../../Types/tovar';
@@ -65,15 +64,12 @@ const sortingParams: sortingParamsTypes[] = [
 ];
 
 const Product: FC<ProductProps> = () => {
-	const tovars = useAppSelector(selectTovars);
+	const tovarsSelect = useAppSelector(selectTovars);
+	const [tovars, setTovars] = useState<Tovar[]>([]);
 	const [isOpenSort, setIsOpenSort] = useState<boolean>(false);
 	const [sortParams, setSortParams] = useState<number>(0);
 	const [minPrice, setMinPrice] = useState<number>(1);
-	const [maxPrice, setMaxPrice] = useState<number>(() => {
-		return sortArrByKey(tovars, sortingParams[2].sortableParam, true)[
-			tovars.length - 1
-		]?.cost;
-	});
+	const [maxPrice, setMaxPrice] = useState<number>(1);
 	const [currentMin, setCurrentMin] = useState<number>(minPrice);
 	const [currentMax, setCurrentMax] = useState<number>(maxPrice);
 
@@ -83,13 +79,12 @@ const Product: FC<ProductProps> = () => {
 	const start = useAppSelector(selectTovarsLoading);
 
 	const type = types.find(type => type.en === params.id?.toLowerCase());
-	const AppDispatch = useAppDispatch();
 
 	useEffect(() => {
 		if (type?.en) {
-			AppDispatch(fetchTovarsByTypes(type.en));
+			setTovars(tovarsSelect.filter(tovar => tovar.type === type.en));
 		}
-	}, [AppDispatch, type]);
+	}, [tovarsSelect, type]);
 
 	const filtered = useMemo(() => {
 		return tovars.filter(tovar => {
@@ -104,12 +99,18 @@ const Product: FC<ProductProps> = () => {
 			sortingParams[sortParams].sortBy
 		);
 	}, [filtered, sortParams]);
-
 	useEffect(() => {
 		const data = sortArrByKey(tovars, sortingParams[2].sortableParam, true);
-		setMinPrice(data[0]?.cost);
-		setMaxPrice(data[tovars.length - 1]?.cost);
+		if (data.length > 0) {
+			setMinPrice(data[0].cost);
+			setMaxPrice(data[data.length - 1].cost);
+		}
 	}, [tovars]);
+
+	useEffect(() => {
+		setCurrentMax(maxPrice);
+		setCurrentMin(minPrice);
+	}, [maxPrice, minPrice]);
 
 	if (!type) {
 		return <Navigate to="/"></Navigate>;
