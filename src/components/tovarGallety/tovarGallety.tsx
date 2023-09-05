@@ -14,17 +14,20 @@ import {
 import axios from 'axios';
 import Tovar from '../../Types/tovar';
 import TovarItem from '../tovar/tovar';
+import { useAppSelector } from '../../hooks';
+import { selectTovars } from '../../redux/tovars/slice';
 
 type GalleryProps = {};
 
 const TovarGallery: FC<GalleryProps> = props => {
+	const tovars = useAppSelector(selectTovars);
 	const [swpPoint, setSwpPoint] = useState<number>(0);
 	const [touchX, setTouchX] = useState<number>(0);
 	const [width, setWidth] = useState<number>(0);
 	const [sliderListWidth, setSliderListWidth] = useState<number>(0);
 	const [transition, setTransition] = useState<boolean>(true);
 
-	const [galleryItams, setGalleryItams] = useState<Tovar[]>([]);
+	const [galleryItams, setGalleryItams] = useState<Tovar[]>(() => tovars);
 
 	const swapEl = useRef<HTMLHeadingElement>(null);
 	const sliderList = useRef<HTMLUListElement>(null);
