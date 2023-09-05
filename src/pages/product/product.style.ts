@@ -69,13 +69,16 @@ export const SectionTovars = styled(Section)`
 
 export const FiltersBox = styled.div`
 	display: flex;
-	flex-direction: row-reverse;
-	justify-content: space-around;
-
+	flex-direction: column-reverse;
+	gap: 20px;
 	width: 100%;
 
 	margin-bottom: 20px;
 	padding-inline: 30px;
+	@media screen and (min-width: 764px) {
+		flex-direction: row-reverse;
+		justify-content: space-around;
+	}
 `;
 
 export const SortCustomBtn = styled.div`
@@ -167,7 +170,7 @@ export const CustomSliderBox = styled.div`
 	justify-content: space-between;
 	align-items: center;
 
-	width: 600px;
+	max-width: 100%;
 	gap: 10px;
 	height: 50px;
 
@@ -179,6 +182,10 @@ export const CustomSliderBox = styled.div`
 	& input[type='number']::-webkit-outer-spin-button,
 	& input[type='number']::-webkit-inner-spin-button {
 		-webkit-appearance: none;
+	}
+
+	@media screen and (min-width: 764px) {
+		width: 600px;
 	}
 `;
 
@@ -294,6 +301,4 @@ export const EmptyTovarList = styled.div`
 		grid-column-start: 1;
 		grid-column-end: 4;
 	}
-
- 
 `;
