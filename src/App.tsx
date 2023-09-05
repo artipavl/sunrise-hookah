@@ -23,6 +23,7 @@ import TovarsByType from './components/tovarsByType/tovarsByType';
 import NewTovar from './components/newTovar/newTovar';
 import Feedback from './components/feedback/feedback';
 import Loader from './reuseСomponents/loader/loader';
+import { fetchAllTovars } from './redux/tovars/tovarsOperations';
 
 // import Home from './pages/home/home';
 const Home = lazy(() => import('./pages/home/home'));
@@ -37,6 +38,7 @@ function App() {
 
 	useEffect(() => {
 		AppDispatch(fetchTovarsTypes());
+		// AppDispatch(fetchAllTovars());
 	}, [AppDispatch]);
 
 	const Loading = useAppSelector(selectTypesIsLoading);
