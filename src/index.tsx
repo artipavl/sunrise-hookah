@@ -14,7 +14,7 @@ const root = ReactDOM.createRoot(
 root.render(
 	<React.StrictMode>
 		{/* <HashRouter> */}
-		<BrowserRouter basename="/sunrise-hookah">
+		<BrowserRouter>
 			<Provider store={store}>
 				<PersistGate loading={<Loader opacity={1} />} persistor={persistor}>
 					<App />
