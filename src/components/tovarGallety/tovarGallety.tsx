@@ -100,7 +100,7 @@ const TovarGallery: FC<GalleryProps> = props => {
 	}
 
 	return (
-		<Section id="tovarGallery" bgc="#000">
+		<Section id="tovarGallery" bgc="#000" h>
 			<Container>
 				<Box>
 					<Slider
