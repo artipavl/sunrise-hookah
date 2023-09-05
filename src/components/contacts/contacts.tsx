@@ -159,7 +159,7 @@ type AboutProps = {};
 
 const Contacts: FC<AboutProps> = props => {
 	return (
-		<Section id="contacts" bgc="#000">
+		<Section id="contacts" bgc="#000" h>
 			<Container flex={'center'}>
 				<Box>
 					<div>
