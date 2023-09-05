@@ -38,7 +38,7 @@ function App() {
 
 	useEffect(() => {
 		AppDispatch(fetchTovarsTypes());
-		// AppDispatch(fetchAllTovars());
+		AppDispatch(fetchAllTovars());
 	}, [AppDispatch]);
 
 	const Loading = useAppSelector(selectTypesIsLoading);
