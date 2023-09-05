@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import { GlobalStyle } from './GlobalStyle';
-import { HashRouter } from 'react-router-dom';
 import { store, persistor } from './redux/store';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -13,13 +13,15 @@ const root = ReactDOM.createRoot(
 );
 root.render(
 	<React.StrictMode>
-		<HashRouter>
+		{/* <HashRouter> */}
+		<BrowserRouter basename="/sunrise-hookah">
 			<Provider store={store}>
 				<PersistGate loading={<Loader opacity={1} />} persistor={persistor}>
 					<App />
 					<GlobalStyle />
 				</PersistGate>
 			</Provider>
-		</HashRouter>
+		</BrowserRouter>
+		{/* </HashRouter> */}
 	</React.StrictMode>
 );
