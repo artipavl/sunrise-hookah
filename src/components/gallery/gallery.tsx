@@ -78,7 +78,7 @@ const Gallery: FC<GalleryProps> = props => {
 	}
 
 	return (
-		<Section id="gallery" bgc="#000">
+		<Section id="gallery" bgc="#000" h>
 			<Container>
 				<Box>
 					<Promotion>
