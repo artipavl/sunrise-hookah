@@ -1,0 +1,8 @@
+[[headers]]
+  # Налаштування для всіх запитів
+  for = "/*"
+
+[[headers]]
+  for = "/admin/*"
+[[headers]]
+  for = "/checkout/*"
