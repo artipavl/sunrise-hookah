@@ -31,7 +31,7 @@ export const basketSlice = createSlice({
 				state.tovars[index].baskeQuantity =
 					state.tovars[index].baskeQuantity + 1;
 			} else {
-				state.tovars.push({ ...action.payload, baskeQuantity: 1 });
+				state.tovars.push(action.payload);
 			}
 		},
 		updateQuantity: (state, action: PayloadAction<updateQuantityPayload>) => {
