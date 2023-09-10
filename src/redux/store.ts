@@ -18,6 +18,7 @@ import basketSlice from './basket/basketSlice';
 import feedbackSlice from './feedback/slice';
 import adminsSlice from './adminList/slice';
 import ordersSlice from './orders/slice';
+import languageSlice from './language/languageSlice';
 import { authSlice } from './auth/authReducer';
 
 const persistTovars = {
@@ -33,11 +34,16 @@ const persistTypes = {
 	key: 'types',
 	storage,
 };
+const persistLanguage = {
+	key: 'language',
+	storage,
+};
 
 const rootReducer = combineReducers({
 	tovars: persistReducer(persistTovars, selectTovars),
 	basket: persistReducer(persistBasket, basketSlice),
 	types: persistReducer(persistTypes, typesSlice),
+	language: persistReducer(persistLanguage, languageSlice),
 
 	feedbacks: feedbackSlice,
 	auth: authSlice.reducer,

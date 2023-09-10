@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router-dom';
-// import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const HeaderSection = styled.header`
@@ -181,4 +180,31 @@ export const DropMenuList = styled.ul<NavProps>`
 		opacity: 0;
 		gap: 0;
 	}
+`;
+
+export const LanguageList = styled.ul`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
+
+
+interface LanguageButtonProps {
+	active?: boolean
+}
+
+export const LanguageButton = styled.button<LanguageButtonProps>`
+  color: ${props=>props.active ? 'red' : '#fff'};
+
+  :hover,:focus{
+	color: red;
+  }
+`;
+
+
+export const FlexBox = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  
 `;

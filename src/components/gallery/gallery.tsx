@@ -15,6 +15,8 @@ import {
 	SliderItemImg,
 	SliderList,
 } from './gallery.style';
+import { useAppSelector } from '../../hooks';
+import { selectLanguage } from '../../redux/language/languageSelectors';
 const galleryImages = [
 	{
 		id: 1,
@@ -37,6 +39,8 @@ const Gallery: FC<GalleryProps> = props => {
 	const [touchX, setTouchX] = useState<number>(0);
 	const [width, setWidth] = useState<number>(0);
 	const [sliderListWidth, setSliderListWidth] = useState<number>(0);
+
+	const language = useAppSelector(selectLanguage);
 
 	const swapEl = useRef<HTMLHeadingElement>(null);
 	const sliderList = useRef<HTMLUListElement>(null);
@@ -82,8 +86,9 @@ const Gallery: FC<GalleryProps> = props => {
 			<Container>
 				<Box>
 					<Promotion>
-						<PromotionTitle>ДАВАЙ ТЯНИ!</PromotionTitle>
-						<PromotionLink to="/">В МАГАЗИН</PromotionLink>
+					
+						<PromotionTitle>{language==="uk" ? "ДАВАЙ ТЯНИ!" : "LET'S BREATHE!"}</PromotionTitle>
+						<PromotionLink to="/">{language==="uk" ? "В МАГАЗИН" : "SHOP"}</PromotionLink>
 					</Promotion>
 					<Slider
 						ref={swapEl}

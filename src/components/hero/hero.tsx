@@ -10,17 +10,20 @@ import {
 
 import { TfiAngleDown } from 'react-icons/tfi';
 import useScrolltoId from '../../helpers/useScrolltoId';
+import { useAppSelector } from '../../hooks';
+import { selectLanguage } from '../../redux/language/languageSelectors';
 
 type HeroProps = {};
 
 const Hero: FC<HeroProps> = props => {
   const ScrolltoId = useScrolltoId();
+  const language = useAppSelector(selectLanguage);
   return (
     <HeroSection id="hero">
       <HeroTitle>Sunrise Hookah</HeroTitle>
       <HeroPromotion>
-        <HeroPromotionTitle>ДАВАЙ ТЯНИ!</HeroPromotionTitle>
-        <HeroPromotionLink to="/">В МАГАЗИН</HeroPromotionLink>
+        <HeroPromotionTitle>{language==="uk" ? "ДАВАЙ ТЯНИ!" : "LET'S BREATHE!"}</HeroPromotionTitle>
+        <HeroPromotionLink to="/">{language==="uk" ? "В МАГАЗИН" : "SHOP"}</HeroPromotionLink>
       </HeroPromotion>
       <HeroArrow onClick={() => ScrolltoId('tovarGallery', '/')}>
         <TfiAngleDown size={'30px'} color="#fff" />
