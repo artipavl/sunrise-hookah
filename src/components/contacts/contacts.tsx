@@ -19,6 +19,8 @@ import {
 	Title,
 } from './contacts.style';
 import axios from 'axios';
+import { useAppSelector } from '../../hooks';
+import { selectLanguage } from '../../redux/language/languageSelectors';
 
 const SignupSchema = Yup.object().shape({
 	firstName: Yup.string()
@@ -158,16 +160,17 @@ const MyForm = withFormik<MyFormProps, FormValues>({
 type AboutProps = {};
 
 const Contacts: FC<AboutProps> = props => {
+	const language = useAppSelector(selectLanguage);
 	return (
 		<Section id="contacts" bgc="#000" h>
 			<Container flex={'center'}>
 				<Box>
 					<div>
-						<Title>КОНТАКТИ</Title>
-						<SubTitle>Напишіть нам</SubTitle>
-						<SubTitle>Ми відповімо в найближчий час</SubTitle>
+						<Title>{language==="uk" ? "КОНТАКТИ" : "CONTACTS"}</Title>
+						<SubTitle>{language==="uk" ? "Напишіть нам" : "Write to us"}</SubTitle>
+						<SubTitle>{language==="uk" ? "Ми відповімо в найближчий час" : "We will respond shortly"}</SubTitle>
 						<TelLink to="tel:+380666815149">
-							Телефон: +38 (066) 681-51-49
+						{language==="uk" ? "Телефон: " : "Phone: "}+38 (066) 681-51-49
 						</TelLink>
 					</div>
 					<MyForm />
