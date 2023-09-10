@@ -11,8 +11,11 @@ import {
 	DropMenu,
 	DropMenuButton,
 	DropMenuList,
+	FlexBox,
 	HeaderBox,
 	HeaderSection,
+	LanguageButton,
+	LanguageList,
 	MenuBatton,
 	Nav,
 	NavLinkItem,
@@ -23,10 +26,12 @@ import {
 } from './heder.style';
 import Logo from '../logo/logo';
 import useScrolltoId from '../../helpers/useScrolltoId';
-import { useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { selectTypes } from '../../redux/types/slice';
 import Basket from '../basket/basket';
 import { selectBasket } from '../../redux/basket/basketSelectors';
+import { selectLanguage } from '../../redux/language/languageSelectors';
+import { updateLanguage } from '../../redux/language/languageSlice';
 
 type HederProps = {};
 
@@ -34,10 +39,15 @@ const Heder: FC<HederProps> = props => {
 	const [menu, setMenu] = useState(false);
 	const [OpenBasket, setOpenBasket] = useState<boolean>(false);
 	const [subMenu, setSubMenu] = useState(false);
-	const ScrolltoId = useScrolltoId();
-	const types = useAppSelector(selectTypes);
 
+	const types = useAppSelector(selectTypes);
+	const language = useAppSelector(selectLanguage);
 	const tovars = useAppSelector(selectBasket);
+
+	const dispatch = useAppDispatch();
+
+	const ScrolltoId = useScrolltoId();
+
 
 	const OpenBasketset = () => {
 		setOpenBasket(open => !open);
@@ -74,7 +84,7 @@ const Heder: FC<HederProps> = props => {
 									open={subMenu}
 									onClick={() => setSubMenu(subMenu => !subMenu)}
 								>
-									<span>МАГАЗИН</span>
+									<span>{language==="uk" ? "МАГАЗИН" : "SHOP"}</span>
 									<TiArrowSortedDown size="10px" color="#fff" />
 								</DropMenuButton>
 
@@ -82,7 +92,7 @@ const Heder: FC<HederProps> = props => {
 									{types.map(type => (
 										<li key={type.id}>
 											<NavLinkItem to={`/tovar/${type.en}`}>
-												{type.ukr}
+												{language==="uk" ? type.ukr : type.en}
 											</NavLinkItem>
 										</li>
 									))}
@@ -94,7 +104,7 @@ const Heder: FC<HederProps> = props => {
 								to="/#about"
 								onClick={() => ScrolltoId('about', '/')}
 							>
-								ПРО НАС
+								{language==="uk" ? "ПРО НАС" : "ABOUT US"}
 							</NavLinkItem>
 						</NavListItem>
 						<NavListItem>
@@ -102,11 +112,16 @@ const Heder: FC<HederProps> = props => {
 								to="/#contacts"
 								onClick={() => ScrolltoId('contacts', '/')}
 							>
-								КОНТАКТИ
+								{language==="uk" ? "КОНТАКТИ" : "CONTACTS"}
 							</NavLinkItem>
 						</NavListItem>
 					</NavList>
 				</Nav>
+				<FlexBox>
+				<LanguageList>
+					<li><LanguageButton active={language==='uk'} type="button" onClick={()=>language!=='uk' && dispatch(updateLanguage('uk'))}>UK</LanguageButton></li>
+					<li><LanguageButton active={language==='en'} type="button" onClick={()=>language!=='en' && dispatch(updateLanguage('en'))}>EN</LanguageButton></li>
+				</LanguageList>						
 				<ShoppingCart onClick={OpenBasketset}>
 					<CartSvgBox>
 						<AiOutlineShoppingCart color="#fff" size="30px" />
@@ -117,6 +132,7 @@ const Heder: FC<HederProps> = props => {
 						)}
 					</CartSvgBox>
 				</ShoppingCart>
+				</FlexBox>
 			</HeaderBox>
 
 			{OpenBasket && <Basket openBasket={OpenBasketset} />}
