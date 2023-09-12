@@ -23,7 +23,7 @@ const Hero: FC<HeroProps> = props => {
       <HeroTitle>Sunrise Hookah</HeroTitle>
       <HeroPromotion>
         <HeroPromotionTitle>{language==="uk" ? "ДАВАЙ ТЯНИ!" : "LET'S BREATHE!"}</HeroPromotionTitle>
-        <HeroPromotionLink to="/">{language==="uk" ? "В МАГАЗИН" : "SHOP"}</HeroPromotionLink>
+        <HeroPromotionLink to="/tovar/hookahs">{language==="uk" ? "В МАГАЗИН" : "SHOP"}</HeroPromotionLink>
       </HeroPromotion>
       <HeroArrow onClick={() => ScrolltoId('tovarGallery', '/')}>
         <TfiAngleDown size={'30px'} color="#fff" />

@@ -88,7 +88,7 @@ const Gallery: FC<GalleryProps> = props => {
 					<Promotion>
 					
 						<PromotionTitle>{language==="uk" ? "ДАВАЙ ТЯНИ!" : "LET'S BREATHE!"}</PromotionTitle>
-						<PromotionLink to="/">{language==="uk" ? "В МАГАЗИН" : "SHOP"}</PromotionLink>
+						<PromotionLink to="/tovar/hookahs">{language==="uk" ? "В МАГАЗИН" : "SHOP"}</PromotionLink>
 					</Promotion>
 					<Slider
 						ref={swapEl}
