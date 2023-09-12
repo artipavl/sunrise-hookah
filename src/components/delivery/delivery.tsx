@@ -14,6 +14,8 @@ import {
 	WarehousesItem,
 	WarehousesList,
 } from './delivery.style';
+import { selectLanguage } from '../../redux/language/languageSelectors';
+import { useAppSelector } from '../../hooks';
 
 type DeliveryProps = {
 	submit: (values: Warehous) => void;
@@ -29,6 +31,8 @@ const Delivery: FC<DeliveryProps> = ({ submit }) => {
 
 	const [warehouses, setWarehouses] = useState<Warehous[]>();
 	const [warehouseNumber, setWarehouseNumber] = useState<number>(0);
+
+	const language = useAppSelector(selectLanguage);
 
 	useEffect(() => {
 		async function getTowns() {
@@ -76,7 +80,7 @@ const Delivery: FC<DeliveryProps> = ({ submit }) => {
 		<>
 			<Box>
 				<Lable>
-					Місто
+				{language==="uk" ? "Місто" : "City"}
 					<Input
 						type="text"
 						value={town}
@@ -101,7 +105,7 @@ const Delivery: FC<DeliveryProps> = ({ submit }) => {
 					)}
 				</Lable>
         <Lable>
-          № Відділення
+		{language==="uk" ? "№ Відділення" : "Department №"}
 					<Input
 						type="number"
 						value={warehouseNumber}
