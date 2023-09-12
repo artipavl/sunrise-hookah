@@ -31,6 +31,7 @@ import Tovar from '../../Types/tovar';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import { addToBasket } from '../../redux/basket/basketSlice';
 import { selectLanguage } from '../../redux/language/languageSelectors';
+import Loader from '../../reuseСomponents/loader/loader';
 
 type TovarPageProps = {};
 
@@ -67,8 +68,7 @@ const TovarPage: FC<TovarPageProps> = props => {
 	}, [id, navigate, tovars]);
 
 	if (!tovar) {
-		// return <Navigate to="/"></Navigate>;
-		return <></>
+		return <Loader />
 	}
 
 	function onChangeCapacity(quantity: number, step: number) {
