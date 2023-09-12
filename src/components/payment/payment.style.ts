@@ -60,3 +60,10 @@ export const GarantItem = styled.li`
     border-radius: 50%;
   }
 `;
+
+export const OrderModal = styled.div`
+padding: 20px;
+border-radius: 5px;
+background-color: #fff;
+  
+`;

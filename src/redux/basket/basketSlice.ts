@@ -46,7 +46,7 @@ export const basketSlice = createSlice({
 			state.tovars = state.tovars.filter(tovar => tovar.id !== action.payload);
 		},
 		removeBasket: state => {
-			state = initialState;
+			state.tovars = [];
 		},
 	},
 });
