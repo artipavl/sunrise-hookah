@@ -97,7 +97,7 @@ export const Basket: FC<BasketProps> = ({ openBasket }) => {
 					))}
 				</BasketList>
 				<BasketSum>
-					<samp>Сума: </samp>
+					<samp>{language==="uk" ? "Сума" : "Total"}: </samp>
 					<samp>
 						{tovars.reduce((a, b) => a + b.cost * b.baskeQuantity, 0)} грн
 					</samp>
