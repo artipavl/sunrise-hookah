@@ -23,13 +23,14 @@ import {
 	SubInfoItem,
 	SubinfoBox,
 } from './tovarPage.style';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { selectTovars } from '../../redux/tovars/slice';
 import axios from 'axios';
 import Tovar from '../../Types/tovar';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import { addToBasket } from '../../redux/basket/basketSlice';
+import { selectLanguage } from '../../redux/language/languageSelectors';
 
 type TovarPageProps = {};
 
@@ -39,30 +40,35 @@ const TovarPage: FC<TovarPageProps> = props => {
 	const [imgUrl, setImgUrl] = useState(0);
 
 	const tovars = useAppSelector(selectTovars);
+	const language = useAppSelector(selectLanguage);
 
 	const { id } = useParams();
 
 	const dispatch = useAppDispatch();
+	const navigate = useNavigate()
 
 	useEffect(() => {
 		const get = async (id: string | undefined, tovars: Tovar[]) => {
 			if (id) {
-				const tovar = tovars.find(item => item.id === id);
+				let tovar = tovars.find(item => item.id === id);
 				if (!tovar) {
 					try {
 						const { data } = await axios.get(`/tovar/${id}`);
-						setTovar(data as Tovar);
-					} catch (error) {}
+						tovar = data as Tovar
+					} catch (error) {
+
+					}
 				}
-				tovar && setTovar(tovar);
+				tovar ? setTovar(tovar): navigate('/');
 			}
 		};
 
 		get(id, tovars);
-	}, [id, tovars]);
+	}, [id, navigate, tovars]);
 
 	if (!tovar) {
-		return <div>Fuck U</div>;
+		// return <Navigate to="/"></Navigate>;
+		return <></>
 	}
 
 	function onChangeCapacity(quantity: number, step: number) {
@@ -79,7 +85,7 @@ const TovarPage: FC<TovarPageProps> = props => {
 			<Heder></Heder>
 			<SectionTovar h>
 				<ContainerTovar>
-					<H1 h>{tovar?.nameUKR}</H1>
+					<H1 h> {language==="uk" ? tovar?.nameUKR : tovar?.nameEN}</H1>
 					<Gallery>
 						<ImgBox>
 							<BtnArrow
@@ -119,7 +125,7 @@ const TovarPage: FC<TovarPageProps> = props => {
 						</MiniGallery>
 					</Gallery>
 					<MainInfoBox>
-						<H1>{tovar?.nameUKR}</H1>
+						<H1>{language==="uk" ? tovar?.nameUKR : tovar?.nameEN}</H1>
 						<FormBox
 							onSubmit={e => {
 								e.preventDefault();

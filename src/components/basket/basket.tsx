@@ -21,6 +21,7 @@ import {
 	updateQuantity,
 } from '../../redux/basket/basketSlice';
 import { AiFillDelete, AiOutlineRight } from 'react-icons/ai';
+import { selectLanguage } from '../../redux/language/languageSelectors';
 
 type BasketProps = {
 	openBasket: () => void;
@@ -29,6 +30,7 @@ type BasketProps = {
 const portal = document.getElementById('portal') as HTMLElement;
 
 export const Basket: FC<BasketProps> = ({ openBasket }) => {
+	const language = useAppSelector(selectLanguage);
 	const tovars = useAppSelector(selectBasket);
 
 	const dispatch = useAppDispatch();
@@ -51,7 +53,7 @@ export const Basket: FC<BasketProps> = ({ openBasket }) => {
 					<BasketCloseButton type="button" onClick={() => openBasket()}>
 						<AiOutlineRight />
 					</BasketCloseButton>
-					<h2>Кошик</h2>
+					<h2>{language==="uk" ? "Кошик" : "Basket"}</h2>
 				</BasketHeader>
 				<BasketList>
 					{tovars.map(tovar => (
@@ -95,12 +97,12 @@ export const Basket: FC<BasketProps> = ({ openBasket }) => {
 					))}
 				</BasketList>
 				<BasketSum>
-					<samp>Сума: </samp>
+					<samp>{language==="uk" ? "Сума" : "Total"}: </samp>
 					<samp>
 						{tovars.reduce((a, b) => a + b.cost * b.baskeQuantity, 0)} грн
 					</samp>
 				</BasketSum>
-				<Buy to="/checkout">Оформити</Buy>
+				<Buy to="/checkout">{language==="uk" ? "Оформити" : "Order"}</Buy>
 			</BasketBox>
 		</BasketSection>,
 		portal

@@ -28,6 +28,7 @@ import Tovar from '../../Types/tovar';
 import TovarCard from '../../components/tovar/tovar';
 import sortArrByKey from '../../helpers/sortArrByKey';
 import Footer from '../../components/footer/footer';
+import { selectLanguage } from '../../redux/language/languageSelectors';
 
 type ProductProps = {};
 interface sortingParamsTypes {
@@ -77,6 +78,7 @@ const Product: FC<ProductProps> = () => {
 
 	const types = useAppSelector(selectTypes);
 	const start = useAppSelector(selectTovarsLoading);
+	const language = useAppSelector(selectLanguage);
 
 	const type = types.find(type => type.en === params.id?.toLowerCase());
 
@@ -127,7 +129,7 @@ const Product: FC<ProductProps> = () => {
 			>
 				<Heder></Heder>
 				<Container>
-					<Title>{type.ukr}</Title>
+					<Title>{language==="uk" ? type.ukr : type.en}</Title>
 					{!start ? (
 						<p>loading...</p>
 					) : (
