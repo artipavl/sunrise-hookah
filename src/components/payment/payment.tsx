@@ -14,6 +14,7 @@ import axios from 'axios';
 import { AddOrder } from '../../Types/order';
 import { useNavigate } from 'react-router-dom';
 import { removeBasket } from '../../redux/basket/basketSlice';
+import { selectLanguage } from '../../redux/language/languageSelectors';
 
 interface FormValues {
 	firstName: string;
@@ -31,27 +32,30 @@ type PaymentProps = {
 
 const Payment: FC<PaymentProps> = ({ cotact, warehouses, pay }) => {
 	const tovars = useAppSelector(selectBasket);
+
 	const dispatch = useAppDispatch();
+	const language = useAppSelector(selectLanguage);
+
 	const navigate = useNavigate();
 	return (
 		<PaymentBox>
-			<h2>Разом</h2>
+			<h2>{language==="uk" ? "Разом" : "Total"}</h2>
 			<PaymentBottomLine>
 				<PaymentLine>
-					<p>{tovars.reduce((a, b) => a + b.baskeQuantity, 0)} товар на суму</p>
+					<p>{tovars.reduce((a, b) => a + b.baskeQuantity, 0)} {language==="uk" ? "товар на суму" : "goods for the amount"}</p>
 					<p>
 						{tovars.reduce((a, b) => a + b.cost * b.baskeQuantity, 0)}{' '}
 						<span>₴</span>
 					</p>
 				</PaymentLine>
 				<PaymentLine>
-					<p>Вартість доставки</p>
-					<p>за тарифами перевізника</p>
+					<p>{language==="uk" ? "Вартість доставки" : "Shipping cost"}</p>
+					<p>{language==="uk" ? "за тарифами перевізника" : "according to the carrier's tariffs"}</p>
 				</PaymentLine>
 			</PaymentBottomLine>
 			<PaymentBottomLine>
 				<PaymentLine>
-					<p>До сплати</p>
+					<p>{language==="uk" ? "До сплати" : "To be paid"}</p>
 					<p>
 						{tovars.reduce((a, b) => a + b.cost * b.baskeQuantity, 0)}{' '}
 						<span>₴</span>
@@ -83,16 +87,16 @@ const Payment: FC<PaymentProps> = ({ cotact, warehouses, pay }) => {
 						}
 					}}
 				>
-					Замовлення підтверджую
+					{language==="uk" ? "Замовлення підтверджую" : "I confirm the order"}
 				</SubmitButton>
 			</div>
 			<div>
-				<p>Підтверджуючи замовлення, я приймаю умови:</p>
+				<p>{language==="uk" ? "Підтверджуючи замовлення, я приймаю умови:" : "By confirming the order, I accept the following conditions:"}</p>
 				<GarantList>
 					<GarantItem>
-						положення про обробку і захист персональних даних
+					{language==="uk" ? "положення про обробку і захист персональних даних" : "provisions on the processing and protection of personal data"}
 					</GarantItem>
-					<GarantItem>угоди користувача </GarantItem>
+					<GarantItem>{language==="uk" ? "угоди користувача" : "user agreement"} </GarantItem>
 				</GarantList>
 			</div>
 		</PaymentBox>
