@@ -10,12 +10,16 @@ import {
 } from './tovar.style';
 import TovarType from '../../Types/tovar';
 import { Link } from 'react-router-dom';
+import { selectLanguage } from '../../redux/language/languageSelectors';
+import { useAppSelector } from '../../hooks';
 
 type TovarProps = {
 	tovar: TovarType;
 };
 
 const TovarCard: FC<TovarProps> = ({ tovar }) => {
+	const language = useAppSelector(selectLanguage);
+
 	return (
 		<Link to={`/tovarPage/${tovar.id}`}>
 			<TovarBox>
@@ -28,13 +32,23 @@ const TovarCard: FC<TovarProps> = ({ tovar }) => {
 						}
 						alt={tovar.nameEN}
 					/>
-					<TovarImageBoxUpper id="Upper">Детальніше</TovarImageBoxUpper>
+					<TovarImageBoxUpper id="Upper">
+						{language === 'uk' ? 'Детальніше' : 'See more'}
+					</TovarImageBoxUpper>
 				</TovarImageBox>
 				<TovarInformation>
-					<NameTovar>{tovar.nameEN}</NameTovar>
+					<NameTovar>
+						{language === 'uk' ? tovar.nameUKR : tovar.nameEN}
+					</NameTovar>
 					<span>{tovar.cost}₴</span>
 					<TovarInformationAvailability>
-						{tovar.quantity > 0 ? 'В наявності' : 'Відсутній'}
+						{tovar.quantity > 0
+							? language === 'uk'
+								? 'В наявності'
+								: 'In stock'
+							: language === 'uk'
+							? 'Відсутній'
+							: 'Currently unavailable.'}
 					</TovarInformationAvailability>
 				</TovarInformation>
 			</TovarBox>

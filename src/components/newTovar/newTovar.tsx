@@ -455,7 +455,7 @@ const NewTovar: FC<NewTovarProps> = props => {
 	return (
 		<div>
 			<MyForm
-				submit={(form: any) => dispatch(addTovar(form))}
+				submit={(form: any ) => dispatch(addTovar(form) )}
 				message="add tovarchik"
 			/>
 		</div>

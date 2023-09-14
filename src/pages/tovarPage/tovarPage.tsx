@@ -46,7 +46,7 @@ const TovarPage: FC<TovarPageProps> = props => {
 	const { id } = useParams();
 
 	const dispatch = useAppDispatch();
-	const navigate = useNavigate()
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		const get = async (id: string | undefined, tovars: Tovar[]) => {
@@ -55,12 +55,10 @@ const TovarPage: FC<TovarPageProps> = props => {
 				if (!tovar) {
 					try {
 						const { data } = await axios.get(`/tovar/${id}`);
-						tovar = data as Tovar
-					} catch (error) {
-
-					}
+						tovar = data as Tovar;
+					} catch (error) {}
 				}
-				tovar ? setTovar(tovar): navigate('/');
+				tovar ? setTovar(tovar) : navigate('/');
 			}
 		};
 
@@ -68,7 +66,7 @@ const TovarPage: FC<TovarPageProps> = props => {
 	}, [id, navigate, tovars]);
 
 	if (!tovar) {
-		return <Loader />
+		return <Loader />;
 	}
 
 	function onChangeCapacity(quantity: number, step: number) {
@@ -85,7 +83,7 @@ const TovarPage: FC<TovarPageProps> = props => {
 			<Heder></Heder>
 			<SectionTovar h>
 				<ContainerTovar>
-					<H1 h> {language==="uk" ? tovar?.nameUKR : tovar?.nameEN}</H1>
+					<H1 h> {language === 'uk' ? tovar?.nameUKR : tovar?.nameEN}</H1>
 					<Gallery>
 						<ImgBox>
 							<BtnArrow
@@ -125,7 +123,7 @@ const TovarPage: FC<TovarPageProps> = props => {
 						</MiniGallery>
 					</Gallery>
 					<MainInfoBox>
-						<H1>{language==="uk" ? tovar?.nameUKR : tovar?.nameEN}</H1>
+						<H1>{language === 'uk' ? tovar?.nameUKR : tovar?.nameEN}</H1>
 						<FormBox
 							onSubmit={e => {
 								e.preventDefault();
@@ -133,7 +131,11 @@ const TovarPage: FC<TovarPageProps> = props => {
 								dispatch(addToBasket({ ...tovar, baskeQuantity: quantity }));
 							}}
 						>
-							<Price>Ціна: {tovar?.cost}грн.</Price>
+							<Price>
+								{' '}
+								{language === 'uk' ? 'Ціна:' : 'Price'} {tovar?.cost}
+								{language === 'uk' ? 'грн.' : 'uah.'}
+							</Price>
 							<CustomInput>
 								<InputQuantity
 									type="number"
@@ -158,15 +160,25 @@ const TovarPage: FC<TovarPageProps> = props => {
 									</ButtonValue>
 								</ButtonNav>
 							</CustomInput>
-							<ButtonCase type="submit">Додати в кошик</ButtonCase>
+							<ButtonCase type="submit">
+								{language === 'uk' ? 'Додати в кошик' : 'Add to cart'}
+							</ButtonCase>
 						</FormBox>
 					</MainInfoBox>
 					<SubinfoBox>
 						<SubInfoItem
-							dangerouslySetInnerHTML={{ __html: tovar.parametersUKR }}
+							dangerouslySetInnerHTML={
+								language === 'uk'
+									? { __html: tovar.parametersUKR }
+									: { __html: tovar.parametersEN }
+							}
 						></SubInfoItem>
 						<SubInfoItem
-							dangerouslySetInnerHTML={{ __html: tovar.descriptionUKR }}
+							dangerouslySetInnerHTML={
+								language === 'uk'
+									? { __html: tovar.descriptionUKR }
+									: { __html: tovar.descriptionEN }
+							}
 						></SubInfoItem>
 					</SubinfoBox>
 				</ContainerTovar>

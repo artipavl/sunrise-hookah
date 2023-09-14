@@ -282,6 +282,10 @@ export const SubinfoBox = styled.div`
 
 export const SubInfoItem = styled.div`
 	background-color: ${colors.mainBg} !important;
+
+	& > p {
+		color: ${colors.textGrey} !important; 
+	}
 `;
 
 export const MiniGallery = styled.ul`
