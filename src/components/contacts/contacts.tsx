@@ -166,11 +166,17 @@ const Contacts: FC<AboutProps> = props => {
 			<Container flex={'center'}>
 				<Box>
 					<div>
-						<Title>{language==="uk" ? "КОНТАКТИ" : "CONTACTS"}</Title>
-						<SubTitle>{language==="uk" ? "Напишіть нам" : "Write to us"}</SubTitle>
-						<SubTitle>{language==="uk" ? "Ми відповімо в найближчий час" : "We will respond shortly"}</SubTitle>
+						<Title>{language === 'uk' ? 'КОНТАКТИ' : 'CONTACTS'}</Title>
+						<SubTitle>
+							{language === 'uk' ? 'Напишіть нам' : 'Write to us'}
+						</SubTitle>
+						<SubTitle>
+							{language === 'uk'
+								? 'Ми відповімо в найближчий час'
+								: 'We will respond shortly'}
+						</SubTitle>
 						<TelLink to="tel:+380666815149">
-						{language==="uk" ? "Телефон: " : "Phone: "}+38 (066) 681-51-49
+							{language === 'uk' ? 'Телефон: ' : 'Phone: '}+38 (066) 681-51-49
 						</TelLink>
 					</div>
 					<MyForm />

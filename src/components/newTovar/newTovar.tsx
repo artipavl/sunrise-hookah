@@ -79,7 +79,7 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 	);
 	const [first, setFirst] = useState<number | null>(null);
 
-	const types = useAppSelector(selectTypes);
+	const types = useAppSelector(selectTypes); 
 
 	useEffect(() => {
 		async function createFotosArr(fotos: FileList): Promise<string[]> {
@@ -446,6 +446,7 @@ export const MyForm = withFormik<MyFormProps, FormValues>({
 			form.append('tovar', JSON.stringify(tovar));
 			formikBag.props.submit(form);
 		}
+		formikBag.resetForm();
 	},
 })(InnerForm);
 type NewTovarProps = {};
