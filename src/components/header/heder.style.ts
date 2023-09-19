@@ -29,6 +29,7 @@ export const HeaderBox = styled.div`
 export const MenuBatton = styled.button`
 	width: 40px;
 	height: 40px;
+	z-index: 2;
 
 	@media screen and (min-width: 1440px) {
 		display: none;
@@ -36,6 +37,7 @@ export const MenuBatton = styled.button`
 `;
 
 export const ShoppingCart = styled.button`
+	z-index: 2;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -74,12 +76,19 @@ type NavProps = {
 };
 
 export const Nav = styled.nav<NavProps>`
+	transition: top 750ms ease;
 	@media screen and (max-width: 1439px) {
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		position: absolute;
-		top: 0;
-		left: ${props => (props.open ? '0' : '-120%')};
+		/* top: 100%; */
+		top: ${props => (props.open ? '60px' : '-100vh')};
+		/* left: ${props => (props.open ? '0' : '-120%')}; */
+		left: 0;
 		min-height: 100vh;
 		width: 100%;
+		background-color: #000000;
 		z-index: 1;
 	}
 `;
@@ -89,13 +98,14 @@ export const NavList = styled.ul`
 	gap: 10px;
 
 	@media screen and (max-width: 1439px) {
+		font-size: 36px;
 		flex-direction: column;
-		width: 200px;
-		margin-left: auto;
-		background-color: #000000;
+		width: min-content;
+		/* margin-left: auto; */
+
 		min-height: 100vh;
 		padding-top: 80px;
-		padding-left: 30px;
+		/* padding-left: 30px; */
 	}
 `;
 
@@ -183,28 +193,27 @@ export const DropMenuList = styled.ul<NavProps>`
 `;
 
 export const LanguageList = styled.ul`
-  display: flex;
-  align-items: center;
-  gap: 10px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	z-index: 2;
 `;
 
-
 interface LanguageButtonProps {
-	active?: boolean
+	active?: boolean;
 }
 
 export const LanguageButton = styled.button<LanguageButtonProps>`
-  color: ${props=>props.active ? 'red' : '#fff'};
+	color: ${props => (props.active ? 'red' : '#fff')};
 
-  :hover,:focus{
-	color: red;
-  }
+	:hover,
+	:focus {
+		color: red;
+	}
 `;
 
-
 export const FlexBox = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  
+	display: flex;
+	align-items: center;
+	gap: 20px;
 `;

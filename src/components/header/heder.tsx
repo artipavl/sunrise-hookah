@@ -48,7 +48,6 @@ const Heder: FC<HederProps> = props => {
 
 	const ScrolltoId = useScrolltoId();
 
-
 	const OpenBasketset = () => {
 		setOpenBasket(open => !open);
 	};
@@ -84,15 +83,20 @@ const Heder: FC<HederProps> = props => {
 									open={subMenu}
 									onClick={() => setSubMenu(subMenu => !subMenu)}
 								>
-									<span>{language==="uk" ? "МАГАЗИН" : "SHOP"}</span>
+									<span>{language === 'uk' ? 'МАГАЗИН' : 'SHOP'}</span>
 									<TiArrowSortedDown size="10px" color="#fff" />
 								</DropMenuButton>
 
 								<DropMenuList open={subMenu}>
 									{types.map(type => (
 										<li key={type.id}>
-											<NavLinkItem to={`/tovar/${type.en}`}>
-												{language==="uk" ? type.ukr : type.en}
+											<NavLinkItem
+												to={`/tovar/${type.en}`}
+												onClick={() => {
+													setMenu(false);
+												}}
+											>
+												{language === 'uk' ? type.ukr : type.en}
 											</NavLinkItem>
 										</li>
 									))}
@@ -102,36 +106,62 @@ const Heder: FC<HederProps> = props => {
 						<NavListItem>
 							<NavLinkItem
 								to="/#about"
-								onClick={() => ScrolltoId('about', '/')}
+								onClick={() => {
+									ScrolltoId('about', '/');
+									setMenu(false);
+								}}
 							>
-								{language==="uk" ? "ПРО НАС" : "ABOUT US"}
+								{language === 'uk' ? 'ПРО НАС' : 'ABOUT US'}
 							</NavLinkItem>
 						</NavListItem>
 						<NavListItem>
 							<NavLinkItem
 								to="/#contacts"
-								onClick={() => ScrolltoId('contacts', '/')}
+								onClick={() => {
+									ScrolltoId('contacts', '/');
+									setMenu(false);
+								}}
 							>
-								{language==="uk" ? "КОНТАКТИ" : "CONTACTS"}
+								{language === 'uk' ? 'КОНТАКТИ' : 'CONTACTS'}
 							</NavLinkItem>
 						</NavListItem>
 					</NavList>
 				</Nav>
 				<FlexBox>
-				<LanguageList>
-					<li><LanguageButton active={language==='uk'} type="button" onClick={()=>language!=='uk' && dispatch(updateLanguage('uk'))}>UK</LanguageButton></li>
-					<li><LanguageButton active={language==='en'} type="button" onClick={()=>language!=='en' && dispatch(updateLanguage('en'))}>EN</LanguageButton></li>
-				</LanguageList>						
-				<ShoppingCart onClick={OpenBasketset}>
-					<CartSvgBox>
-						<AiOutlineShoppingCart color="#fff" size="30px" />
-						{tovars.length > 0 && (
-							<Quantity>
-								<span>{tovars.length}</span>
-							</Quantity>
-						)}
-					</CartSvgBox>
-				</ShoppingCart>
+					<LanguageList>
+						<li>
+							<LanguageButton
+								active={language === 'uk'}
+								type="button"
+								onClick={() =>
+									language !== 'uk' && dispatch(updateLanguage('uk'))
+								}
+							>
+								UK
+							</LanguageButton>
+						</li>
+						<li>
+							<LanguageButton
+								active={language === 'en'}
+								type="button"
+								onClick={() =>
+									language !== 'en' && dispatch(updateLanguage('en'))
+								}
+							>
+								EN
+							</LanguageButton>
+						</li>
+					</LanguageList>
+					<ShoppingCart onClick={OpenBasketset}>
+						<CartSvgBox>
+							<AiOutlineShoppingCart color="#fff" size="30px" />
+							{tovars.length > 0 && (
+								<Quantity>
+									<span>{tovars.length}</span>
+								</Quantity>
+							)}
+						</CartSvgBox>
+					</ShoppingCart>
 				</FlexBox>
 			</HeaderBox>
 

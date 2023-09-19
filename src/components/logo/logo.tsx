@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom';
 type LogoProps = {};
 
 const Logo: FC<LogoProps> = props => {
-  return (
-    <Link to="/">
-      <LogoImg src={Logoimg} alt="Logo" width="40px" />
-    </Link>
-  );
+	return (
+		<Link to="/" style={{ zIndex: 2 }}>
+			<LogoImg src={Logoimg} alt="Logo" width="40px" />
+		</Link>
+	);
 };
 
 export default Logo;
