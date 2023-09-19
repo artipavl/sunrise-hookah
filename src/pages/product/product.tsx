@@ -39,32 +39,32 @@ interface sortingParamsTypes {
 }
 const sortingParams: sortingParamsTypes[] = [
 	{
-		name: 'популярні',
-		nameEN: 'popularity',
+		name: 'Популярні',
+		nameEN: 'Popularity',
 		sortableParam: 'popularity',
 		sortBy: true,
 	},
 	{
-		name: 'спочатку дешеві',
-		nameEN: 'cheap at first',
+		name: 'Спочатку дешеві',
+		nameEN: 'Cheap at first',
 		sortableParam: 'cost',
 		sortBy: true,
 	},
 	{
-		name: 'спочатку дорожчі',
-		nameEN: 'more expensive at first',
+		name: 'Cпочатку дорожчі',
+		nameEN: 'More expensive',
 		sortableParam: 'cost',
 		sortBy: false,
 	},
 	{
-		name: 'за алфавітом',
-		nameEN: 'in alphabetical order',
+		name: 'За алфавітом',
+		nameEN: 'Alphabetical',
 		sortableParam: 'nameUKR',
 		sortBy: true,
 	},
 	{
-		name: 'проти алфавіта',
-		nameEN: 'in alphabetical-reverse order',
+		name: 'Проти алфавіта',
+		nameEN: 'Alphabetical-reverse',
 		sortableParam: 'nameUKR',
 		sortBy: false,
 	},
@@ -158,16 +158,20 @@ const Product: FC<ProductProps> = () => {
 											type="button"
 											onClick={() => setIsOpenSort(!isOpenSort)}
 										>
-											{sortingParams[sortParams].name}
+											{language === 'uk'
+												? sortingParams[sortParams].name
+												: sortingParams[sortParams].nameEN}
 										</SortingBtn>
 										{sortingParams.map((param, index) => (
 											<ItemOpt key={param.name} index={index} h={isOpenSort}>
-												{param.name}
+												{language === 'uk' ? param.name : param.nameEN}
 												<InputRadio
 													name="sort"
+													checked={index === sortParams}
 													type="radio"
 													value={index}
 													onChange={() => {
+														console.log(index)
 														setSortParams(index);
 														setIsOpenSort(false);
 													}}

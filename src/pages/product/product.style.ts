@@ -89,6 +89,8 @@ export const SortCustomBtn = styled.div`
 
 	/* width: 100%; */
 	position: relative;
+
+	font-size: 18px;
 `;
 
 export const SortingBtn = styled.button`
@@ -100,7 +102,7 @@ export const SortingBtn = styled.button`
 	top: 0;
 
 	width: 200px;
-	height: 50px;
+	height: 50px; 
 `;
 
 type SortListProps = {
@@ -147,7 +149,7 @@ export const ItemOpt = styled.label<ItemOptTypes>`
 
 	padding: 10px 20px;
 
-	font-size: 18px;
+	font-size: 16px;
 
 	background-color: ${colors.black};
 	color: ${colors.textGrey};
@@ -162,6 +164,7 @@ export const ItemOpt = styled.label<ItemOptTypes>`
 export const InputRadio = styled.input`
 	display: none;
 `;
+ 
 
 // custom slider
 
