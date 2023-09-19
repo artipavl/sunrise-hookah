@@ -33,32 +33,38 @@ import { selectLanguage } from '../../redux/language/languageSelectors';
 type ProductProps = {};
 interface sortingParamsTypes {
 	name: string;
+	nameEN: string;
 	sortableParam: keyof Tovar;
 	sortBy: boolean;
 }
 const sortingParams: sortingParamsTypes[] = [
 	{
 		name: 'популярні',
+		nameEN: 'popularity',
 		sortableParam: 'popularity',
 		sortBy: true,
 	},
 	{
 		name: 'спочатку дешеві',
+		nameEN: 'cheap at first',
 		sortableParam: 'cost',
 		sortBy: true,
 	},
 	{
 		name: 'спочатку дорожчі',
+		nameEN: 'more expensive at first',
 		sortableParam: 'cost',
 		sortBy: false,
 	},
 	{
 		name: 'за алфавітом',
+		nameEN: 'in alphabetical order',
 		sortableParam: 'nameUKR',
 		sortBy: true,
 	},
 	{
 		name: 'проти алфавіта',
+		nameEN: 'in alphabetical-reverse order',
 		sortableParam: 'nameUKR',
 		sortBy: false,
 	},
@@ -129,7 +135,7 @@ const Product: FC<ProductProps> = () => {
 			>
 				<Heder></Heder>
 				<Container>
-					<Title>{language==="uk" ? type.ukr : type.en}</Title>
+					<Title>{language === 'uk' ? type.ukr : type.en}</Title>
 					{!start ? (
 						<p>loading...</p>
 					) : (
@@ -145,7 +151,7 @@ const Product: FC<ProductProps> = () => {
 											setCurrentMin(minPrice);
 										}}
 									>
-										Очистити фільтр
+										{language === 'uk' ? 'Очистити фільтр' : 'Clean the filter'}
 									</SortingBtn>
 									<form>
 										<SortingBtn
@@ -201,10 +207,10 @@ const Product: FC<ProductProps> = () => {
 												min={minPrice}
 												max={maxPrice}
 												value={currentMin}
-												step={Math.round(maxPrice / 400)}
+												step={1}
 												onChange={e =>
 													Number(e.target.value) <= currentMax
-														? setCurrentMin(Number(e.target.value))
+														? setCurrentMin(Math.round(Number(e.target.value)))
 														: setCurrentMin(
 																Math.round(currentMax - maxPrice / 100)
 														  )
@@ -215,10 +221,10 @@ const Product: FC<ProductProps> = () => {
 												min={minPrice}
 												max={maxPrice}
 												value={currentMax}
-												step={Math.round(maxPrice / 400)}
+												step={1}
 												onChange={e =>
 													Number(e.target.value) >= currentMin
-														? setCurrentMax(Number(e.target.value))
+														? setCurrentMax(Math.round(Number(e.target.value)))
 														: setCurrentMax(
 																Math.round(currentMin + maxPrice / 100)
 														  )
@@ -257,7 +263,7 @@ const Product: FC<ProductProps> = () => {
 								) : (
 									<EmptyTovarList>
 										<p>
-											Товар не знайдений, спробуйте інші налаштування фільтрів
+											{language === 'uk' ? 'Товар не знайдений' : 'No results'}
 										</p>
 									</EmptyTovarList>
 								)}
