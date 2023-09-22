@@ -45,6 +45,11 @@ export const SliderButtonLeft = styled.button`
 	@media screen and (max-width: 767px) {
 		display: none;
 	}
+
+	&:disabled {
+		opacity: 0.3;
+		cursor: default;
+	}
 `;
 
 export const SliderButtonRight = styled.button`
@@ -57,6 +62,11 @@ export const SliderButtonRight = styled.button`
 
 	@media screen and (max-width: 767px) {
 		display: none;
+	}
+
+	&:disabled {
+		opacity: 0.3;
+		cursor: default;
 	}
 `;
 
