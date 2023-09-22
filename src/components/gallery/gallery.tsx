@@ -37,8 +37,8 @@ type GalleryProps = {};
 const Gallery: FC<GalleryProps> = props => {
 	const [swpPoint, setSwpPoint] = useState<number>(0);
 	const [touchX, setTouchX] = useState<number>(0);
-	const [width, setWidth] = useState<number>(0);
-	const [sliderListWidth, setSliderListWidth] = useState<number>(0);
+	// const [width, setWidth] = useState<number>(0);
+	// const [sliderListWidth, setSliderListWidth] = useState<number>(0);
 
 	const language = useAppSelector(selectLanguage);
 
@@ -46,38 +46,32 @@ const Gallery: FC<GalleryProps> = props => {
 	const sliderList = useRef<HTMLUListElement>(null);
 
 	useEffect(() => {
-		resize();
 		window.addEventListener('resize', resize);
 		return () => {
 			window.removeEventListener('resize', resize);
 		};
 	}, []);
 
-	useEffect(() => {
-		resize();
-	}, [swapEl.current?.offsetWidth]);
-
 	function resize() {
-		const _w = swapEl.current?.offsetWidth;
-		if (_w) {
-			setWidth(_w);
-		}
 		setSwpPoint(0);
-		if (sliderList.current) setSliderListWidth(sliderList.current?.scrollWidth);
 	}
 
 	function swap(swap: 'left' | 'right') {
-		switch (swap) {
-			case 'left':
-				swpPoint !== 0 && setSwpPoint(swp => swp + width);
-				break;
-			case 'right':
-				sliderListWidth >= swpPoint * -1 + width + 150 &&
-					setSwpPoint(swp => swp - width);
-				break;
+		const width = swapEl.current?.offsetWidth;
+		const totalWidth = sliderList.current?.scrollWidth;
+		if (width && totalWidth) {
+			switch (swap) {
+				case 'left':
+					swpPoint !== 0 && setSwpPoint(swp => swp + width);
+					break;
+				case 'right':
+					totalWidth >= swpPoint * -1 + width + 150 &&
+						setSwpPoint(swp => swp - width);
+					break;
 
-			default:
-				break;
+				default:
+					break;
+			}
 		}
 	}
 
@@ -86,9 +80,12 @@ const Gallery: FC<GalleryProps> = props => {
 			<Container>
 				<Box>
 					<Promotion>
-					
-						<PromotionTitle>{language==="uk" ? "ДАВАЙ ТЯНИ!" : "LET'S BREATHE!"}</PromotionTitle>
-						<PromotionLink to="/tovar/hookahs">{language==="uk" ? "В МАГАЗИН" : "SHOP"}</PromotionLink>
+						<PromotionTitle>
+							{language === 'uk' ? 'ДАВАЙ ТЯНИ!' : "LET'S BREATHE!"}
+						</PromotionTitle>
+						<PromotionLink to="/tovar/hookahs">
+							{language === 'uk' ? 'В МАГАЗИН' : 'SHOP'}
+						</PromotionLink>
 					</Promotion>
 					<Slider
 						ref={swapEl}
@@ -116,7 +113,12 @@ const Gallery: FC<GalleryProps> = props => {
 							<TfiAngleLeft />
 						</SliderButtonLeft>
 						<SliderButtonRight
-							disabled={sliderListWidth <= swpPoint * -1 + width + 150}
+							disabled={Boolean(
+								sliderList.current?.scrollWidth &&
+									swapEl.current?.offsetWidth &&
+									sliderList.current?.scrollWidth <
+										swpPoint * -1 + swapEl.current?.offsetWidth + 150
+							)}
 							type="button"
 							onClick={() => swap('right')}
 						>
