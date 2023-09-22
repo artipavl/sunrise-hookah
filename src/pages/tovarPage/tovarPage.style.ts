@@ -17,7 +17,7 @@ const colors = {
 export const SectionTovar = styled(Section)`
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	display: block;
-	padding-top: 0;
+	padding-top: 120px;
 
 	@media screen and (min-width: 768px) {
 		width: 768px;
@@ -284,7 +284,7 @@ export const SubInfoItem = styled.div`
 	background-color: ${colors.mainBg} !important;
 
 	& > p {
-		color: ${colors.textGrey} !important; 
+		color: ${colors.textGrey} !important;
 	}
 `;
 

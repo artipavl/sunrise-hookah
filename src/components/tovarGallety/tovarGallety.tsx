@@ -109,10 +109,12 @@ const TovarGallery: FC<GalleryProps> = props => {
 					<Slider
 						ref={swapEl}
 						onTouchStart={e => {
+							document.body.style.overflow = 'hidden';
 							setTouchX(e.changedTouches[0].clientX);
 							setTransition(false);
 						}}
 						onTouchEnd={e => {
+							document.body.style.overflow = 'auto';
 							setTransition(true);
 							// if (touchX - e.changedTouches[0].clientX > 50) {
 							//   swap('right');
@@ -145,9 +147,17 @@ const TovarGallery: FC<GalleryProps> = props => {
 							<TfiAngleLeft />
 						</SliderButtonLeft>
 						<SliderButtonRight
-							disabled={sliderListWidth <= swpPoint * -1 + width + 150}
+							disabled={Boolean(
+								swapEl.current?.offsetWidth &&
+									swpPoint ===
+										(sliderListWidth - swapEl.current?.offsetWidth) * -1
+							)}
 							type="button"
-							onClick={() => swap('right')}
+							onClick={() => {
+								console.log(sliderListWidth);
+								console.log(width);
+								swap('right');
+							}}
 						>
 							<TfiAngleRight />
 						</SliderButtonRight>

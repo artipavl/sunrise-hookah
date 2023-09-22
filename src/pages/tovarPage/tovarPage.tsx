@@ -81,7 +81,7 @@ const TovarPage: FC<TovarPageProps> = props => {
 	return (
 		<>
 			<Heder></Heder>
-			<SectionTovar h>
+			<SectionTovar>
 				<ContainerTovar>
 					<H1 h> {language === 'uk' ? tovar?.nameUKR : tovar?.nameEN}</H1>
 					<Gallery>

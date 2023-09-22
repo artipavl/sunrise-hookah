@@ -24,6 +24,7 @@ import { Navigate } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
 import { selectBasket } from '../../redux/basket/basketSelectors';
 import { selectLanguage } from '../../redux/language/languageSelectors';
+import Footer from '../../components/footer/footer';
 
 type CheckoutProps = {};
 
@@ -64,14 +65,18 @@ const Checkout: FC<CheckoutProps> = props => {
 	return (
 		<>
 			<Heder></Heder>
-			<Section h={true}>
+			<Section style={{ paddingTop: '120px' }}>
 				<Container>
-					<Title>{language==="uk" ? "Оформлення" : "Forming an order"}</Title>
+					<Title>{language === 'uk' ? 'Оформлення' : 'Forming an order'}</Title>
 					<Box>
 						<CheckoutList>
 							<CheckoutItem>
 								<div style={{ width: '100%' }}>
-									<SubTitle>{language==="uk" ? "Ваші контактні дані" : "Your contact details"}</SubTitle>
+									<SubTitle>
+										{language === 'uk'
+											? 'Ваші контактні дані'
+											: 'Your contact details'}
+									</SubTitle>
 									{cotactCheck && cotact !== null ? (
 										<DeliveryInform>
 											<ContactCheckoutInfo values={cotact} />
@@ -94,17 +99,22 @@ const Checkout: FC<CheckoutProps> = props => {
 							</CheckoutItem>
 							<CheckoutItem>
 								<div style={{ width: '100%' }}>
-									<SubTitle>{language==="uk" ? "Замовлення" : "Order"}</SubTitle>
+									<SubTitle>
+										{language === 'uk' ? 'Замовлення' : 'Order'}
+									</SubTitle>
 									<BasketTovars />
 								</div>
 							</CheckoutItem>
 							<CheckoutItem>
 								<div style={{ width: '100%' }}>
-									<SubTitle>{language==="uk" ? "Доставка" : "Delivery"}</SubTitle>
+									<SubTitle>
+										{language === 'uk' ? 'Доставка' : 'Delivery'}
+									</SubTitle>
 									{warehousesCheck && warehouses !== null ? (
 										<DeliveryInform>
 											<div style={{ color: '#fff' }}>
-											{language==="uk" ? "Доставка у " : "Delivery to "}{warehouses.Description}
+												{language === 'uk' ? 'Доставка у ' : 'Delivery to '}
+												{warehouses.Description}
 											</div>
 											<button
 												style={{ color: '#fff' }}
@@ -123,7 +133,9 @@ const Checkout: FC<CheckoutProps> = props => {
 							</CheckoutItem>
 							<CheckoutItem>
 								<div style={{ width: '100%' }}>
-									<SubTitle>{language==="uk" ? "Оплата" : "Payment"}</SubTitle>
+									<SubTitle>
+										{language === 'uk' ? 'Оплата' : 'Payment'}
+									</SubTitle>
 									<Paylist>
 										<PayItem>
 											<input
@@ -132,10 +144,15 @@ const Checkout: FC<CheckoutProps> = props => {
 												onChange={() => setPay(1)}
 											/>
 											<div>
-												<p>{language==="uk" ? "Оплата під час отримання товару" : "Payment upon receipt of goods"}</p>
 												<p>
-												{language==="uk" ? "Послуга післяплати оплачується окремо, за тарифами перевізника" : "The postpaid service is paid separately, according to the carrier's tariffs"}
-													
+													{language === 'uk'
+														? 'Оплата під час отримання товару'
+														: 'Payment upon receipt of goods'}
+												</p>
+												<p>
+													{language === 'uk'
+														? 'Послуга післяплати оплачується окремо, за тарифами перевізника'
+														: "The postpaid service is paid separately, according to the carrier's tariffs"}
 												</p>
 											</div>
 										</PayItem>
@@ -146,7 +163,11 @@ const Checkout: FC<CheckoutProps> = props => {
 												onChange={() => setPay(2)}
 											/>
 											<div>
-												<p>{language==="uk" ? "Оплата переводом на карту" : "Payment by transfer to the card"}</p>
+												<p>
+													{language === 'uk'
+														? 'Оплата переводом на карту'
+														: 'Payment by transfer to the card'}
+												</p>
 											</div>
 										</PayItem>
 									</Paylist>
@@ -157,6 +178,7 @@ const Checkout: FC<CheckoutProps> = props => {
 					</Box>
 				</Container>
 			</Section>
+			<Footer />
 		</>
 	);
 };
