@@ -13,6 +13,7 @@ import {
 	DropMenuList,
 	FlexBox,
 	HeaderBox,
+	HeaderLogo,
 	HeaderSection,
 	LanguageButton,
 	LanguageList,
@@ -63,7 +64,9 @@ const Heder: FC<HederProps> = props => {
 					)}
 				</MenuBatton>
 
-				<Logo />
+				<HeaderLogo>
+					<Logo />
+				</HeaderLogo>
 
 				<Nav
 					open={menu}

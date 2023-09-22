@@ -1,5 +1,15 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+// import Logo from '../logo/logo';
+
+export const HeaderLogo = styled.div`
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	@media screen and (min-width: 1440px) {
+		position: unset;
+	}
+`;
 
 export const HeaderSection = styled.header`
 	position: fixed;
