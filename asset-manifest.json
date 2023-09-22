@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.8aff206d.css",
-    "main.js": "/static/js/main.3e073487.js",
-    "static/js/946.3dc1f1c0.chunk.js": "/static/js/946.3dc1f1c0.chunk.js",
+    "main.js": "/static/js/main.67f46446.js",
+    "static/js/946.6d4b2dc9.chunk.js": "/static/js/946.6d4b2dc9.chunk.js",
     "static/js/434.f8e9e51d.chunk.js": "/static/js/434.f8e9e51d.chunk.js",
     "static/media/sunrise-hookah-hero.jpg": "/static/media/sunrise-hookah-hero.17a02529d4c3b49c7219.jpg",
     "static/media/logo-320.png": "/static/media/logo-320.775ef4b994af9f9450b7.png",
@@ -15,12 +15,12 @@
     "index.html": "/index.html",
     "static/media/stars.svg": "/static/media/stars.c4102c51c78c96e71a8e014a1df0efda.svg",
     "main.8aff206d.css.map": "/static/css/main.8aff206d.css.map",
-    "main.3e073487.js.map": "/static/js/main.3e073487.js.map",
-    "946.3dc1f1c0.chunk.js.map": "/static/js/946.3dc1f1c0.chunk.js.map",
+    "main.67f46446.js.map": "/static/js/main.67f46446.js.map",
+    "946.6d4b2dc9.chunk.js.map": "/static/js/946.6d4b2dc9.chunk.js.map",
     "434.f8e9e51d.chunk.js.map": "/static/js/434.f8e9e51d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.8aff206d.css",
-    "static/js/main.3e073487.js"
+    "static/js/main.67f46446.js"
   ]
 }
