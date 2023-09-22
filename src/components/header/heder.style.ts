@@ -2,10 +2,11 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const HeaderSection = styled.header`
-	position: sticky;
+	position: fixed;
 	top: 0;
 	left: 0;
 	z-index: 99999;
+	/* margin-bottom: -60px; */
 
 	width: 100%;
 	background-color: #000000;
@@ -13,6 +14,7 @@ export const HeaderSection = styled.header`
 	padding-bottom: 10px;
 	@media screen and (min-width: 1440px) {
 		padding: 0;
+		/* margin-bottom: -80px; */
 	}
 `;
 export const HeaderBox = styled.div`

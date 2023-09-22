@@ -63,8 +63,8 @@ export const SectionTovars = styled(Section)`
 	flex-direction: column;
 	position: relative;
 
-	padding-top: 0;
-	padding-bottom: 0;
+	padding-top: 120px;
+	/* padding-bottom: 0; */
 `;
 
 export const FiltersBox = styled.div`
@@ -102,7 +102,7 @@ export const SortingBtn = styled.button`
 	top: 0;
 
 	width: 200px;
-	height: 50px; 
+	height: 50px;
 `;
 
 type SortListProps = {
@@ -164,7 +164,6 @@ export const ItemOpt = styled.label<ItemOptTypes>`
 export const InputRadio = styled.input`
 	display: none;
 `;
- 
 
 // custom slider
 

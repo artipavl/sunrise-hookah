@@ -126,6 +126,7 @@ const Product: FC<ProductProps> = () => {
 
 	return (
 		<>
+			<Heder></Heder>
 			<SectionTovars
 				onClick={e => {
 					e.target instanceof Element &&
@@ -133,7 +134,6 @@ const Product: FC<ProductProps> = () => {
 						setIsOpenSort(false);
 				}}
 			>
-				<Heder></Heder>
 				<Container>
 					<Title>{language === 'uk' ? type.ukr : type.en}</Title>
 					{!start ? (
@@ -171,7 +171,7 @@ const Product: FC<ProductProps> = () => {
 													type="radio"
 													value={index}
 													onChange={() => {
-														console.log(index)
+														console.log(index);
 														setSortParams(index);
 														setIsOpenSort(false);
 													}}
@@ -275,8 +275,8 @@ const Product: FC<ProductProps> = () => {
 						</>
 					)}
 				</Container>
-				<Footer />
 			</SectionTovars>
+			<Footer />
 		</>
 	);
 };
