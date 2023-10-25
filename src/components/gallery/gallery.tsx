@@ -37,8 +37,6 @@ type GalleryProps = {};
 const Gallery: FC<GalleryProps> = props => {
 	const [swpPoint, setSwpPoint] = useState<number>(0);
 	const [touchX, setTouchX] = useState<number>(0);
-	// const [width, setWidth] = useState<number>(0);
-	// const [sliderListWidth, setSliderListWidth] = useState<number>(0);
 
 	const language = useAppSelector(selectLanguage);
 
