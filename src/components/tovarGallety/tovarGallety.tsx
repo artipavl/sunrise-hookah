@@ -90,11 +90,6 @@ const TovarGallery: FC<GalleryProps> = props => {
 				break;
 			case 'right':
 				setSwpPoint(swp => swp - width);
-
-				// const w = swapEl.current?.offsetWidth;
-				// if (w) {
-				//   sliderListWidth >= swpPoint * -1 + w + 150 &&
-				// }
 				break;
 
 			default:
@@ -116,11 +111,6 @@ const TovarGallery: FC<GalleryProps> = props => {
 						onTouchEnd={e => {
 							document.body.style.overflow = 'auto';
 							setTransition(true);
-							// if (touchX - e.changedTouches[0].clientX > 50) {
-							//   swap('right');
-							// } else if (touchX - e.changedTouches[0].clientX < -50) {
-							//   swap('left');
-							// }
 						}}
 						onTouchMoveCapture={e => {
 							const width = touchX - e.changedTouches[0].clientX;
@@ -154,8 +144,6 @@ const TovarGallery: FC<GalleryProps> = props => {
 							)}
 							type="button"
 							onClick={() => {
-								console.log(sliderListWidth);
-								console.log(width);
 								swap('right');
 							}}
 						>
