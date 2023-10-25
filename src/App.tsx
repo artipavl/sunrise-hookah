@@ -24,13 +24,12 @@ import NewTovar from './components/newTovar/newTovar';
 import Feedback from './components/feedback/feedback';
 import Loader from './reuseСomponents/loader/loader';
 import { fetchAllTovars } from './redux/tovars/tovarsOperations';
+import { selectTovarsLoading } from './redux/tovars/slice';
 
-// import Home from './pages/home/home';
 const Home = lazy(() => import('./pages/home/home'));
 
 export const Wrapper = styled.div`
-	/* display: flex;
-  flex-direction: column; */
+
 `;
 
 function App() {
@@ -41,10 +40,11 @@ function App() {
 		AppDispatch(fetchAllTovars());
 	}, [AppDispatch]);
 
-	const Loading = useAppSelector(selectTypesIsLoading);
+	const LoadingTypes = useAppSelector(selectTypesIsLoading);
+	const LoadingTovars = useAppSelector(selectTovarsLoading);
 
-	if (!Loading) {
-		// return <p>loading...</p>;
+	if (!LoadingTypes && !LoadingTovars) {
+		return <Loader opacity={1} />;
 	}
 
 	return (
@@ -101,7 +101,7 @@ function App() {
 				>
 					<Route index element={<Navigate to="tovars"></Navigate>} />
 					<Route path="tovars" element={<Tovars />}>
-						{Loading && (
+						{LoadingTypes && (
 							<Route index element={<Navigate to={`all`}></Navigate>} />
 						)}
 
