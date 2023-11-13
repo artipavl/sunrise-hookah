@@ -2,11 +2,6 @@ import React, { FC } from 'react';
 import { Section } from '../../reuseСomponents/section.style';
 import { Container } from '../../reuseСomponents/container.style';
 import { CiCamera, CiHome, CiLock, CiShuffle } from 'react-icons/ci';
-import { ReactComponent as QUALITY } from '../../images/about/QUALITY.svg';
-import { ReactComponent as Stars } from '../../images/about/stars.svg';
-import { ReactComponent as Gear } from '../../images/about/gear.svg';
-import { ReactComponent as Moon } from '../../images/about/moon.svg';
-import { ReactComponent as Biceps } from '../../images/about/biceps.svg';
 import {
 	AboutItem,
 	AboutItemText,
