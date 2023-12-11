@@ -4,6 +4,7 @@ import palette from '../../theme.module';
 export const TovarBox = styled.div`
 	width: 100%;
 	height: 350px;
+	position: relative;
 
 	& img {
 		opacity: 1;
@@ -43,7 +44,7 @@ export const TovarImageBox = styled.div`
 export const TovarImageBoxUpper = styled.div`
 	position: absolute;
 	width: 100%;
-	height: 20%;
+	height: 13%;
 	left: 0;
 	bottom: -30%;
 
@@ -62,7 +63,7 @@ export const TovarInformation = styled.div`
 	justify-content: space-between;
 
 	width: 100%;
-	height: calc(30% - 10px);
+	height: calc(22% - 10px);
 
 	margin-top: 10px;
 	color: ${palette.textMain};
@@ -78,9 +79,14 @@ export const TovarInformation = styled.div`
 `;
 export const TovarInformationAvailability = styled.div`
 	display: flex;
+	position: absolute;
 	justify-content: center;
 	align-items: center;
-	width: 100%;
+
+	transform: rotate(45deg);
+	top: 10px;
+	right: -45px;
+	width: 140px;
 	height: 25px;
 	color: ${palette.textSub};
 	background-color: ${palette.accent};
@@ -94,9 +100,10 @@ export const TovarInformationAvailability = styled.div`
 `;
 
 export const NameTovar = styled.span`
-	color: ${palette.textMain};
+	color: ${palette.accentPrime};
 
 	font-size: 18px;
+	width: 100%; 
 
 	@media screen and (min-width: 768px) {
 		font-size: 20px;
@@ -111,4 +118,10 @@ export const ImgTovar = styled.img`
 	height: 100%;
 
 	object-fit: cover;
+`;
+
+export const TovarCost = styled.span`
+	text-align: end;
+
+	font-size: 14px;
 `;

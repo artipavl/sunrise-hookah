@@ -3,6 +3,7 @@ import {
 	ImgTovar,
 	NameTovar,
 	TovarBox,
+	TovarCost,
 	TovarImageBox,
 	TovarImageBoxUpper,
 	TovarInformation,
@@ -35,12 +36,6 @@ const TovarCard: FC<TovarProps> = ({ tovar }) => {
 					<TovarImageBoxUpper id="Upper">
 						{language === 'uk' ? 'Детальніше' : 'See more'}
 					</TovarImageBoxUpper>
-				</TovarImageBox>
-				<TovarInformation>
-					<NameTovar>
-						{language === 'uk' ? tovar.nameUKR : tovar.nameEN}
-					</NameTovar>
-					<span>{tovar.cost}₴</span>
 					<TovarInformationAvailability>
 						{tovar.quantity > 0
 							? language === 'uk'
@@ -50,6 +45,12 @@ const TovarCard: FC<TovarProps> = ({ tovar }) => {
 							? 'Відсутній'
 							: 'Currently unavailable.'}
 					</TovarInformationAvailability>
+				</TovarImageBox>
+				<TovarInformation>
+					<NameTovar>
+						{language === 'uk' ? tovar.nameUKR : tovar.nameEN}
+					</NameTovar>
+					<TovarCost>{tovar.cost}₴</TovarCost>
 				</TovarInformation>
 			</TovarBox>
 		</Link>
