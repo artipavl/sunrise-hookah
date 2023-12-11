@@ -1,25 +1,26 @@
 const palette = {
 	primary: '#111',
 	secondary: '#222',
-	white: '#fff',
+	white: '#F9F9F9',
 	black: '#000',
 	gray: 'gray',
 	grayLight: 'gray',
 
-	accent: '#ffd058',
+	accent: '#FFC7C7',
 	accentSec: 'blue',
 	accentSecLight: '8a92a6',
-	accentPrime: 'orange',
+	accentPrime: '#E3651D',
 
-	textMain: 'white',
-	textSub: '#686868',
+	textMain: '#F4EEE0',
+	textSub: '#4F4557',
+	textBtn: 'white',
 
-	bgMain: 'red',
-	bgSub: '#37ff00',
-	bgWhite: '#9bdedd',
+	bgMain: '#352F44',
+	bgSub: '#BCBAB8',
+	bgWhite: '#F9F9F9',
 
-	alert: 'red',
-	reject: 'yellow',
+	alert: '#FF0000',
+	reject: 'FFBB5C',
 	success: 'green',
 };
 

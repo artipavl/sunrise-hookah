@@ -5,10 +5,19 @@ export const TovarBox = styled.div`
 	width: 100%;
 	height: 350px;
 
+	& img {
+		opacity: 1;
+		transition: opacity 225ms linear;
+	}
+
 	:hover,
 	:focus {
 		& #Upper {
 			bottom: 0;
+		}
+
+		& img {
+			opacity: 0.5;
 		}
 	}
 
@@ -41,7 +50,7 @@ export const TovarImageBoxUpper = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: ${palette.bgSub};
+	background-color: ${palette.accent};
 	color: ${palette.textSub};
 
 	transition: bottom 225ms linear;
@@ -56,7 +65,7 @@ export const TovarInformation = styled.div`
 	height: calc(30% - 10px);
 
 	margin-top: 10px;
-	color: ${palette.textSub};
+	color: ${palette.textMain};
 
 	font-size: 16px;
 
@@ -74,7 +83,7 @@ export const TovarInformationAvailability = styled.div`
 	width: 100%;
 	height: 25px;
 	color: ${palette.textSub};
-	background-color: ${palette.bgSub};
+	background-color: ${palette.accent};
 
 	@media screen and (min-width: 768px) {
 		height: 30px;
@@ -85,7 +94,7 @@ export const TovarInformationAvailability = styled.div`
 `;
 
 export const NameTovar = styled.span`
-	color: ${palette.accent};
+	color: ${palette.textMain};
 
 	font-size: 18px;
 

@@ -37,7 +37,7 @@ export const SliderButtonLeft = styled.button`
 	height: 50px;
 	top: calc(50% - 50px);
 	left: 0;
-	color: ${palette.accent};
+	color: ${palette.textMain};
 
 	@media screen and (max-width: 767px) {
 		display: none;
@@ -55,7 +55,7 @@ export const SliderButtonRight = styled.button`
 	height: 50px;
 	top: calc(50% - 50px);
 	right: 0;
-	color: ${palette.white};
+	color: ${palette.textMain};
 
 	@media screen and (max-width: 767px) {
 		display: none;
@@ -74,13 +74,18 @@ type SliderListProps = {
 
 export const SliderList = styled.ul<SliderListProps>`
 	position: relative;
-	left: ${props => props.left}px;
 	display: flex;
+	align-items: stretch;
+	justify-content: space-evenly;
+
+	gap: 20px;
 	width: 100%;
 	height: 100%;
-	align-items: stretch;
-	gap: 20px;
-	transition: ${props => props.transition && 'all 1s linear 0s'};
+	
+	
+
+	left: ${props => props.left}px;
+	transition: ${props => props.transition && 'all 700ms linear 0s'};
 `;
 
 export const SliderItem = styled.li`

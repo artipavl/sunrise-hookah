@@ -19,7 +19,9 @@ export const HeroSection = styled.section`
 `;
 
 export const HeroTitle = styled.h1`
-	color: ${palette.white};
+	color: ${palette.textMain};
+	-webkit-text-stroke-width: 1px; 
+	-webkit-text-stroke-color: ${palette.textSub}; 
 	line-height: 1.1em;
 	font-size: 10vw;
 	text-transform: uppercase;
@@ -32,7 +34,7 @@ export const HeroPromotion = styled.div`
 `;
 
 export const HeroPromotionTitle = styled.h2`
-	color: ${palette.white};
+	color: ${palette.textMain};
 	line-height: 1.1em;
 	text-align: center;
 	font-size: 7vw;
@@ -41,12 +43,12 @@ export const HeroPromotionTitle = styled.h2`
 export const HeroPromotionLink = styled(Link)`
 	padding: 5px;
 	border-radius: 5px;
-	background-color: ${palette.accent};
+	background-color: ${palette.bgSub};
 	width: 50%;
 	margin: auto;
 	margin-top: 20px;
 
-	color: ${palette.black};
+	color: ${palette.bgSub};
 	line-height: 1.1em;
 	text-align: center;
 	font-size: 3vw;
