@@ -8,26 +8,26 @@ import AdminRegistrationForm from '../../components/adminRegistrationForm/adminR
 type AdminPanelProps = {};
 
 const AdminList: FC<AdminPanelProps> = props => {
-  const admins = useAppSelector(selectAdmins);
-  const dispatch = useAppDispatch();
-  // console.log(admins);
-  useEffect(() => {
-    dispatch(fetchAdmins());
-  }, [dispatch]);
+	const admins = useAppSelector(selectAdmins);
+	const dispatch = useAppDispatch();
+	// console.log(admins);
+	useEffect(() => {
+		dispatch(fetchAdmins());
+	}, [dispatch]);
 
-  return (
-    <div>
-      <DataTables
-        rowsTitle={['логін', 'пошта', 'роль', 'видалити']}
-        rows={['name', 'email', 'admin', 'delete']}
-        columns={admins}
-        remove={(id: string) => {
-          dispatch(remove(id));
-        }}
-      />
-      <AdminRegistrationForm />
-    </div>
-  );
+	return (
+		<div>
+			<DataTables
+				rowsTitle={['логін', 'пошта', 'роль', 'видалити']}
+				rows={['name', 'email', 'admin', 'delete']}
+				columns={admins}
+				remove={(id: string) => {
+					dispatch(remove(id));
+				}}
+			/>
+			<AdminRegistrationForm />
+		</div>
+	);
 };
 
 export default AdminList;

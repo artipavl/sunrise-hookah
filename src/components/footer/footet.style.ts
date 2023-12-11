@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import palette from '../../theme.module';
 
 export const Footerbox = styled.footer`
 	position: relative;
@@ -11,6 +12,6 @@ export const Footerbox = styled.footer`
 	padding-top: 30px;
 	padding-bottom: 30px;
 	padding-inline: 20px;
-	color: #fff;
+	color: ${palette.white};
 	margin-top: auto;
 `;

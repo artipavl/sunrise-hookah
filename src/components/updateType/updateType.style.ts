@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import palette from '../../theme.module';
 
 export const Box = styled.div`
 	display: flex;
@@ -23,17 +24,17 @@ export const Button = styled.button`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	color: #000;
+	color: ${palette.black};
 	padding: 10px;
 
 	:hover,
 	:focus {
-		color: red;
+		color: ${palette.alert};
 	}
 
 	:disabled {
 		opacity: 0.1;
-		color: #000;
+		color: ${palette.black};
 		cursor: default;
 	}
 `;

@@ -1,155 +1,154 @@
 import styled from 'styled-components';
 import { Form, Field } from 'formik';
+import palette from '../../theme.module';
 
 export const RegistrationBox = styled.div`
-  padding-top: 20px;
-  padding-bottom: 40px;
+	padding-top: 20px;
+	padding-bottom: 40px;
 
-  @media screen and (min-width: 1140px) {
-    padding-top: 8px;
-    padding-bottom: 100px;
-  }
+	@media screen and (min-width: 1140px) {
+		padding-top: 8px;
+		padding-bottom: 100px;
+	}
 `;
 
 export const Text = styled.p`
-  display: block;
-  margin-top: 12px;
+	display: block;
+	margin-top: 12px;
 
-  font-size: 14px;
-  line-height: 17px;
-  text-align: center;
+	font-size: 14px;
+	line-height: 17px;
+	text-align: center;
 `;
 
 export const TextOverflow = styled.span`
-  display: none;
+	display: none;
 
-  @media screen and (min-width: 1110px) {
-    display: inline;
-  }
+	@media screen and (min-width: 1110px) {
+		display: inline;
+	}
 `;
 
 export const RegForm = styled(Form)`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 30px;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	gap: 30px;
 
-  @media screen and (min-width: 570px) {
-    width: 543px;
-    margin-inline: auto;
-  }
+	@media screen and (min-width: 570px) {
+		width: 543px;
+		margin-inline: auto;
+	}
 `;
 
 type InputPrpos = {
-  errors: string;
+	errors: string;
 };
 
 export const Label = styled.label`
-  position: relative;
-  display: inline-block;
-  width: 100%;
+	position: relative;
+	display: inline-block;
+	width: 100%;
 `;
 
 export const Input = styled(Field)<InputPrpos>`
-  position: relative;
-  display: inline-block;
-  width: 100%;
-  background: #ffffff;
-  border: 1px solid #ffffff;
-  border-color: ${props => props.errors && 'red'};
-  /* border-radius: 90px; */
+	position: relative;
+	display: inline-block;
+	width: 100%;
+	background: #ffffff;
+	border: 1px solid #ffffff;
+	border-color: ${props => props.errors && palette.alert};
 
-  padding: 10px 20px;
+	padding: 10px 20px;
 
-  ::placeholder {
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 20px;
-    /* identical to box height */
+	::placeholder {
+		font-weight: 400;
+		font-size: 16px;
+		line-height: 20px;
+		/* identical to box height */
 
-    color: #484848;
-  }
+		color: ${palette.gray};
+	}
 `;
 
 export const Errors = styled.span`
-  position: absolute;
-  transform: translateY(+100%);
-  bottom: 0;
-  left: 20px;
+	position: absolute;
+	transform: translateY(+100%);
+	bottom: 0;
+	left: 20px;
 
-  font-size: 14px;
-  line-height: 17px;
-  color: red;
+	font-size: 14px;
+	line-height: 17px;
+	color: ${palette.alert};
 `;
 
 export const CheckBox = styled(Field)`
-  position: absolute;
-  width: 0;
-  height: 0;
+	position: absolute;
+	width: 0;
+	height: 0;
 `;
 
 type CheckDivPrpps = {
-  bg: String;
-  check: boolean;
+	bg: String;
+	check: boolean;
 };
 
 export const CheckDiv = styled.div<CheckDivPrpps>`
-  position: relative;
-  padding-left: 30px;
-  margin-left: 2px;
-  color: #484848;
+	position: relative;
+	padding-left: 30px;
+	margin-left: 2px;
+	color: ${palette.gray};
 
-  ::before {
-    content: ' ';
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    margin-right: 8px;
-    width: 20px;
-    height: 20px;
-    /* border: 1px solid #84c551; */
-    border: ${props =>
-      props.check ? `1px solid #84c551` : `1px solid rgba(0, 0, 0, 0.2)`};
+	::before {
+		content: ' ';
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: block;
+		margin-right: 8px;
+		width: 20px;
+		height: 20px;
+		/* border: 1px solid #84c551; */
+		border: ${props =>
+			props.check ? `1px solid #84c551` : `1px solid rgba(0, 0, 0, 0.2)`};
 
-    border-radius: 3px;
-  }
-  ::after {
-    content: '';
-    position: absolute;
-    top: -7px;
-    left: -1px;
-    display: block;
-    width: 29px;
-    height: 29px;
+		border-radius: 3px;
+	}
+	::after {
+		content: '';
+		position: absolute;
+		top: -7px;
+		left: -1px;
+		display: block;
+		width: 29px;
+		height: 29px;
 
-    background-image: ${props => props.check && `url(${props.bg})`};
+		background-image: ${props => props.check && `url(${props.bg})`};
 
-    background-repeat: no-repeat;
-    background-position: left top;
-    background-size: cover;
-  }
+		background-repeat: no-repeat;
+		background-position: left top;
+		background-size: cover;
+	}
 `;
 
 export const Accent = styled.span`
-  color: #84c551;
+	color: ${palette.success};
 `;
 
 export const Button = styled.button`
-  background-color: #e74e13;
-  /* border-radius: 90px; */
-  min-height: 47px;
+	background-color: ${palette.accent};
+	min-height: 47px;
 
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 20px;
-  text-align: center;
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 20px;
+	text-align: center;
 
-  color: #ffffff;
+	color: ${palette.white};
 
-  :hover,
-  :focus {
-    color: #e74e13;
-    background-color: #ffffff;
-  }
+	:hover,
+	:focus {
+		color: ${palette.accent};
+		background-color: ${palette.bgWhite};
+	}
 `;

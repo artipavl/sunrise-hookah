@@ -1,16 +1,5 @@
 import styled from 'styled-components';
-
-const colors = {
-	mainBg: '#222',
-
-	textGrey: '#dcdcdc',
-	subGrey: '#686868',
-
-	black: '#262626',
-	subBlack: '#5a5a5a',
-
-	yellow: '#ffd058',
-};
+import palette from '../../theme.module';
 
 export const TovarBox = styled.div`
 	width: 100%;
@@ -32,30 +21,30 @@ export const TovarBox = styled.div`
 `;
 
 export const TovarImageBox = styled.div`
-  width: 100%;
-  height: 70%;
-  position: relative;
-  overflow: hidden;
+	width: 100%;
+	height: 70%;
+	position: relative;
+	overflow: hidden;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 `;
 
 export const TovarImageBoxUpper = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 20%;
-  left: 0;
-  bottom: -30%;
+	position: absolute;
+	width: 100%;
+	height: 20%;
+	left: 0;
+	bottom: -30%;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: ${colors.subGrey};
-  color: ${colors.textGrey};
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: ${palette.bgSub};
+	color: ${palette.textSub};
 
-  transition: bottom 225ms linear;
+	transition: bottom 225ms linear;
 `;
 
 export const TovarInformation = styled.div`
@@ -67,14 +56,14 @@ export const TovarInformation = styled.div`
 	height: calc(30% - 10px);
 
 	margin-top: 10px;
-	color: ${colors.textGrey};
+	color: ${palette.textSub};
 
 	font-size: 16px;
 
-	@media screen and (min-width: 768px) { 
+	@media screen and (min-width: 768px) {
 		font-size: 18px;
 	}
-	@media screen and (min-width: 1440px) { 
+	@media screen and (min-width: 1440px) {
 		font-size: 20px;
 	}
 `;
@@ -84,8 +73,8 @@ export const TovarInformationAvailability = styled.div`
 	align-items: center;
 	width: 100%;
 	height: 25px;
-	color: ${colors.textGrey};
-	background-color: ${colors.subGrey};
+	color: ${palette.textSub};
+	background-color: ${palette.bgSub};
 
 	@media screen and (min-width: 768px) {
 		height: 30px;
@@ -96,7 +85,7 @@ export const TovarInformationAvailability = styled.div`
 `;
 
 export const NameTovar = styled.span`
-	color: ${colors.yellow};
+	color: ${palette.accent};
 
 	font-size: 18px;
 
@@ -109,8 +98,8 @@ export const NameTovar = styled.span`
 `;
 
 export const ImgTovar = styled.img`
-  width: 100%;
-  height: 100%;
+	width: 100%;
+	height: 100%;
 
-  object-fit: cover;
+	object-fit: cover;
 `;

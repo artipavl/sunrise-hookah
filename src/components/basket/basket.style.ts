@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import palette from '../../theme.module';
 
 export const BasketSection = styled.div`
 	position: fixed;
@@ -20,13 +21,13 @@ export const BasketBox = styled.div`
 	min-width: 320px;
 	max-width: 700px;
 	height: 100dvh;
-	background-color: #fff;
+	background-color: ${palette.white};
 `;
 
 export const BasketHeader = styled.div`
 	width: 100%;
 	height: 10%;
-	background-color: yellow;
+	background-color: ${palette.accent};
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -109,12 +110,12 @@ export const Buy = styled(Link)`
 	width: 100%;
 	height: 10%;
 	/* margin-top: auto; */
-	background-color: yellow;
-	color: #000;
+	background-color: ${palette.accent};
+	color: ${palette.black};
 
 	:hover,
 	:focus {
-		color: #fff;
-		background-color: #000;
+		color: ${palette.white};
+		background-color: ${palette.bgMain};
 	}
 `;

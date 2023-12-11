@@ -80,7 +80,7 @@ const Delivery: FC<DeliveryProps> = ({ submit }) => {
 		<>
 			<Box>
 				<Lable>
-				{language==="uk" ? "Місто" : "City"}
+					{language === 'uk' ? 'Місто' : 'City'}
 					<Input
 						type="text"
 						value={town}
@@ -104,8 +104,8 @@ const Delivery: FC<DeliveryProps> = ({ submit }) => {
 						</List>
 					)}
 				</Lable>
-        <Lable>
-		{language==="uk" ? "№ Відділення" : "Department №"}
+				<Lable>
+					{language === 'uk' ? '№ Відділення' : 'Department №'}
 					<Input
 						type="number"
 						value={warehouseNumber}

@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import palette from '../../theme.module';
 
 export const NavUl = styled.ul`
 	display: flex;
@@ -28,7 +29,7 @@ export const UlItem = styled.li`
 		top: 15%;
 		width: 1px;
 		height: 70%;
-		background-color: #e9ecef;
+		background-color: ${palette.bgWhite};
 	}
 `;
 
@@ -42,12 +43,12 @@ export const Link = styled(NavLink)`
 	font-weight: 500;
 	line-height: 130%;
 
-	color: #232d42;
+	color: ${palette.accentSec};
 
 	:hover,
 	:focus,
 	&.active {
-		color: red;
+		color: ${palette.alert};
 	}
 `;
 
@@ -64,12 +65,12 @@ export const Button = styled.button`
 	font-weight: 500;
 	line-height: 130%;
 
-	color: #232d42;
+	color: ${palette.accentSec};
 
 	:hover,
 	:focus,
 	&.active {
-		color: red;
+		color: ${palette.alert};
 	}
 `;
 

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import palette from '../../theme.module';
 
 interface LoaderBoxProps {
 	opacity: number;
@@ -15,7 +16,7 @@ export const LoaderBox = styled.div<LoaderBoxProps>`
 	height: 100vh;
 	justify-content: center;
 	align-items: center;
-	background-color: #000;
+	background-color: ${palette.bgMain};
 	opacity: ${props => props.opacity};
 `;
 

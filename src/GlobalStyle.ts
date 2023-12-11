@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import 'modern-normalize';
+import palette from './theme.module';
 
 export const GlobalStyle = createGlobalStyle`
 /* html {
@@ -40,7 +41,7 @@ export const GlobalStyle = createGlobalStyle`
         min-height: 100%;
         display: flex;
         flex-direction: column;
-        background: #000;        
+        background: ${palette.bgMain};        
     }
     code {
         font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-// import Logo from '../logo/logo';
+import palette from '../../theme.module';
 
 export const HeaderLogo = styled.div`
 	position: absolute;
@@ -19,7 +19,7 @@ export const HeaderSection = styled.header`
 	/* margin-bottom: -60px; */
 
 	width: 100%;
-	background-color: #000000;
+	background-color: ${palette.bgMain};
 	padding-top: 10px;
 	padding-bottom: 10px;
 	@media screen and (min-width: 1440px) {
@@ -71,11 +71,11 @@ export const Quantity = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	color: white;
+	color: ${palette.white};
 	width: 15px;
 	height: 15px;
 	border-radius: 50%;
-	background-color: red;
+	background-color: ${palette.alert};
 
 	font-size: 10px;
 	right: 5px;
@@ -100,7 +100,7 @@ export const Nav = styled.nav<NavProps>`
 		left: 0;
 		min-height: 100vh;
 		width: 100%;
-		background-color: #000000;
+		background-color: ${palette.bgMain};
 		z-index: 1;
 	}
 `;
@@ -122,17 +122,17 @@ export const NavList = styled.ul`
 `;
 
 export const NavListItem = styled.li`
-	color: #fff;
+	color: ${palette.white};
 `;
 
 export const NavLinkItem = styled(NavLink)`
 	padding-top: 10px;
 	padding-bottom: 10px;
-	color: #fff;
+	color: ${palette.white};
 	text-transform: uppercase;
 	:hover,
 	:focus {
-		color: red;
+		color: ${palette.alert};
 	}
 
 	@media screen and (min-width: 1440px) {
@@ -161,13 +161,13 @@ export const DropMenuButton = styled.div<NavProps>`
 	display: flex;
 	gap: 10px;
 	align-items: center;
-	color: #fff;
+	color: ${palette.white};
 	padding-top: 10px;
 	padding-bottom: 10px;
 
 	:hover,
 	:focus {
-		color: red;
+		color: ${palette.alert};
 	}
 
 	@media screen and (max-width: 1439px) {
@@ -197,7 +197,7 @@ export const DropMenuList = styled.ul<NavProps>`
 		position: absolute;
 		left: 0;
 		bottom: 0;
-		background-color: #000;
+		background-color: ${palette.bgMain};
 		width: 100%;
 		opacity: 0;
 		gap: 0;
@@ -216,11 +216,11 @@ interface LanguageButtonProps {
 }
 
 export const LanguageButton = styled.button<LanguageButtonProps>`
-	color: ${props => (props.active ? 'red' : '#fff')};
+	color: ${props => (props.active ? palette.alert : palette.white)};
 
 	:hover,
 	:focus {
-		color: red;
+		color: ${palette.alert};
 	}
 `;
 

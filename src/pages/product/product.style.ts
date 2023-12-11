@@ -1,20 +1,21 @@
 import styled from 'styled-components';
 import { Section } from '../../reuseСomponents/section.style';
+import palette from '../../theme.module';
 
-const colors = {
-	mainBg: '#222',
+// const palette = {
+// 	mainBg: '#222',
 
-	textGrey: '#dcdcdc',
-	subGrey: '#686868',
+// 	textGrey: '#dcdcdc',
+// 	subGrey: '#686868',
 
-	black: '#262626',
-	subBlack: '#5a5a5a',
+// 	black: '#262626',
+// 	subBlack: '#5a5a5a',
 
-	yellow: '#ffd058',
-};
+// 	yellow: '#ffd058',
+// };
 
 export const Title = styled.h1`
-	color: ${colors.textGrey};
+	color: ${palette.textSub};
 
 	line-height: normal;
 	text-align: center;
@@ -94,8 +95,8 @@ export const SortCustomBtn = styled.div`
 `;
 
 export const SortingBtn = styled.button`
-	color: ${colors.textGrey};
-	background-color: ${colors.mainBg};
+	color: ${palette.textSub};
+	background-color: ${palette.bgMain};
 	z-index: 3;
 
 	/* position: absolute; */
@@ -121,8 +122,8 @@ export const SortList = styled.ul<SortListProps>`
 	position: absolute;
 	z-index: 3;
 
-	background-color: ${colors.mainBg};
-	color: ${colors.textGrey};
+	background-color: ${palette.bgMain};
+	color: ${palette.textSub};
 `;
 
 export const SortItem = styled.li`
@@ -151,8 +152,8 @@ export const ItemOpt = styled.label<ItemOptTypes>`
 
 	font-size: 16px;
 
-	background-color: ${colors.black};
-	color: ${colors.textGrey};
+	background-color: ${palette.bgMain};
+	color: ${palette.textSub};
 
 	position: absolute;
 	top: ${props => `${(props.index + 1) * 50}px`};
@@ -176,7 +177,7 @@ export const CustomSliderBox = styled.div`
 	gap: 10px;
 	height: 50px;
 
-	background-color: ${colors.black};
+	background-color: ${palette.bgMain};
 
 	padding: 10px;
 	border-radius: 10px;
@@ -193,7 +194,7 @@ export const CustomSliderBox = styled.div`
 
 export const NumbersLine = styled.div`
 	display: flex;
-	background-color: ${colors.black};
+	background-color: ${palette.bgMain};
 	height: 20px;
 	align-items: center;
 	justify-content: space-between;
@@ -207,7 +208,7 @@ export const SliderBar = styled.div`
 
 	width: 100%;
 
-	background-color: ${colors.subGrey};
+	background-color: ${palette.bgSub};
 `;
 
 type ProgressBarTypes = {
@@ -217,7 +218,7 @@ type ProgressBarTypes = {
 export const ProgressBar = styled.div<ProgressBarTypes>`
 	position: absolute;
 	height: 100%;
-	background-color: ${colors.yellow};
+	background-color: ${palette.accent};
 	width: ${props =>
 		`${100 - props.positionLeft - (100 - props.positionRight)}%`};
 	left: ${props => `${props.positionLeft}%`};
@@ -241,8 +242,8 @@ export const FieldInput = styled.input`
 
 	border: none;
 
-	background-color: ${colors.black};
-	color: ${colors.textGrey};
+	background-color: ${palette.bgMain};
+	color: ${palette.textSub};
 `;
 
 export const TextSpan = styled.span`
@@ -267,7 +268,7 @@ export const RangeBox = styled.div`
 		border-radius: 10px;
 		pointer-events: auto;
 		appearance: none;
-		background-color: ${colors.yellow};
+		background-color: ${palette.accent};
 	}
 `;
 
@@ -288,8 +289,8 @@ export const RangeInputMax = styled.input<RangeInputTypes>`
 `;
 
 export const EmptyTovarList = styled.div`
-	color: ${colors.textGrey};
-	background-color: ${colors.mainBg};
+	color: ${palette.textSub};
+	background-color: ${palette.bgMain};
 	height: 200px;
 	width: 100%;
 	font-size: 30px;

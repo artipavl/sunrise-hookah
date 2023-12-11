@@ -25,6 +25,7 @@ import { useAppSelector } from '../../hooks';
 import { selectBasket } from '../../redux/basket/basketSelectors';
 import { selectLanguage } from '../../redux/language/languageSelectors';
 import Footer from '../../components/footer/footer';
+import palette from '../../theme.module';
 
 type CheckoutProps = {};
 
@@ -81,7 +82,7 @@ const Checkout: FC<CheckoutProps> = props => {
 										<DeliveryInform>
 											<ContactCheckoutInfo values={cotact} />
 											<button
-												style={{ color: '#fff' }}
+												style={{ color: palette.white }}
 												onClick={() => {
 													setCotact(null);
 													setCotactCheck(false);
@@ -112,12 +113,12 @@ const Checkout: FC<CheckoutProps> = props => {
 									</SubTitle>
 									{warehousesCheck && warehouses !== null ? (
 										<DeliveryInform>
-											<div style={{ color: '#fff' }}>
+											<div style={{ color: palette.white }}>
 												{language === 'uk' ? 'Доставка у ' : 'Delivery to '}
 												{warehouses.Description}
 											</div>
 											<button
-												style={{ color: '#fff' }}
+												style={{ color: palette.white }}
 												onClick={() => {
 													setWarehousesCheck(false);
 													setWarehouses(null);

@@ -53,7 +53,7 @@ export const Basket: FC<BasketProps> = ({ openBasket }) => {
 					<BasketCloseButton type="button" onClick={() => openBasket()}>
 						<AiOutlineRight />
 					</BasketCloseButton>
-					<h2>{language==="uk" ? "Кошик" : "Basket"}</h2>
+					<h2>{language === 'uk' ? 'Кошик' : 'Basket'}</h2>
 				</BasketHeader>
 				<BasketList>
 					{tovars.map(tovar => (
@@ -73,8 +73,8 @@ export const Basket: FC<BasketProps> = ({ openBasket }) => {
 								<BasketItamInput
 									type="number"
 									name="quantity"
-                  id="quantity"
-                  min={1}
+									id="quantity"
+									min={1}
 									value={tovar.baskeQuantity}
 									onChange={e =>
 										dispatch(
@@ -97,12 +97,12 @@ export const Basket: FC<BasketProps> = ({ openBasket }) => {
 					))}
 				</BasketList>
 				<BasketSum>
-					<samp>{language==="uk" ? "Сума" : "Total"}: </samp>
+					<samp>{language === 'uk' ? 'Сума' : 'Total'}: </samp>
 					<samp>
 						{tovars.reduce((a, b) => a + b.cost * b.baskeQuantity, 0)} грн
 					</samp>
 				</BasketSum>
-				<Buy to="/checkout">{language==="uk" ? "Оформити" : "Order"}</Buy>
+				<Buy to="/checkout">{language === 'uk' ? 'Оформити' : 'Order'}</Buy>
 			</BasketBox>
 		</BasketSection>,
 		portal

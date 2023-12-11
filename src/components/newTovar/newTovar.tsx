@@ -79,7 +79,7 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 	);
 	const [first, setFirst] = useState<number | null>(null);
 
-	const types = useAppSelector(selectTypes); 
+	const types = useAppSelector(selectTypes);
 
 	useEffect(() => {
 		async function createFotosArr(fotos: FileList): Promise<string[]> {
@@ -456,7 +456,7 @@ const NewTovar: FC<NewTovarProps> = props => {
 	return (
 		<div>
 			<MyForm
-				submit={(form: any ) => dispatch(addTovar(form) )}
+				submit={(form: any) => dispatch(addTovar(form))}
 				message="add tovarchik"
 			/>
 		</div>

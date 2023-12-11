@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import palette from '../../theme.module';
 
 export const Box = styled.div`
 	display: flex;
@@ -14,13 +15,13 @@ export const Link = styled(NavLink)`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	color: #000;
+	color: ${palette.black};
 	padding: 20px;
 	text-transform: uppercase;
 
 	&.active,
 	:hover,
 	:focus {
-		color: red;
+		color: ${palette.alert};
 	}
 `;

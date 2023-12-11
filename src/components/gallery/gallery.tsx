@@ -17,6 +17,7 @@ import {
 } from './gallery.style';
 import { useAppSelector } from '../../hooks';
 import { selectLanguage } from '../../redux/language/languageSelectors';
+import palette from '../../theme.module';
 const galleryImages = [
 	{
 		id: 1,
@@ -74,7 +75,7 @@ const Gallery: FC<GalleryProps> = props => {
 	}
 
 	return (
-		<Section id="gallery" bgc="#000" h>
+		<Section id="gallery" bgc={palette.bgMain} h>
 			<Container>
 				<Box>
 					<Promotion>

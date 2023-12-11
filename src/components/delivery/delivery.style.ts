@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import palette from '../../theme.module';
 
 export const Box = styled.div`
 	display: flex;
@@ -7,7 +8,7 @@ export const Box = styled.div`
 
 export const Lable = styled.label`
 	position: relative;
-	color: white;
+	color: ${palette.white};
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
@@ -20,8 +21,8 @@ export const List = styled.ul`
 	padding-block: 5px;
 	border-radius: 3px;
 	width: max-content;
-	background-color: #fff;
-	color: #000;
+	background-color: ${palette.bgWhite};
+	color: ${palette.black};
 `;
 export const Item = styled.li`
 	padding-inline: 5px;
@@ -29,17 +30,16 @@ export const Item = styled.li`
 
 	:hover,
 	:focus {
-		background-color: #fafafa;
+		background-color: ${palette.bgWhite};
 	}
 `;
 
 export const WarehousesList = styled.ul`
-	/* color: #000; */
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
 	margin-top: 30px;
-	color: #fff;
+	color: ${palette.white};
 `;
 
 export const WarehousesItem = styled.li`
@@ -49,7 +49,7 @@ export const WarehousesItem = styled.li`
 
 	:hover,
 	:focus {
-		color: red;
+		color: ${palette.alert};
 	}
 
 	::before {
@@ -57,8 +57,8 @@ export const WarehousesItem = styled.li`
 		display: block;
 		width: 10px;
 		height: 10px;
-		background-color: #fff;
-		border: 1px solid #aaa;
+		background-color: ${palette.bgWhite};
+		border: 1px solid ${palette.textSub};
 		border-radius: 50%;
 		margin-right: 5px;
 	}
@@ -80,6 +80,6 @@ export const Input = styled.input`
 		line-height: 20px;
 		/* identical to box height */
 
-		color: #484848;
+		color: ${palette.textMain};
 	}
 `;

@@ -1,16 +1,13 @@
 import styled from 'styled-components';
+import palette from '../../theme.module';
 
 export const Box = styled.div`
 	display: flex;
 	width: 100%;
-	/* min-height: calc(100vh - 20px);
-  max-height: calc(100vh - 20px); */
 
 	@media screen and (min-width: 1440px) {
 		padding: 0;
 		margin: auto;
-		/* min-height: calc(100vh - 40px);
-    max-height: calc(100vh - 40px); */
 	}
 `;
 
@@ -40,7 +37,7 @@ export const SliderButtonLeft = styled.button`
 	height: 50px;
 	top: calc(50% - 50px);
 	left: 0;
-	color: white;
+	color: ${palette.accent};
 
 	@media screen and (max-width: 767px) {
 		display: none;
@@ -58,7 +55,7 @@ export const SliderButtonRight = styled.button`
 	height: 50px;
 	top: calc(50% - 50px);
 	right: 0;
-	color: white;
+	color: ${palette.white};
 
 	@media screen and (max-width: 767px) {
 		display: none;

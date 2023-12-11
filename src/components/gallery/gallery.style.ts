@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import palette from '../../theme.module';
 
 export const Box = styled.div`
 	display: flex;
@@ -40,7 +41,7 @@ export const SliderButtonLeft = styled.button`
 	height: 100%;
 	top: 0;
 	left: 0;
-	color: white;
+	color: ${palette.white};
 
 	&:disabled {
 		opacity: 0.3;
@@ -54,7 +55,7 @@ export const SliderButtonRight = styled.button`
 	height: 100%;
 	top: 0;
 	right: 0;
-	color: white;
+	color: ${palette.white};
 
 	&:disabled {
 		opacity: 0.3;
@@ -103,7 +104,7 @@ export const Promotion = styled.div`
 `;
 
 export const PromotionTitle = styled.h2`
-	color: #fff;
+	color: ${palette.white};
 	line-height: 1.1em;
 	text-align: center;
 	font-size: 7vw;
@@ -113,11 +114,11 @@ export const PromotionTitle = styled.h2`
 export const PromotionLink = styled(Link)`
 	padding: 5px;
 	border-radius: 5px;
-	background-color: yellow;
+	background-color: ${palette.accent};
 	width: 50%;
 	margin-top: 20px;
 
-	color: #000;
+	color: ${palette.textSub};
 	line-height: 1.1em;
 	text-align: center;
 	font-size: 3vw;

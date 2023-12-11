@@ -21,6 +21,7 @@ import {
 import axios from 'axios';
 import { useAppSelector } from '../../hooks';
 import { selectLanguage } from '../../redux/language/languageSelectors';
+import palette from '../../theme.module';
 
 const SignupSchema = Yup.object().shape({
 	firstName: Yup.string()
@@ -162,7 +163,7 @@ type AboutProps = {};
 const Contacts: FC<AboutProps> = props => {
 	const language = useAppSelector(selectLanguage);
 	return (
-		<Section id="contacts" bgc="#000" h>
+		<Section id="contacts" bgc={palette.bgMain} h>
 			<Container flex={'center'}>
 				<Box>
 					<div>

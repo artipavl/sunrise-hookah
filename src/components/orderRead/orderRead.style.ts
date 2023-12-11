@@ -1,11 +1,11 @@
 import styled from 'styled-components';
+import palette from '../../theme.module';
 
 export const ReadBox = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
 
-	/* color: #8a92a6; */
 	font-family: Circular Std;
 	font-size: 20px;
 	font-style: normal;
@@ -19,7 +19,7 @@ export const ReadBox = styled.div`
 `;
 
 export const ReadBoxTitle = styled.h1`
-	color: #232d42;
+	color: ${palette.accentSec};
 	font-family: Circular Std;
 	font-size: 20px;
 	font-style: normal;
@@ -31,7 +31,7 @@ export const ReadBoxMessage = styled.p`
 `;
 
 export const Titles = styled.span`
-	color: #000;
+	color: ${palette.accentSec};
 	font-weight: 700;
 `;
 

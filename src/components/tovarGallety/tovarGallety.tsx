@@ -16,6 +16,7 @@ import Tovar from '../../Types/tovar';
 import TovarItem from '../tovar/tovar';
 import { useAppSelector } from '../../hooks';
 import { selectTovars } from '../../redux/tovars/slice';
+import palette from '../../theme.module';
 
 type GalleryProps = {};
 
@@ -98,7 +99,7 @@ const TovarGallery: FC<GalleryProps> = props => {
 	}
 
 	return (
-		<Section id="tovarGallery" bgc="#000" h>
+		<Section id="tovarGallery" bgc={palette.bgMain} h>
 			<Container>
 				<Box>
 					<Slider

@@ -11,20 +11,21 @@ import {
 } from './about.style';
 import { useAppSelector } from '../../hooks';
 import { selectLanguage } from '../../redux/language/languageSelectors';
+import palette from '../../theme.module';
 
 type AboutProps = {};
 
 const About: FC<AboutProps> = props => {
 	const language = useAppSelector(selectLanguage);
 	return (
-		<Section id="about" bgc="#000" h={true}>
+		<Section id="about" bgc={palette.bgMain} h={true}>
 			<Container flex={'center'}>
 				<AboutTitle>
 					{language === 'uk' ? 'SUNRISE HOOKAH' : 'SUNRISE HOOKAH is'}
 				</AboutTitle>
 				<Aboutlist>
 					<AboutItem>
-						<CiLock color="#fff" size={'30%'} />
+						<CiLock color={palette.white} size={'30%'} />
 						<AboutItemTitle>
 							{language === 'uk'
 								? 'Якість та надійність'
@@ -37,7 +38,7 @@ const About: FC<AboutProps> = props => {
 						</AboutItemText>
 					</AboutItem>
 					<AboutItem>
-						<CiCamera color="#fff" size={'30%'} />
+						<CiCamera color={palette.white} size={'30%'} />
 						<AboutItemTitle>
 							{language === 'uk' ? 'Дизайн' : 'Design'}{' '}
 						</AboutItemTitle>
@@ -48,7 +49,7 @@ const About: FC<AboutProps> = props => {
 						</AboutItemText>
 					</AboutItem>
 					<AboutItem>
-						<CiShuffle color="#fff" size={'30%'} />
+						<CiShuffle color={palette.white} size={'30%'} />
 						<AboutItemTitle>
 							{language === 'uk' ? 'Тяга та видув' : 'Thrust and blow'}{' '}
 						</AboutItemTitle>
@@ -59,7 +60,7 @@ const About: FC<AboutProps> = props => {
 						</AboutItemText>
 					</AboutItem>
 					<AboutItem>
-						<CiHome color="#fff" size={'30%'} />
+						<CiHome color={palette.white} size={'30%'} />
 						<AboutItemTitle>
 							{language === 'uk' ? 'Комфортність' : 'Comfort'}{' '}
 						</AboutItemTitle>

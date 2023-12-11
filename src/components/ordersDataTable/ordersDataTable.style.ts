@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import palette from '../../theme.module';
 
 export const Table = styled.table`
 	width: 100%;
@@ -21,7 +22,7 @@ export const Rows = styled.th<RowsProps>`
 	font-weight: 450;
 	line-height: 175%;
 	text-align: start;
-	color: ${props => props.active && '#000'};
+	color: ${props => props.active && palette.black};
 
 	padding-left: 25px;
 
@@ -31,7 +32,7 @@ export const Rows = styled.th<RowsProps>`
 export const RowsDelete = styled.th`
 	width: 90px;
 	padding-block: 16px;
-	color: #8a92a6;
+	color: ${palette.accentSecLight};
 	font-size: 12px;
 	font-style: normal;
 	font-weight: 450;
@@ -69,7 +70,7 @@ interface ColumnProps {
 }
 
 export const Columns = styled.tr<ColumnProps>`
-	background-color: ${props => props.active && 'rgb(249, 250, 251)'};
+	background-color: ${props => props.active && palette.white};
 `;
 
 export const Column = styled.td`
@@ -87,7 +88,7 @@ export const ColumnDelete = styled.td`
 `;
 
 export const ColumnName = styled.p`
-	color: #101828;
+	color: ${palette.accentSec};
 	font-family: Circular Std;
 	font-size: 15px;
 	font-style: normal;
@@ -101,7 +102,7 @@ export const ColumnName = styled.p`
 `;
 
 export const ColumnEmail = styled.p`
-	color: #667085;
+	color: ${palette.accentSecLight};
 	font-family: Circular Std;
 	font-size: 14px;
 	font-style: normal;
@@ -115,7 +116,7 @@ export const ColumnEmail = styled.p`
 `;
 export const ColumnText = styled.p`
 	display: block;
-	color: #232d42;
+	color: ${palette.accentSec};
 	font-family: Circular Std;
 	font-size: 16px;
 	font-style: normal;
@@ -154,11 +155,11 @@ export const TfootButton = styled.button`
 	box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
 	:hover,
 	:focus {
-		background-color: #eaecf0;
+		background-color: ${palette.white};
 	}
 
 	:disabled {
-		background-color: #eaecf0;
+		background-color: ${palette.white};
 		cursor: default;
 	}
 
@@ -185,7 +186,7 @@ export const DeleteButton = styled.button`
 
 	:hover,
 	:focus {
-		background-color: #f9fafb;
+		background-color: ${palette.white};
 	}
 `;
 
@@ -199,7 +200,7 @@ export const ModalBox = styled.div`
 `;
 
 export const ModalDeleteTitle = styled.h1`
-	color: #000;
+	color: ${palette.black};
 	font-family: Product Sans;
 	font-size: 32px;
 	font-style: normal;
@@ -223,6 +224,6 @@ export const ModalDeleteButton = styled.button`
 
 	:hover,
 	:focus {
-		background-color: #eaecf0;
+		background-color: ${palette.bgWhite};
 	}
 `;

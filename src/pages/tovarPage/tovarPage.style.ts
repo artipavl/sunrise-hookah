@@ -1,18 +1,19 @@
 import styled from 'styled-components';
 import { Section } from '../../reuseСomponents/section.style';
 import { Container } from '../../reuseСomponents/container.style';
+import palette from '../../theme.module';
 
-const colors = {
-	mainBg: '#222',
+// const palette = {
+// 	mainBg: '#222',
 
-	textGrey: '#dcdcdc',
-	subGrey: '#686868',
+// 	textGrey: '#dcdcdc',
+// 	subGrey: '#686868',
 
-	black: '#262626',
-	subBlack: '#5a5a5a',
+// 	black: '#262626',
+// 	subBlack: '#5a5a5a',
 
-	yellow: '#ffd058',
-};
+// 	yellow: '#ffd058',
+// };
 
 export const SectionTovar = styled(Section)`
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -40,7 +41,7 @@ export const ContainerTovar = styled(Container)`
 
 	gap: 10px;
 
-	background-color: ${colors.mainBg};
+	background-color: ${palette.bgMain};
 
 	@media screen and (min-width: 768px) {
 		display: grid;
@@ -61,7 +62,7 @@ export const MainInfoBox = styled.div`
 	width: 100%;
 	height: 100%;
 
-	color: ${colors.textGrey};
+	color: ${palette.textSub};
 
 	@media screen and (min-width: 768px) {
 		grid-column-start: 3;
@@ -81,7 +82,7 @@ type H1Props = {
 export const H1 = styled.h1<H1Props>`
 	font-size: 24px;
 	/* font-style: oblique; */
-	color: ${colors.textGrey};
+	color: ${palette.textSub};
 	${`text-wrap: balance;`};
 
 	display: ${props => (props.h ? 'block' : 'none')};
@@ -159,7 +160,7 @@ export const CustomInput = styled.div`
 
 	position: relative;
 
-	color: ${colors.textGrey};
+	color: ${palette.textSub};
 	font-weight: 900;
 
 	gap: 5px;
@@ -179,8 +180,8 @@ export const ButtonValue = styled.button`
 	text-align: center;
 	text-justify: center;
 
-	color: ${colors.yellow};
-	background-color: ${colors.subGrey};
+	color: ${palette.accent};
+	background-color: ${palette.bgSub};
 
 	cursor: pointer;
 
@@ -192,13 +193,13 @@ export const ButtonValue = styled.button`
 export const InputQuantity = styled.input`
 	width: 50px;
 	height: 44px;
-	background-color: ${colors.subGrey};
-	border-color: ${colors.subGrey};
+	background-color: ${palette.bgSub};
+	border-color: ${palette.gray};
 
 	padding: 3px 10px;
 	text-align: center;
 
-	color: ${colors.yellow};
+	color: ${palette.accent};
 
 	&::-webkit-inner-spin-button,
 	&::-webkit-outer-spin-button {
@@ -215,8 +216,8 @@ export const ButtonCase = styled.button`
 	padding-block: 8px;
 	border-radius: 8px;
 
-	background-color: ${colors.yellow};
-	color: ${colors.subBlack};
+	background-color: ${palette.accent};
+	color: ${palette.black};
 
 	@media screen and (min-width: 768px) {
 		padding-block: 10px;
@@ -281,10 +282,10 @@ export const SubinfoBox = styled.div`
 `;
 
 export const SubInfoItem = styled.div`
-	background-color: ${colors.mainBg} !important;
+	background-color: ${palette.bgMain} !important;
 
 	& > p {
-		color: ${colors.textGrey} !important;
+		color: ${palette.textSub} !important;
 	}
 `;
 
@@ -324,14 +325,14 @@ export const MiniGalleryItem = styled.li<MiniGalleryItemProps>`
 	}
 
 	opacity: ${props => (props.isActive ? '1' : '0.5')};
-	border: ${props => (props.isActive ? `1px solid ${colors.yellow}` : 'none')};
+	border: ${props => (props.isActive ? `1px solid ${palette.accent}` : 'none')};
 
 	transition: ease 2600ms opacity, ease 600ms border;
 
 	&:hover,
 	&:focus {
 		opacity: 1;
-		border: 1px solid ${colors.yellow};
+		border: 1px solid ${palette.accent};
 
 		transition: ease 600ms opacity, ease 600ms border;
 	}
@@ -348,7 +349,7 @@ export const MiniImg = styled.img`
 
 	object-fit: cover;
 
-	border: 0px solid ${colors.subGrey};
+	border: 0px solid ${palette.gray};
 `;
 
 interface BtnArrowProps {
@@ -369,10 +370,10 @@ export const BtnArrow = styled.button<BtnArrowProps>`
 	left: ${props => (props.position ? 0 : '100%')};
 	transform: translate(${props => (props.position ? 0 : '-100%')}, -50%);
 
-	color: ${colors.textGrey};
+	color: ${palette.textSub};
 
 	&:hover {
-		color: ${colors.yellow};
+		color: ${palette.accent};
 
 		& > svg {
 			scale: 1.3;
