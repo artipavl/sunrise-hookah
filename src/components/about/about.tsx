@@ -25,7 +25,7 @@ const About: FC<AboutProps> = props => {
 				</AboutTitle>
 				<Aboutlist>
 					<AboutItem>
-						<CiLock color={palette.white} size={'30%'} />
+						<CiLock color={palette.accentPrime} size={'30%'} />
 						<AboutItemTitle>
 							{language === 'uk'
 								? 'Якість та надійність'
@@ -38,7 +38,7 @@ const About: FC<AboutProps> = props => {
 						</AboutItemText>
 					</AboutItem>
 					<AboutItem>
-						<CiCamera color={palette.white} size={'30%'} />
+						<CiCamera color={palette.accentPrime} size={'30%'} />
 						<AboutItemTitle>
 							{language === 'uk' ? 'Дизайн' : 'Design'}{' '}
 						</AboutItemTitle>
@@ -49,7 +49,7 @@ const About: FC<AboutProps> = props => {
 						</AboutItemText>
 					</AboutItem>
 					<AboutItem>
-						<CiShuffle color={palette.white} size={'30%'} />
+						<CiShuffle color={palette.accentPrime} size={'30%'} />
 						<AboutItemTitle>
 							{language === 'uk' ? 'Тяга та видув' : 'Thrust and blow'}{' '}
 						</AboutItemTitle>
@@ -60,7 +60,7 @@ const About: FC<AboutProps> = props => {
 						</AboutItemText>
 					</AboutItem>
 					<AboutItem>
-						<CiHome color={palette.white} size={'30%'} />
+						<CiHome color={palette.accentPrime} size={'30%'} />
 						<AboutItemTitle>
 							{language === 'uk' ? 'Комфортність' : 'Comfort'}{' '}
 						</AboutItemTitle>

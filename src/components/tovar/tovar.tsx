@@ -39,7 +39,7 @@ const TovarCard: FC<TovarProps> = ({ tovar }) => {
 					<TovarInformationAvailability>
 						{tovar.quantity > 0
 							? language === 'uk'
-								? 'В наявності'
+								? 'На складі'
 								: 'In stock'
 							: language === 'uk'
 							? 'Відсутній'

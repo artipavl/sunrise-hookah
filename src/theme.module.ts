@@ -9,7 +9,7 @@ const palette = {
 	accent: '#FFC7C7',
 	accentSec: 'blue',
 	accentSecLight: '8a92a6',
-	accentPrime: '#E3651D',
+	accentPrime: '#F45050',
 
 	textMain: '#F4EEE0',
 	textSub: '#4F4557',
@@ -20,8 +20,8 @@ const palette = {
 	bgWhite: '#F9F9F9',
 
 	alert: '#FF0000',
-	reject: 'FFBB5C',
-	success: 'green',
+	reject: '#FFBB5C',
+	success: '#54B435',
 };
 
 export default palette;

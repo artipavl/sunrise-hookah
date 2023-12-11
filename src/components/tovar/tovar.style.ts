@@ -84,9 +84,9 @@ export const TovarInformationAvailability = styled.div`
 	align-items: center;
 
 	transform: rotate(45deg);
-	top: 10px;
-	right: -45px;
-	width: 140px;
+	top: 15px;
+	right: -44px;
+	width: 150px;
 	height: 25px;
 	color: ${palette.textSub};
 	background-color: ${palette.accent};
