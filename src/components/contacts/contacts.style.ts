@@ -19,7 +19,7 @@ export const Box = styled.div`
 export const Title = styled.h1`
 	text-align: center;
 	font-size: 5vw;
-	color: ${palette.white};
+	color: ${palette.textMain};
 	text-transform: uppercase;
 
 	@media screen and (min-width: 1440px) {
@@ -30,7 +30,7 @@ export const Title = styled.h1`
 export const SubTitle = styled.h2`
 	text-align: center;
 	font-size: 3vw;
-	color: ${palette.white};
+	color: ${palette.textMain};
 	/* text-transform: uppercase; */
 	@media screen and (min-width: 1440px) {
 		text-align: start;
@@ -41,7 +41,7 @@ export const TelLink = styled(Link)`
 	margin-top: 10px;
 	text-align: center;
 	font-size: 2vw;
-	color: ${palette.white};
+	color: ${palette.textMain};
 	text-transform: uppercase;
 	@media screen and (min-width: 1440px) {
 		text-align: start;
@@ -127,7 +127,7 @@ export const Input = styled(Field)<InputPrpos>`
 		line-height: 20px;
 		/* identical to box height */
 
-		color: ${palette.textMain};
+		color: ${palette.textSub};
 	}
 `;
 
@@ -149,7 +149,7 @@ export const Textarea = styled.textarea<InputPrpos>`
 		line-height: 20px;
 		/* identical to box height */
 
-		color: ${palette.textMain};
+		color: ${palette.textSub};
 	}
 `;
 
@@ -226,7 +226,7 @@ export const Button = styled.button`
 	line-height: 20px;
 	text-align: center;
 
-	color: ${palette.white};
+	color: ${palette.textMain};
 
 	:hover,
 	:focus {

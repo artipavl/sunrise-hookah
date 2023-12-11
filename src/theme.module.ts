@@ -6,12 +6,12 @@ const palette = {
 	gray: 'gray',
 	grayLight: 'gray',
 
-	accent: '#FFC7C7',
+	accent: '#FF6969',
 	accentSec: 'blue',
 	accentSecLight: '8a92a6',
 	accentPrime: '#F45050',
 
-	textMain: '#F4EEE0',
+	textMain: '#F0F0F0',
 	textSub: '#4F4557',
 	textBtn: 'white',
 
