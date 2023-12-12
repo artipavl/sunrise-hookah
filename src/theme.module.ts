@@ -17,7 +17,7 @@ const palette = {
 
 	bgMain: '#352F44',
 	bgSub: '#BCBAB8',
-	bgWhite: '#F9F9F9',
+	bgWhite: '#FFFAE7',
 
 	alert: '#FF0000',
 	reject: '#FFBB5C',

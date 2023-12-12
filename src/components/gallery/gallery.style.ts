@@ -135,11 +135,14 @@ export const PromotionLink = styled(Link)`
 	font-size: 3vw;
 	text-transform: uppercase;
 
-	border: 3px solid ${palette.accent};
+	border: 1px solid ${palette.accent};
 
 	&:hover,
 	:focus {
-		border: 3px solid ${palette.textMain};
+		border: 1px solid ${palette.textMain};
+		background-color: ${palette.accentPrime};
+		color: ${palette.textMain};
+
 		/* box-shadow: inset 1px 1px 1px 0px ${palette.textMain},
 			4px 4px 1px 4px ${palette.textMain}; */
 	}

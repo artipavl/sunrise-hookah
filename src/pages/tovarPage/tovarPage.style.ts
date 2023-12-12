@@ -285,7 +285,7 @@ export const SubInfoItem = styled.div`
 	background-color: ${palette.bgMain} !important;
 
 	& > p {
-		color: ${palette.textSub} !important;
+		color: ${palette.textMain} !important;
 	}
 `;
 

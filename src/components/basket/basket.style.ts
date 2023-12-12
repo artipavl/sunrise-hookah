@@ -18,10 +18,10 @@ export const BasketSection = styled.div`
 export const BasketBox = styled.div`
 	display: flex;
 	flex-direction: column;
-	min-width: 320px;
+	min-width: 420px;
 	max-width: 700px;
 	height: 100dvh;
-	background-color: ${palette.white};
+	background-color: ${palette.bgWhite};
 `;
 
 export const BasketHeader = styled.div`
@@ -32,6 +32,7 @@ export const BasketHeader = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	padding-inline-end: 20px;
+	color: ${palette.textMain};
 `;
 
 export const BasketCloseButton = styled.button`
@@ -58,8 +59,10 @@ export const BasketList = styled.ul`
 
 export const BasketItam = styled.li`
 	position: relative;
-	display: flex;
+	
+	display: flex; 
 	gap: 20px;
+
 	:hover,
 	:focus {
 		&& #delete {
@@ -81,7 +84,7 @@ export const BasketItamInput = styled.input`
 export const BasketItamInformation = styled.div`
 	display: flex;
 	flex-direction: column;
-	gap: 5px;
+	gap: 5px; 
 `;
 
 export const BasketItamDelete = styled.button`
@@ -93,6 +96,8 @@ export const BasketItamDelete = styled.button`
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	fill: ${palette.accent};
+	stroke: ${palette.accent};
 `;
 
 export const BasketSum = styled.div`
@@ -111,11 +116,11 @@ export const Buy = styled(Link)`
 	height: 10%;
 	/* margin-top: auto; */
 	background-color: ${palette.accent};
-	color: ${palette.black};
+	color: ${palette.textMain};
 
 	:hover,
 	:focus {
-		color: ${palette.white};
-		background-color: ${palette.bgMain};
+		color: ${palette.textMain};
+		background-color: ${palette.accentPrime};
 	}
 `;

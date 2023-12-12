@@ -21,7 +21,7 @@ import {
 	updateQuantity,
 } from '../../redux/basket/basketSlice';
 import { AiFillDelete, AiOutlineRight } from 'react-icons/ai';
-import { selectLanguage } from '../../redux/language/languageSelectors';
+import { selectLanguage } from '../../redux/language/languageSelectors'; 
 
 type BasketProps = {
 	openBasket: () => void;
