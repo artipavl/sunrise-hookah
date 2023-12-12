@@ -15,7 +15,7 @@ import palette from '../../theme.module';
 // };
 
 export const Title = styled.h1`
-	color: ${palette.textSub};
+	color: ${palette.textMain};
 
 	line-height: normal;
 	text-align: center;
@@ -95,7 +95,7 @@ export const SortCustomBtn = styled.div`
 `;
 
 export const SortingBtn = styled.button`
-	color: ${palette.textSub};
+	color: ${palette.textMain};
 	background-color: ${palette.bgMain};
 	z-index: 3;
 
@@ -123,7 +123,7 @@ export const SortList = styled.ul<SortListProps>`
 	z-index: 3;
 
 	background-color: ${palette.bgMain};
-	color: ${palette.textSub};
+	color: ${palette.textMain};
 `;
 
 export const SortItem = styled.li`
@@ -153,7 +153,7 @@ export const ItemOpt = styled.label<ItemOptTypes>`
 	font-size: 16px;
 
 	background-color: ${palette.bgMain};
-	color: ${palette.textSub};
+	color: ${palette.textMain};
 
 	position: absolute;
 	top: ${props => `${(props.index + 1) * 50}px`};
@@ -243,7 +243,7 @@ export const FieldInput = styled.input`
 	border: none;
 
 	background-color: ${palette.bgMain};
-	color: ${palette.textSub};
+	color: ${palette.textMain};
 `;
 
 export const TextSpan = styled.span`
@@ -289,7 +289,7 @@ export const RangeInputMax = styled.input<RangeInputTypes>`
 `;
 
 export const EmptyTovarList = styled.div`
-	color: ${palette.textSub};
+	color: ${palette.textMain};
 	background-color: ${palette.bgMain};
 	height: 200px;
 	width: 100%;
