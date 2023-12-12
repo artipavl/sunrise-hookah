@@ -62,7 +62,7 @@ export const MainInfoBox = styled.div`
 	width: 100%;
 	height: 100%;
 
-	color: ${palette.textSub};
+	color: ${palette.textMain};
 
 	@media screen and (min-width: 768px) {
 		grid-column-start: 3;
@@ -82,7 +82,7 @@ type H1Props = {
 export const H1 = styled.h1<H1Props>`
 	font-size: 24px;
 	/* font-style: oblique; */
-	color: ${palette.textSub};
+	color: ${palette.textMain};
 	${`text-wrap: balance;`};
 
 	display: ${props => (props.h ? 'block' : 'none')};
@@ -160,7 +160,7 @@ export const CustomInput = styled.div`
 
 	position: relative;
 
-	color: ${palette.textSub};
+	color: ${palette.textMain};
 	font-weight: 900;
 
 	gap: 5px;
@@ -180,7 +180,7 @@ export const ButtonValue = styled.button`
 	text-align: center;
 	text-justify: center;
 
-	color: ${palette.accent};
+	color: ${palette.textSub};
 	background-color: ${palette.bgSub};
 
 	cursor: pointer;
@@ -194,12 +194,12 @@ export const InputQuantity = styled.input`
 	width: 50px;
 	height: 44px;
 	background-color: ${palette.bgSub};
-	border-color: ${palette.gray};
+	border-color: ${palette.grayLight};
 
 	padding: 3px 10px;
 	text-align: center;
 
-	color: ${palette.accent};
+	color: ${palette.textSub};
 
 	&::-webkit-inner-spin-button,
 	&::-webkit-outer-spin-button {
@@ -217,7 +217,7 @@ export const ButtonCase = styled.button`
 	border-radius: 8px;
 
 	background-color: ${palette.accent};
-	color: ${palette.black};
+	color: ${palette.textMain};
 
 	@media screen and (min-width: 768px) {
 		padding-block: 10px;
@@ -369,14 +369,18 @@ export const BtnArrow = styled.button<BtnArrowProps>`
 
 	left: ${props => (props.position ? 0 : '100%')};
 	transform: translate(${props => (props.position ? 0 : '-100%')}, -50%);
-
-	color: ${palette.textSub};
+	
+	color: ${palette.textMain};
+	
+	scale: 1;
+	transition: scale 2s linear;
 
 	&:hover {
 		color: ${palette.accent};
 
 		& > svg {
 			scale: 1.3;
+			transition: scale 225ms linear;
 		}
 	}
 `;
