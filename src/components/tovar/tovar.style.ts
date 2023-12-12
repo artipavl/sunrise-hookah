@@ -52,7 +52,7 @@ export const TovarImageBoxUpper = styled.div`
 	align-items: center;
 	justify-content: center;
 	background-color: ${palette.accent};
-	color: ${palette.textSub};
+	color: ${palette.textMain};
 
 	transition: bottom 225ms linear;
 `;
@@ -88,7 +88,7 @@ export const TovarInformationAvailability = styled.div`
 	right: -44px;
 	width: 150px;
 	height: 25px;
-	color: ${palette.textSub};
+	color: ${palette.textMain};
 	background-color: ${palette.accent};
 
 	@media screen and (min-width: 768px) {

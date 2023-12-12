@@ -33,6 +33,7 @@ import Basket from '../basket/basket';
 import { selectBasket } from '../../redux/basket/basketSelectors';
 import { selectLanguage } from '../../redux/language/languageSelectors';
 import { updateLanguage } from '../../redux/language/languageSlice';
+import palette from '../../theme.module';
 
 type HederProps = {};
 
@@ -58,9 +59,9 @@ const Heder: FC<HederProps> = props => {
 			<HeaderBox>
 				<MenuBatton type="button" onClick={() => setMenu(menu => !menu)}>
 					{menu ? (
-						<AiOutlineClose color="#fff" size="30px" />
+						<AiOutlineClose color={palette.textMain} size="30px" />
 					) : (
-						<AiOutlineBars color="#fff" size="30px" />
+						<AiOutlineBars color={palette.textMain} size="30px" />
 					)}
 				</MenuBatton>
 
@@ -87,7 +88,7 @@ const Heder: FC<HederProps> = props => {
 									onClick={() => setSubMenu(subMenu => !subMenu)}
 								>
 									<span>{language === 'uk' ? 'МАГАЗИН' : 'SHOP'}</span>
-									<TiArrowSortedDown size="10px" color="#fff" />
+									<TiArrowSortedDown size="10px" color={palette.textMain} />
 								</DropMenuButton>
 
 								<DropMenuList open={subMenu}>
@@ -157,7 +158,7 @@ const Heder: FC<HederProps> = props => {
 					</LanguageList>
 					<ShoppingCart onClick={OpenBasketset}>
 						<CartSvgBox>
-							<AiOutlineShoppingCart color="#fff" size="30px" />
+							<AiOutlineShoppingCart color={palette.textMain} size="30px" />
 							{tovars.length > 0 && (
 								<Quantity>
 									<span>{tovars.length}</span>

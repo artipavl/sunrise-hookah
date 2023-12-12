@@ -71,11 +71,11 @@ export const Quantity = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	color: ${palette.white};
+	color: ${palette.textMain};
 	width: 15px;
 	height: 15px;
 	border-radius: 50%;
-	background-color: ${palette.alert};
+	background-color: ${palette.accent};
 
 	font-size: 10px;
 	right: 5px;
@@ -122,17 +122,17 @@ export const NavList = styled.ul`
 `;
 
 export const NavListItem = styled.li`
-	color: ${palette.white};
+	color: ${palette.textMain};
 `;
 
 export const NavLinkItem = styled(NavLink)`
 	padding-top: 10px;
 	padding-bottom: 10px;
-	color: ${palette.white};
+	color: ${palette.textMain};
 	text-transform: uppercase;
 	:hover,
 	:focus {
-		color: ${palette.alert};
+		color: ${palette.accent};
 	}
 
 	@media screen and (min-width: 1440px) {
@@ -161,13 +161,13 @@ export const DropMenuButton = styled.div<NavProps>`
 	display: flex;
 	gap: 10px;
 	align-items: center;
-	color: ${palette.white};
+	color: ${palette.textMain};
 	padding-top: 10px;
 	padding-bottom: 10px;
 
 	:hover,
 	:focus {
-		color: ${palette.alert};
+		color: ${palette.accent};
 	}
 
 	@media screen and (max-width: 1439px) {
@@ -216,11 +216,11 @@ interface LanguageButtonProps {
 }
 
 export const LanguageButton = styled.button<LanguageButtonProps>`
-	color: ${props => (props.active ? palette.alert : palette.white)};
+	color: ${props => (props.active ? palette.accent : palette.textMain)};
 
 	:hover,
 	:focus {
-		color: ${palette.alert};
+		color: ${palette.accent};
 	}
 `;
 
